@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:junkiri/constants/app_colors.dart';
 import 'package:junkiri/constants/router_constants.dart';
 import 'package:junkiri/constants/app_strings.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({Key? key}) : super(key: key);
 
@@ -9,9 +10,7 @@ class StartupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-            gradient:
-            LinearGradient(colors: [AppColors.lightYellow, AppColors.darkYellow])),
+        decoration: yellowGradient(),
         child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 100, 20, 40),
@@ -86,7 +85,7 @@ class StartupScreen extends StatelessWidget {
                     elevation: 0,
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, languageSelectScreenRoute);
+                      Navigator.pushNamed(context, signupScreenRoute);
                     },
                     shape:const StadiumBorder(),
                     child: Ink(

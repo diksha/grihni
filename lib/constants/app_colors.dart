@@ -5,4 +5,5 @@ class AppColors{
   static Color btnDarkYellow = const Color(0xAAFFFFFF);
   static Color lightYellow = const Color(0xFFF7CA6A);
   static Color darkYellow = const Color(0xFFF9C733);
+  static Color offWhite = const Color(0xFFEBEBEB);
 }
