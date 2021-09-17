@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "505482283450",
+    "project_id": "grihni-58f11",
+    "storage_bucket": "grihni-58f11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505482283450:android:9ec72a0f57d347f3cf3583",
+        "android_client_info": {
+          "package_name": "com.grihini.junkiri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505482283450-ah5s21a3jdnpvf0d22iai76a46nusrvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihini.junkiri",
+            "certificate_hash": "841e13290b84a82692f59cf84a1913fd1bf47a2d"
+          }
+        },
+        {
+          "client_id": "505482283450-69srs2eg1lu6mm1dgfr889c2lns6pqn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvR0r1fKeyjUgCXn9OmW-2gwEiugNc2TI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505482283450-69srs2eg1lu6mm1dgfr889c2lns6pqn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
