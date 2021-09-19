@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:junkiri/constants/router_constants.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/screens/language_select_screen.dart';
 import 'package:junkiri/ui/screens/signup_screen.dart';
 import 'package:junkiri/ui/screens/startup_screen.dart';

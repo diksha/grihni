@@ -2,9 +2,12 @@
 
 Software for grihni company
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+#Screenshots 
+![image](/screenshots/Startup Screen.jpg?raw=true "Startup Screen")
+<div align="center">
+    <img src="/screenshots/Startup Screen.jpg" width="400px"> 
+</div>
 
 A few resources to get you started if this is your first Flutter project:
 

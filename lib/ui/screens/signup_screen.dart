@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:junkiri/constants/app_colors.dart';
+import 'package:flutter/services.dart';
+import 'package:junkiri/services/firestore_service.dart';
+import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:junkiri/view%20models/signup_view_model.dart';
+import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -51,7 +56,7 @@ class SignupScreen extends StatelessWidget {
                 color: Colors.transparent,
                 height: height / 2,
                 width: width,
-                child: _signupForm(),
+                child: _signupForm(context),
               ),
             ),
           ],
@@ -83,81 +88,104 @@ Widget _header() {
   );
 }
 
-Widget _signupForm() {
-  return Padding(
-    padding: const EdgeInsets.all(60.0),
-    child: Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Form(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "NAME",
-                    style: TextStyle(
-                        color: AppColors.darkYellow,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
+Widget _signupForm(context) {
+  final nameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final addressController = TextEditingController();
+  return ViewModelBuilder<SignupViewModel>.reactive(
+      viewModelBuilder: () => SignupViewModel(),
+    builder: (context, model, child) {
+      return Padding(
+        padding: const EdgeInsets.all(60.0),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Form(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "NAME",
+                        style: TextStyle(
+                            color: AppColors.darkYellow,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextField(
+                        controller: nameController,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(RegExp(r"[a-zA-Z]+|\s"))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "PHONE NUMBER",
+                        style: TextStyle(
+                            color: AppColors.darkYellow,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextField(
+                        controller: phoneNumberController,
+                        maxLength: 10,
+                        inputFormatters: [
+                          WhitelistingTextInputFormatter(RegExp(r"\d"))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "ADDRESS",
+                        style: TextStyle(
+                            color: AppColors.darkYellow,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      TextField(
+                        controller: addressController,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
-                  TextField(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "PHONE NUMBER",
-                    style: TextStyle(
-                        color: AppColors.darkYellow,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  TextField(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "ADDRESS",
-                    style: TextStyle(
-                        color: AppColors.darkYellow,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  TextField(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: -30,
-          child: MaterialButton(
-            minWidth: 150,
-            height: 50,
-            onPressed: () {},
-            child: Ink(
-              decoration: yellowGradient(),
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                child: Text(
-                  "SIGN UP",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
             ),
-            elevation: 0,
-          ),
+            Positioned(
+              bottom: -30,
+              child: MaterialButton(
+                minWidth: 150,
+                height: 50,
+                onPressed: () async {
+                  model.addGrihini(name:nameController.text,phoneNumber:phoneNumberController.text,address:addressController.text, );
+                },
+                child: Ink(
+                  decoration: yellowGradient(),
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                    child: Text(
+                      "SIGN UP",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                ),
+                elevation: 0,
+              ),
+            ),
+          ],
+          overflow: Overflow.visible,
         ),
-      ],
-      overflow: Overflow.visible,
-    ),
+      );
+    }
   );
 }
 
