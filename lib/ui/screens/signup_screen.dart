@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
@@ -24,18 +25,19 @@ class SignupScreen extends StatelessWidget {
               decoration: yellowGradient(),
             ),
             Positioned(
-              top: 0,
+              top: 20,
               child: Container(
                 color: Colors.transparent,
-                height: height / 3,
                 width: width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    appBar(context),
-                    _header(),
-                  ],
-                ),
+                child: appBar(context),
+              ),
+            ),
+            Positioned(
+              top: 90,
+              child: Container(
+                color: Colors.transparent,
+                width: width,
+                child: _header(),
               ),
             ),
             Positioned(
@@ -166,7 +168,8 @@ Widget _signupForm(context) {
                 minWidth: 150,
                 height: 50,
                 onPressed: () async {
-                  model.addGrihini(name:nameController.text,phoneNumber:phoneNumberController.text,address:addressController.text, );
+                  model.addGrihini(context,name:nameController.text,phoneNumber:phoneNumberController.text,address:addressController.text, );
+
                 },
                 child: Ink(
                   decoration: yellowGradient(),

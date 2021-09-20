@@ -40,8 +40,27 @@ class LanguageSelectScreen extends StatelessWidget {
                     ],
                   ),
                   _header(height, width),
-                  Center(child: const Text("Select Language")),
-                  _buttonBar(),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: Center(
+                        child: Text(
+                      "Select Language",
+                      style: TextStyle(
+                          fontSize: 25,
+                          ),
+                    )),
+                  ),
+                  Column(
+                    children: [
+                      _button(" नेपाली "),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      _button("English"),
+                    ],
+                  ),
+
+                  _buttonBar()
                 ],
               ),
             ),
@@ -71,13 +90,40 @@ Widget _header(height, width) {
   );
 }
 
-Widget _buttonBar() {
+Widget _button(String str) {
   return Column(
     children: [
-      ElevatedButton(
+      MaterialButton(
+        color: Colors.amber,
+        shape: const StadiumBorder(),
         onPressed: () {},
-        child: Text("English"),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+          child: Text(
+            "$str",
+            style: TextStyle(
+                color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
       )
+    ],
+  );
+}
+
+Widget _buttonBar() {
+  return ButtonBar(
+    alignment: MainAxisAlignment.center,
+    children: [
+      MaterialButton(
+        color: Colors.amber,
+        onPressed: () {},
+        child: const Text("Signup"),
+      ),
+      MaterialButton(
+        color: Colors.amber,
+        onPressed: () {},
+        child: const Text("Login"),
+      ),
     ],
   );
 }

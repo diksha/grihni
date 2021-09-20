@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:junkiri/constants/router_names.dart';
 
 Widget appBar(context) {
   return Padding(
@@ -7,12 +10,29 @@ Widget appBar(context) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-          height: 30,
-          child: Image.asset('assets/images/icons/back.png'),
+        GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, languageSelectScreenRoute);
+          },
+          child: SizedBox(
+            height: 30,
+            child: Image.asset('assets/images/icons/back.png'),
+          ),
         ),
         //Buttons Should be replaced here
-        const Text("English | Nepali",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+        Row(
+          children: const [
+            TextButton(
+              child: Text("English",style: TextStyle(color: Colors.white),),
+              onPressed: null,
+            ),
+            Text("|",style: TextStyle(color: Colors.white),),
+            TextButton(
+              child: Text("Nepali",style: TextStyle(color: Colors.white),),
+              onPressed: null,
+            ),
+          ],
+        ),
       ],
     ),
   );
