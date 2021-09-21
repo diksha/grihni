@@ -8,6 +8,9 @@ import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:junkiri/view%20models/signup_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:junkiri/constants/app_colors.dart';
+import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -189,6 +192,7 @@ Widget _signupForm(context) {
         ),
       );
     }
+
   );
 }
 
