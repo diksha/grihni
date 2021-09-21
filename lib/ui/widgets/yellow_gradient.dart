@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:junkiri/constants/app_colors.dart';
+import 'package:junkiri/ui/shares/app_colors.dart';
 
 yellowGradient(){
   return BoxDecoration(

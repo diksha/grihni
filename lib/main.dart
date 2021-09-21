@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:junkiri/config/routes/router.dart' as router;
-import 'constants/router_constants.dart';
+import 'package:junkiri/ui/router.dart' as router;
+import 'constants/router_names.dart';
+import 'locate.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Grihini App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
