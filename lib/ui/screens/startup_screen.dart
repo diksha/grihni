@@ -85,7 +85,7 @@ class StartupScreen extends StatelessWidget {
                     elevation: 0,
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, signupScreenRoute);
+                      Navigator.pushNamed(context, languageSelectScreenRoute);
                     },
                     shape:const StadiumBorder(),
                     child: Ink(

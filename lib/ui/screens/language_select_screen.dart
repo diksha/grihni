@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 
 class LanguageSelectScreen extends StatelessWidget {
@@ -60,7 +61,7 @@ class LanguageSelectScreen extends StatelessWidget {
                     ],
                   ),
 
-                  _buttonBar()
+                  _buttonBar(context)
                 ],
               ),
             ),
@@ -110,13 +111,16 @@ Widget _button(String str) {
   );
 }
 
-Widget _buttonBar() {
+Widget _buttonBar(context) {
   return ButtonBar(
     alignment: MainAxisAlignment.center,
     children: [
       MaterialButton(
         color: Colors.amber,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, signupScreenRoute);
+        },
         child: const Text("Signup"),
       ),
       MaterialButton(

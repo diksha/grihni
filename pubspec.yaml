@@ -35,12 +35,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^1.6.0
-  firebase_auth: ^3.1.1
+  firebase_auth: ^1.2.0
   cloud_firestore: ^2.5.2
   sms_autofill: ^2.1.0
   get_it: ^7.2.0
   provider: ^5.0.0
   http: ^0.13.3
+  firebase_phone_auth_handler: ^0.0.7
   # async package to add additional Cancellable operations
   async: ^2.8.1
   # get it
