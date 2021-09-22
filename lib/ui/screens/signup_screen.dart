@@ -5,6 +5,7 @@ import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
+
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
 

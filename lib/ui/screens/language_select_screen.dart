@@ -125,7 +125,10 @@ Widget _buttonBar(context) {
       ),
       MaterialButton(
         color: Colors.amber,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, loginScreenRoute);
+        },
         child: const Text("Login"),
       ),
     ],
