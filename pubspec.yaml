@@ -36,11 +36,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.6.0
   firebase_auth: ^3.1.1
+<<<<<<< HEAD
+=======
   cloud_firestore: ^2.5.2
   sms_autofill: ^2.1.0
   get_it: ^7.2.0
   provider: ^5.0.0
   http: ^0.13.3
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
   # async package to add additional Cancellable operations
   async: ^2.8.1
   # get it

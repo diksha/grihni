@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:junkiri/ui/router.dart' as router;
 import 'constants/router_names.dart';
-import 'locate.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  setupLocator();
   runApp(const MyApp());
 }
 

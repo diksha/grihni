@@ -36,27 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  cloud_firestore:
-    dependency: "direct main"
-    description:
-      name: cloud_firestore
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.5.2"
-  cloud_firestore_platform_interface:
-    dependency: transitive
-    description:
-      name: cloud_firestore_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.4.1"
-  cloud_firestore_web:
-    dependency: transitive
-    description:
-      name: cloud_firestore_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.2"
   collection:
     dependency: transitive
     description:
@@ -157,12 +136,14 @@ packages:
     source: hosted
     version: "4.3.8"
   get_it:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.0"
+<<<<<<< HEAD
+=======
   http:
     dependency: "direct main"
     description:
@@ -170,6 +151,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.3"
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
   http_parser:
     dependency: transitive
     description:
@@ -226,6 +208,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+<<<<<<< HEAD
+=======
   pedantic:
     dependency: transitive
     description:
@@ -240,6 +224,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -248,7 +233,7 @@ packages:
     source: hosted
     version: "2.0.1"
   provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: provider
       url: "https://pub.dartlang.org"
@@ -259,13 +244,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sms_autofill:
-    dependency: "direct main"
-    description:
-      name: sms_autofill
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   source_span:
     dependency: transitive
     description:
@@ -344,5 +322,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
-  flutter: ">=1.22.0"
+  dart: ">=2.12.0 <3.0.0"
+  flutter: ">=1.16.0"
