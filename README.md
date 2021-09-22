@@ -11,7 +11,10 @@ Software for grihni company
 </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -25,4 +28,7 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+<<<<<<< HEAD
 >>>>>>> 4f78f4d73f8a6853e68db622f451a12c6b3a6fa6
+=======
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e

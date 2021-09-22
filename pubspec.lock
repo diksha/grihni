@@ -142,6 +142,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.0"
+<<<<<<< HEAD
+=======
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.3"
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
   http_parser:
     dependency: transitive
     description:
@@ -198,6 +208,23 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+<<<<<<< HEAD
+=======
+  pedantic:
+    dependency: transitive
+    description:
+      name: pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.11.1"
+  pin_input_text_field:
+    dependency: transitive
+    description:
+      name: pin_input_text_field
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
+>>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
   plugin_platform_interface:
     dependency: transitive
     description:

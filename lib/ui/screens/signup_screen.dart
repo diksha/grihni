@@ -5,7 +5,6 @@ import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
-
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
@@ -91,6 +90,7 @@ Widget _signupForm(context) {
   final nameController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final addressController = TextEditingController();
+
   return Padding(
     padding: const EdgeInsets.all(60.0),
     child: Stack(
