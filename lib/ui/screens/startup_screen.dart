@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
-import 'package:junkiri/constants/router_names.dart';
-import 'package:junkiri/ui/shares/app_strings.dart';
-import 'package:junkiri/constants/app_colors.dart';
 import 'package:junkiri/constants/router_constants.dart';
-import 'package:junkiri/constants/app_strings.dart';
+import 'package:junkiri/ui/shares/app_strings.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({Key? key}) : super(key: key);
@@ -88,7 +85,7 @@ class StartupScreen extends StatelessWidget {
                     elevation: 0,
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, signupScreenRoute);
+                      Navigator.pushNamed(context, "signup");
                     },
                     shape:const StadiumBorder(),
                     child: Ink(

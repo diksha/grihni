@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
@@ -8,7 +8,6 @@ import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:junkiri/view%20models/signup_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
-import 'package:junkiri/constants/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
@@ -139,10 +138,7 @@ Widget _signupForm(context) {
                       ),
                       TextField(
                         controller: phoneNumberController,
-                        maxLength: 10,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp(r"\d"))
-                        ],
+                        maxLength: 15,
                       ),
                       SizedBox(
                         height: 10,
@@ -171,8 +167,8 @@ Widget _signupForm(context) {
                 minWidth: 150,
                 height: 50,
                 onPressed: () async {
-                  model.addGrihini(context,name:nameController.text,phoneNumber:phoneNumberController.text,address:addressController.text, );
-
+                  // model.addGrihini(context,name:nameController.text,phoneNumber:phoneNumberController.text,address:addressController.text, );
+                  registerUser(phoneNumberController.text, context);
                 },
                 child: Ink(
                   decoration: yellowGradient(),
@@ -193,6 +189,70 @@ Widget _signupForm(context) {
       );
     }
 
+  );
+}
+
+Future registerUser(String mobile, BuildContext context) async{
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  _auth.verifyPhoneNumber(
+      phoneNumber: mobile,
+      timeout: Duration(seconds: 60),
+      verificationCompleted: (AuthCredential authCredential) {
+        _auth.signInWithCredential(authCredential).then((UserCredential result) {
+          print('dikshag Logging in');
+        }).catchError((e) {
+          print(e);
+        });
+      },
+      verificationFailed: (FirebaseAuthException authException){
+        print('dikshag Failed');
+      },
+      codeSent: (String verificationId, int? forceResendingToken) {
+        final _codeController = TextEditingController();
+        //show dialog to take input from the user
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => AlertDialog(
+              title: Text("Enter SMS Code"),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextField(
+                    controller: _codeController,
+                  ),
+
+                ],
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text("Done"),
+                  textColor: Colors.white,
+                  color: Colors.redAccent,
+                  onPressed: () {
+                    FirebaseAuth auth = FirebaseAuth.instance;
+
+                    final smsCode = _codeController.text.trim();
+
+                    final _credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
+                    auth.signInWithCredential(_credential).then((UserCredential result){
+                      print(' dikshag signed in');
+                    }).catchError((e){
+                      print(e);
+                    });
+                  },
+                )
+              ],
+            )
+        );
+      },
+      codeAutoRetrievalTimeout: (String verificationId){
+        verificationId = verificationId;
+        print(verificationId);
+        print("dikshag Timeout");
+      }
   );
 }
 
