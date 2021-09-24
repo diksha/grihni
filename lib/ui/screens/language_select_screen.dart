@@ -92,45 +92,52 @@ Widget _header(height, width) {
 }
 
 Widget _button(String str) {
-  return Column(
-    children: [
-      MaterialButton(
-        color: Colors.amber,
-        shape: const StadiumBorder(),
-        onPressed: () {},
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
-          child: Text(
-            "$str",
-            style: TextStyle(
-                color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-          ),
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: MaterialButton(
+
+      color: Colors.amber,
+      shape: const StadiumBorder(),
+      onPressed: () {},
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
+        child: Text(
+          "$str",
+          style: TextStyle(
+              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
         ),
-      )
-    ],
+      ),
+    ),
   );
 }
 
 Widget _buttonBar(context) {
-  return ButtonBar(
-    alignment: MainAxisAlignment.center,
+  return Stack(
+    alignment: Alignment.center,
     children: [
+      Positioned(
+        right: -80,
+        child: MaterialButton(
+          height: 50,
+          minWidth: 100,
+          color: Colors.grey,
+          onPressed: () {
+            Navigator.pushNamed(context, loginScreenRoute);
+          },
+          child: const Text("Login"),
+        ),
+      ),
       MaterialButton(
+        height: 50,
+        minWidth: 100,
         color: Colors.amber,
         onPressed: () {
-          Navigator.pop(context);
           Navigator.pushNamed(context, signupScreenRoute);
         },
         child: const Text("Signup"),
       ),
-      MaterialButton(
-        color: Colors.amber,
-        onPressed: () {
-          Navigator.pop(context);
-          Navigator.pushNamed(context, loginScreenRoute);
-        },
-        child: const Text("Login"),
-      ),
+
     ],
+    overflow: Overflow.visible,
   );
 }

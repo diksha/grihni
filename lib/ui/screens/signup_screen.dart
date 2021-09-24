@@ -1,13 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
+  @override
+  _SignupScreenState createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -37,7 +42,7 @@ class SignupScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 0,
+              top: height / 2,
               child: Container(
                 color: AppColors.offWhite,
                 height: height / 2,
@@ -54,7 +59,7 @@ class SignupScreen extends StatelessWidget {
                 color: Colors.transparent,
                 height: height / 2,
                 width: width,
-                child: _signupForm(context),
+                child: signupForm(context),
               ),
             ),
           ],
@@ -86,10 +91,10 @@ Widget _header() {
   );
 }
 
-Widget _signupForm(context) {
-  final nameController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  final addressController = TextEditingController();
+Widget signupForm(context) {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
   return Padding(
     padding: const EdgeInsets.all(60.0),
@@ -162,7 +167,7 @@ Widget _signupForm(context) {
             minWidth: 150,
             height: 50,
             onPressed: () {
-              Navigator.pushReplacementNamed(context, trainingScreenRoute);
+              registerUser(phoneNumberController.text, context);
             },
             child: Ink(
               decoration: yellowGradient(),
@@ -196,3 +201,68 @@ Widget _footer() {
   );
 }
 
+Future registerUser(String mobile, BuildContext context) async {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  _auth.verifyPhoneNumber(
+      phoneNumber: mobile,
+      timeout: Duration(seconds: 60),
+      verificationCompleted: (AuthCredential authCredential) {
+        _auth
+            .signInWithCredential(authCredential)
+            .then((UserCredential result) {
+          print('dikshag Logging in');
+        }).catchError((e) {
+          print(e);
+        });
+      },
+      verificationFailed: (FirebaseAuthException authException) {
+        print('dikshag Failed');
+      },
+      codeSent: (String verificationId, int? forceResendingToken) {
+        final _codeController = TextEditingController();
+        //show dialog to take input from the user
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+            title: Text("Enter SMS Code"),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextField(
+                  controller: _codeController,
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Done"),
+                textColor: Colors.white,
+                color: Colors.redAccent,
+                onPressed: () {
+                  FirebaseAuth auth = FirebaseAuth.instance;
+
+                  final smsCode = _codeController.text.trim();
+
+                  final _credential = PhoneAuthProvider.credential(
+                      verificationId: verificationId, smsCode: smsCode);
+                  auth
+                      .signInWithCredential(_credential)
+                      .then((UserCredential result) {
+                    print(' dikshag signed in');
+                  }).catchError((e) {
+                    print(e);
+                  });
+                },
+              ),
+            ],
+          ),
+        );
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        verificationId = verificationId;
+        print(verificationId);
+        print("dikshag Timeout");
+      });
+}

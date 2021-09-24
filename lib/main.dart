@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: startupScreenRoute,
+      initialRoute: startTaskScreenRoute,
     );
   }
 }

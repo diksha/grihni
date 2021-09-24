@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/ui/shares/app_colors.dart';
 
 Widget appBarYellow(context) {
   return Padding(
@@ -21,14 +22,14 @@ Widget appBarYellow(context) {
         ),
         //Buttons Should be replaced here
         Row(
-          children: const [
+          children: [
             TextButton(
-              child: Text("English",style: TextStyle(color: Colors.white),),
+              child: Text("English",style: TextStyle(color: AppColors.darkYellow),),
               onPressed: null,
             ),
-            Text("|",style: TextStyle(color: Colors.white),),
+            Text("|",style: TextStyle(color: AppColors.darkYellow),),
             TextButton(
-              child: Text("Nepali",style: TextStyle(color: Colors.white),),
+              child: Text("Nepali",style: TextStyle(color: AppColors.darkYellow),),
               onPressed: null,
             ),
           ],
