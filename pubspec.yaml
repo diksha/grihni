@@ -36,20 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.6.0
   firebase_auth: ^3.1.1
-<<<<<<< HEAD
-=======
-  cloud_firestore: ^2.5.2
-  sms_autofill: ^2.1.0
-  get_it: ^7.2.0
-  provider: ^5.0.0
-  http: ^0.13.3
->>>>>>> 8dec679a107867e858479bda9bf9513d6fe2642e
-  # async package to add additional Cancellable operations
-  async: ^2.8.1
-  # get it
-  # Stacked Arch
-  stacked: ^2.2.5
-  stacked_services: ^0.8.13
+  cloud_firestore: ^2.5.3
+  flutter_riverpod: ^0.14.0+3
+  shared_preferences: ^2.0.8
+
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +51,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  device_preview: ^0.7.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

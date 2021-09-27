@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class TrainingPending extends ConsumerWidget {
+  const TrainingPending({Key? key, required this.grihini}) : super(key: key);
+  final Grihini grihini;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ScopedReader watch) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -36,9 +39,9 @@ class LoginScreen extends StatelessWidget {
               right: 100,
               child: Column(
                 children: [
-                  const Text(
-                    "Hello, Proshish",
-                    style: TextStyle(
+                  Text(
+                    "Hello, ${grihini.name}",
+                    style: const TextStyle(
                       fontSize: 25,
                       color: Colors.white,
                     ),
