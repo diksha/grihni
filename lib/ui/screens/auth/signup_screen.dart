@@ -4,6 +4,7 @@ import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/services/auth_service.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
@@ -32,65 +33,83 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    w = MediaQuery.of(context).size.width;
+    h = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              decoration: yellowGradient(),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            decoration: yellowGradient(),
+          ),
+          Positioned(
+            top: h / 2,
+            child: Container(
+              color: AppColors.offWhite,
+              height: h / 2,
+              width: w,
             ),
-            Positioned(
-              top: 20,
-              child: Container(
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
                 color: Colors.transparent,
-                width: width,
+                width: w,
                 child: appBar(context),
               ),
-            ),
-            Positioned(
-              top: 90,
-              child: Container(
+              Container(
                 color: Colors.transparent,
-                width: width,
+                width: w,
                 child: _header(),
               ),
-            ),
-            Positioned(
-              top: height / 2,
-              child: Container(
-                color: AppColors.offWhite,
-                height: height / 2,
-                width: width,
-              ),
-            ),
-            Positioned(
-              bottom: 75,
-              child: _footer(),
-            ),
-            Positioned(
-              bottom: height / 6,
-              child: Container(
+              Container(
                 color: Colors.transparent,
-                height: height / 1.6,
-                width: width,
+                width: w,
                 child: signupForm(
-                    context,
-                    nameController,
-                    phoneNumberController,
-                    addressController,
-                    otpController,
-                    authService,
-                    setData,
+                  context,
+                  nameController,
+                  phoneNumberController,
+                  addressController,
+                  otpController,
+                  authService,
+                  setData,
                   smsCode,
                   verificationIdFinal,
                 ),
               ),
-            ),
-          ],
-        ),
+              MaterialButton(
+                onPressed: () {
+                  smsCode = otpController.text;
+                  authService.signupWithPhoneNumber(
+                      verificationIdFinal,
+                      smsCode,
+                      context,
+                      Grihini(
+                          name: nameController.text,
+                          phoneNumber: phoneNumberController.text,
+                          address: addressController.text,
+                          status: 'training_pending'));
+                },
+                child: Ink(
+                  decoration: yellowGradient(),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        w * 0.08, h * 0.01, w * 0.08, h * 0.01),
+                    child: Text(
+                      "SIGN UP",
+                      style:
+                          TextStyle(color: Colors.white, fontSize: w * 0.055),
+                    ),
+                  ),
+                ),
+                elevation: 0,
+              ),
+              _footer(),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -100,123 +119,125 @@ Widget _header() {
   return Column(
     children: [
       CircleAvatar(
-        radius: 55.0,
+        radius: w * 0.12,
         child: ClipRRect(
           child: Image.asset('assets/images/logo.png'),
           borderRadius: BorderRadius.circular(100.0),
         ),
       ),
-      const SizedBox(
-        height: 20,
-      ),
-      const Text(
+      Text(
         "Sign Up Form",
         style: TextStyle(
-            fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: w * 0.06,
+            fontWeight: FontWeight.bold,
+            color: Colors.white),
       ),
     ],
   );
 }
 
-Widget signupForm(context, nameController, phoneNumberController,
-    addressController, otpController, authService, Function setData,smsCode,verificationIdFinal) {
+Widget signupForm(
+    context,
+    nameController,
+    phoneNumberController,
+    addressController,
+    otpController,
+    authService,
+    Function setData,
+    smsCode,
+    verificationIdFinal) {
   return Padding(
-    padding: const EdgeInsets.all(60.0),
-    child: Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "NAME",
-                  style: TextStyle(
-                      color: AppColors.darkYellow,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                TextField(
-                  controller: nameController,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp(r"[a-zA-Z]+|\s"))
-                  ],
-                ),
-                Text(
-                  "PHONE NUMBER",
-                  style: TextStyle(
-                      color: AppColors.darkYellow,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                TextField(
-                  controller: phoneNumberController,
-                ),
-                Text(
-                  "OTP",
-                  style: TextStyle(
-                      color: AppColors.darkYellow,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                TextField(
-                  controller: otpController,
-                  maxLength: 10,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp(r"\d"))
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await authService.verifyPhoneNumber(
-                        phoneNumberController.text, context, setData);
-                  },
-                  child: const Text("Send OTP"),
-                ),
-                Text(
-                  "ADDRESS",
-                  style: TextStyle(
-                      color: AppColors.darkYellow,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                TextField(
-                  controller: addressController,
-
-                ),
-              ],
+    padding: EdgeInsets.only(left: w * 0.15, right: w * 0.15),
+    child: Container(
+      color: Colors.white,
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.05),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "NAME",
+              style: TextStyle(
+                  color: AppColors.darkYellow,
+                  fontSize: w * 0.03,
+                  fontWeight: FontWeight.bold),
             ),
-          ),
-        ),
-        Positioned(
-          bottom: -30,
-          child: MaterialButton(
-            minWidth: 150,
-            height: 50,
-            onPressed: () {
-              smsCode = otpController.text;
-              authService.signupWithPhoneNumber(
-                  verificationIdFinal, smsCode, context,Grihini(name: nameController.text, phoneNumber: phoneNumberController.text, address: addressController.text, status: 'training_pending'));
-            },
-            child: Ink(
-              decoration: yellowGradient(),
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                child: Text(
-                  "SIGN UP",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
+            TextField(
+              controller: nameController,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp(r"[a-zA-Z]+|\s"))
+              ],
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.all(w * 0.01),
               ),
             ),
-            elevation: 0,
-          ),
+            SizedBox(
+              height: h * 0.015,
+            ),
+            Text(
+              "ADDRESS",
+              style: TextStyle(
+                  color: AppColors.darkYellow,
+                  fontSize: w * 0.03,
+                  fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.all(w * 0.01),
+              ),
+              controller: addressController,
+            ),
+            SizedBox(
+              height: h * 0.015,
+            ),
+            Text(
+              "PHONE NUMBER",
+              style: TextStyle(
+                  color: AppColors.darkYellow,
+                  fontSize: w * 0.03,
+                  fontWeight: FontWeight.bold),
+            ),
+
+            TextField(
+              controller: phoneNumberController,
+              decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(w * 0.01),
+                  suffix: SizedBox(
+                    height: w*0.08,
+                    child: TextButton(
+                      onPressed: () async {
+                        await authService.verifyPhoneNumber(
+                            phoneNumberController.text, context, setData);
+                      },
+                      child: Text("Send OTP",style: TextStyle(fontSize: w*0.03),),
+                    ),
+                  )),
+            ),
+            SizedBox(
+              height: h * 0.015,
+            ),
+            Text(
+              "OTP",
+              style: TextStyle(
+                  color: AppColors.darkYellow,
+                  fontSize: w * 0.03,
+                  fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.all(w * 0.01),
+              ),
+              controller: otpController,
+              inputFormatters: [WhitelistingTextInputFormatter(RegExp(r"\d"))],
+            ),
+          ],
         ),
-      ],
-      overflow: Overflow.visible,
+      ),
     ),
   );
 }

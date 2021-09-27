@@ -7,6 +7,8 @@ import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/screens/tasks/task_step_screen.dart';
 import 'package:junkiri/ui/screens/profile/training_pending.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
 //import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -56,8 +58,6 @@ class AuthService {
     }
   }
 
-
-
   Future<void> signupWithPhoneNumber(
       String verificationId, String smsCode, BuildContext context,Grihini grihini) async {
     try {
@@ -67,6 +67,10 @@ class AuthService {
           .signInWithCredential(authCredential)
           .then((UserCredential result) async {
         _firestoreService.addGrihini(grihini.name, result.user!.phoneNumber,grihini.address,grihini.status, result.user!.uid,);
+        SharedPreferences.getInstance().then((value) {
+          value.setBool('isFirstTime', false);
+          value.setString('currentUid',result.user!.uid );
+        });
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (builder) => HomeScreen(grihini: grihini,)),
@@ -98,7 +102,6 @@ class AuthService {
           .signInWithCredential(authCredential)
           .then((UserCredential result) async{
            Grihini current_grihini= await  _firestoreService.getGrihini(result.user!.uid);
-           print(current_grihini.status);
            Navigator.pop(context);
            Navigator.pushAndRemoveUntil(
                context,

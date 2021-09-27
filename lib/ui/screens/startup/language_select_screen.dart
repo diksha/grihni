@@ -1,78 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageSelectScreen extends StatelessWidget {
   const LanguageSelectScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    w = MediaQuery.of(context).size.width;
+    h = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: height,
-              width: width,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  AppColors.btnLightYellow,
-                  Colors.white,
-                ], stops: const [
-                  0,
-                  0.4
-                ]),
-              ),
+      body: Stack(
+        children: [
+          Container(
+            height: h,
+            width: w,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                AppColors.btnLightYellow,
+                Colors.white,
+              ], stops: const [
+                0,
+                0.4
+              ]),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 30,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(w*0.05, h*0.03, w*0.05, h*0.03),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      child: SizedBox(
+                        height: w*0.08,
                         child:
                             Image.asset('assets/images/icons/back_yellow.png'),
                       ),
-                    ],
-                  ),
-                  _header(height, width),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    child: Center(
-                        child: Text(
-                      "Select Language",
-                      style: TextStyle(
-                          fontSize: 25,
-                          ),
-                    )),
-                  ),
-                  Column(
-                    children: [
-                      _button(" नेपाली "),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      _button("English"),
-                    ],
-                  ),
-
-                  _buttonBar(context)
-                ],
-              ),
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
+                _header(),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, h*0.02, 0, 0),
+                  child: Center(
+                      child: Text(
+                    "Select Language",
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  )),
+                ),
+                Column(
+                  children: [
+                    _button("नेपाली"),
+                    _button("English"),
+                  ],
+                ),
+                _buttonBar(context)
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-Widget _header(height, width) {
+Widget _header() {
   return Stack(
     alignment: Alignment.center,
     children: [
@@ -80,9 +81,9 @@ Widget _header(height, width) {
         child: Image.asset('assets/images/world.png'),
       ),
       Positioned(
-        bottom: -50,
+        bottom: -h*0.05,
         child: Container(
-          height: 170,
+          height: h*0.16,
           child: Image.asset('assets/images/lang.png'),
         ),
       )
@@ -91,20 +92,39 @@ Widget _header(height, width) {
   );
 }
 
-Widget _button(String str) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: MaterialButton(
-
-      color: Colors.amber,
-      shape: const StadiumBorder(),
-      onPressed: () {},
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
-        child: Text(
-          "$str",
-          style: TextStyle(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+Widget _button(String language) {
+  return MaterialButton(
+    shape: const StadiumBorder(),
+    onPressed: () {
+      SharedPreferences.getInstance().then((value) {
+        value.setString('savedLocale', language);
+        print(language);
+      });
+    },
+    child: Padding(
+      padding: EdgeInsets.all(w*0.02),
+      child: Ink(
+        decoration: BoxDecoration(
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                blurRadius: w*0.01,
+                color: Colors.amberAccent.withOpacity(0.4),
+                offset: Offset(0, 2),
+                spreadRadius: w*0.02,
+              ),
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(w*0.08)),
+            gradient: LinearGradient(
+                colors: [AppColors.lightYellow, AppColors.darkYellow])),
+        width: w / 2,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0,h*0.02, 0, h*0.02),
+          child: Text(
+            language,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.white, fontSize: w*0.06, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     ),
@@ -115,28 +135,48 @@ Widget _buttonBar(context) {
   return Stack(
     alignment: Alignment.center,
     children: [
+      Container(
+        width: w / 4,
+      ),
       Positioned(
-        right: -80,
+        right: -w / 9,
         child: MaterialButton(
-          height: 50,
-          minWidth: 100,
-          color: Colors.grey,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          elevation: 0.001,
+          height: h*0.06,
+          minWidth: w / 4,
+          color: Colors.white10,
           onPressed: () {
             Navigator.pushNamed(context, loginScreenRoute);
           },
-          child: const Text("Login"),
+          child: Text("Login",style: TextStyle(fontSize: w*0.03),),
         ),
       ),
-      MaterialButton(
-        height: 50,
-        minWidth: 100,
-        color: Colors.amber,
-        onPressed: () {
-          Navigator.pushNamed(context, signupScreenRoute);
-        },
-        child: const Text("Signup"),
-      ),
+      Positioned(
+        left: -w / 9,
+        child: MaterialButton(
+          onPressed: () {
+            Navigator.pushNamed(context, signupScreenRoute);
+          },
 
+          child: Ink(
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
+                gradient: LinearGradient(
+                    colors: [AppColors.lightYellow, AppColors.darkYellow])),
+            width: w / 4,
+            height: h*0.06,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(0, h*0.02, 0, h*0.01),
+              child: Text(
+                "Signup",
+                textAlign: TextAlign.center,style: TextStyle(fontSize: w*0.03),
+              ),
+            ),
+          ),
+        ),
+      ),
     ],
     overflow: Overflow.visible,
   );

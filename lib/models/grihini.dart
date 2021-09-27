@@ -10,8 +10,8 @@ class Grihini{
   Grihini.fromMap(Map<String, dynamic> data)
       : name = data['name'],
         phoneNumber = data['phoneNumber'],
-        status = data['status'],
-        address = data['address'];
+        address = data['address'],
+        status = data['status'];
 
   Map<String,dynamic> toMap(){
     return {

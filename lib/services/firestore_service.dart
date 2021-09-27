@@ -8,7 +8,7 @@ class FirestoreService {
     toFirestore: (grihini, _) => grihini.toMap(),
   );
 
-  Future<void> addGrihini(address,phoneNumber,name,status,uid) async {
+  Future<void> addGrihini(name,phoneNumber,address,status,uid) async {
     await grihiniRef.doc(uid).set(
       Grihini(address: address, phoneNumber: phoneNumber, name: name, status:status,),
     );
