@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/services/firestore_service.dart';
-import 'package:junkiri/ui/screens/profile/trained.dart';
+import 'package:junkiri/ui/screens/profile/profile.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 
@@ -35,7 +35,7 @@ Widget buildBody(BuildContext context, Grihini grihini) {
     case "training_pending":
       return trainingPending(context, grihini);
     case "trained":
-      return Trained(grihini: grihini);
+      return Profile(grihini: grihini);
   }
   return const Text("Something Went Wrong...");
 }
