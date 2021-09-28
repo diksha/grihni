@@ -7,6 +7,7 @@ import 'package:junkiri/ui/screens/startup/language_select_screen.dart';
 import 'package:junkiri/ui/screens/auth/login_screen.dart';
 import 'package:junkiri/ui/screens/auth/signup_screen.dart';
 import 'package:junkiri/ui/screens/startup/startup_screen.dart';
+import 'package:junkiri/ui/screens/tasks/achaar_prepared_screen.dart';
 import 'package:junkiri/ui/screens/tasks/grocery_received_screen.dart';
 import 'package:junkiri/ui/screens/tasks/task_accept_screen.dart';
 import 'package:junkiri/ui/screens/tasks/grocery_pending_screen.dart';
@@ -35,6 +36,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const GroceryPending());
     case groceryReceivedScreenRoute:
       return MaterialPageRoute(builder: (context) => const GroceryReceived());
+    case achaarPreparedScreenRoute:
+      return MaterialPageRoute(builder: (context) => const AchaarPrepared());
     default:
       return MaterialPageRoute(builder: (context) => const StartupScreen());
   }
