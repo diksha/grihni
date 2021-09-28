@@ -74,7 +74,7 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
               CircleAvatar(
                 radius: w * 0.15,
                 child: ClipRRect(
-                  child: Image.asset('assets/images/logo.png'),
+                  child: Image.asset('assets/images/person.png'),
                   borderRadius: BorderRadius.circular(w*0.5),
                 ),
               ),

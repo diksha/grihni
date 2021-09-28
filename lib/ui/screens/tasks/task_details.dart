@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 
-class ProfileSettings extends StatelessWidget {
-  const ProfileSettings({Key? key}) : super(key: key);
+class TaskDetails extends StatelessWidget {
+  const TaskDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class ProfileSettings extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: w * 0.08),
                   child: Text(
-                    "Profile Settings",
+                    "Task Details",
                     style: TextStyle(
                         fontSize: w * 0.07,
                         color: Colors.white,

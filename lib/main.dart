@@ -49,7 +49,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: isFirstTime ? signupScreenRoute: homeScreenRoute,
+      //initialRoute: signupScreenRoute,
+      initialRoute: isFirstTime ? signupScreenRoute: loginScreenRoute,
     );
   }
 }
