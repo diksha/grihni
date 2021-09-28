@@ -1,16 +1,12 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
-import 'package:junkiri/ui/screens/tasks/task_step_screen.dart';
-import 'package:junkiri/ui/screens/profile/training_pending.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
-//import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 class AuthService {
   FirestoreService _firestoreService = FirestoreService();
@@ -71,9 +67,10 @@ class AuthService {
           value.setBool('isFirstTime', false);
           value.setString('currentUid',result.user!.uid );
         });
+        currentUser =result.user!.uid;
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (builder) => HomeScreen(grihini: grihini,)),
+            MaterialPageRoute(builder: (builder) => HomeScreen()),
                 (route) => false);
         print('Signup completed.');
       }).catchError((e) {
@@ -101,11 +98,15 @@ class AuthService {
       _auth
           .signInWithCredential(authCredential)
           .then((UserCredential result) async{
-           Grihini current_grihini= await  _firestoreService.getGrihini(result.user!.uid);
+           SharedPreferences.getInstance().then((value) {
+             value.setBool('isFirstTime', false);
+             value.setString('currentUid',result.user!.uid );
+           });
+           currentUser =result.user!.uid;
            Navigator.pop(context);
            Navigator.pushAndRemoveUntil(
                context,
-               MaterialPageRoute(builder: (builder) => HomeScreen(grihini: current_grihini,)),
+               MaterialPageRoute(builder: (builder) => HomeScreen()),
                    (route) => false);
         print('Login completed.');
       }).catchError((e) {
