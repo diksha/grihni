@@ -5,13 +5,12 @@ import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/screens/profile/profile_settings.dart';
 import 'package:junkiri/ui/screens/startup/language_select_screen.dart';
 import 'package:junkiri/ui/screens/auth/login_screen.dart';
-import 'package:junkiri/ui/screens/signup_demo.dart';
 import 'package:junkiri/ui/screens/auth/signup_screen.dart';
 import 'package:junkiri/ui/screens/startup/startup_screen.dart';
-import 'package:junkiri/ui/screens/tasks/start_task_screen.dart';
+import 'package:junkiri/ui/screens/tasks/grocery_received_screen.dart';
 import 'package:junkiri/ui/screens/tasks/task_accept_screen.dart';
-import 'package:junkiri/ui/screens/tasks/task_accepted_screen.dart';
-import 'package:junkiri/ui/screens/tasks/task_details.dart';
+import 'package:junkiri/ui/screens/tasks/grocery_pending_screen.dart';
+import 'package:junkiri/ui/screens/profile/task_details.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -24,8 +23,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SignupScreen());
     case loginScreenRoute:
       return MaterialPageRoute(builder: (context) => const LoginScreen());
-    case startTaskScreenRoute:
-      return MaterialPageRoute(builder: (context) => const StartTaskScreen());
     case homeScreenRoute:
       return MaterialPageRoute(builder: (context) => const HomeScreen());
     case profileSettingsScreenRoute:
@@ -34,8 +31,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const TaskDetails());
     case taskAcceptScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskAccept());
-    case taskAcceptedScreenRoute:
-      return MaterialPageRoute(builder: (context) => const TaskAccepted());
+    case groceryPendingScreenRoute:
+      return MaterialPageRoute(builder: (context) => const GroceryPending());
+    case groceryReceivedScreenRoute:
+      return MaterialPageRoute(builder: (context) => const GroceryReceived());
     default:
       return MaterialPageRoute(builder: (context) => const StartupScreen());
   }
