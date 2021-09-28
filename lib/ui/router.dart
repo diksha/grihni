@@ -9,6 +9,8 @@ import 'package:junkiri/ui/screens/signup_demo.dart';
 import 'package:junkiri/ui/screens/auth/signup_screen.dart';
 import 'package:junkiri/ui/screens/startup/startup_screen.dart';
 import 'package:junkiri/ui/screens/tasks/start_task_screen.dart';
+import 'package:junkiri/ui/screens/tasks/task_accept_screen.dart';
+import 'package:junkiri/ui/screens/tasks/task_accepted_screen.dart';
 import 'package:junkiri/ui/screens/tasks/task_details.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -30,6 +32,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ProfileSettings());
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
+    case taskAcceptScreenRoute:
+      return MaterialPageRoute(builder: (context) => const TaskAccept());
+    case taskAcceptedScreenRoute:
+      return MaterialPageRoute(builder: (context) => const TaskAccepted());
     default:
       return MaterialPageRoute(builder: (context) => const StartupScreen());
   }

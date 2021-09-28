@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
@@ -19,7 +20,7 @@ class TaskDetails extends StatelessWidget {
             decoration: whiteGradient(),
           ),
           Container(
-            height: h * 0.2,
+            height: h * 0.18,
             decoration: yellowGradient(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -39,6 +40,111 @@ class TaskDetails extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: h * 0.18,
+            bottom: h * 0.11,
+            child: Padding(
+              padding: EdgeInsets.all(w * 0.06),
+              child: SizedBox(
+                width: w,
+                height: h * 0.31,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: w * 0.1,
+                            child: Image.asset(
+                                'assets/images/icons/assignments_done.png'),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Assignments Done",
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              taskCard(),
+                              taskCard(),
+                              taskCard(),
+                              taskCard(),
+                              taskCard(),
+                            ],
+                          )),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: w * 0.1,
+                            child: Image.asset(
+                                'assets/images/icons/pending_tasks.png'),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "My Pending Tasks",
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              taskCard(),
+                              taskCard(),
+                              taskCard(),
+                              taskCard(),
+                              taskCard(),
+                            ],
+                          )),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: w * 0.1,
+                            child:
+                                Image.asset('assets/images/icons/new_tasks.png'),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "New Tasks",
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              taskCard(),
+                              taskCard(),
+                            ],
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
             bottom: 0,
             height: h * 0.11,
             child: Container(
@@ -51,7 +157,7 @@ class TaskDetails extends StatelessWidget {
                     children: [
                       SizedBox(
                         child: Image.asset('assets/images/icons/home.png'),
-                        width: w*0.07,
+                        width: w * 0.07,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -67,7 +173,7 @@ class TaskDetails extends StatelessWidget {
                     children: [
                       SizedBox(
                         child: Image.asset('assets/images/icons/task.png'),
-                        width: w*0.05,
+                        width: w * 0.05,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -87,4 +193,49 @@ class TaskDetails extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget taskCard() {
+  return Padding(
+    padding: EdgeInsets.all(w * 0.01),
+    child: Container(
+      height: h / 8,
+      width: w / 3.5,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(w * 0.02)),
+        gradient: LinearGradient(
+          colors: [
+            AppColors.lightYellow,
+            AppColors.darkYellow,
+          ],
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.02),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "Job 121A",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
+            ),
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(w * 0.01),
+                child: Text(
+                  "10 Kg",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: w * 0.04),
+                ),
+              ),
+            ),
+            Text(
+              "Mango Achaar",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.03),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
