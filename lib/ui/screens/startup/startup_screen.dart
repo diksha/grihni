@@ -27,12 +27,9 @@ class StartupScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        radius: w*0.25,
-                        child: ClipRRect(
-                          child: Image.asset('assets/images/logo.png'),
-                          borderRadius: BorderRadius.circular(100.0),
-                        ),
+                      SizedBox(
+                        height: h*0.3,
+                        child: Image.asset('assets/images/logo.png'),
                       ),
 
                       Column(

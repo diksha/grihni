@@ -68,10 +68,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: h*0.05,
                     ),
                     CircleAvatar(
-                      radius: w*0.16,
+                      radius: w * 0.15,
                       child: ClipRRect(
-                        child: const Text("Login Logo"),
-                        borderRadius: BorderRadius.circular(w*0.4),
+                        child: Image.asset('assets/images/person.png'),
+                        borderRadius: BorderRadius.circular(w*0.5),
                       ),
                     ),
                   ],

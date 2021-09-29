@@ -119,10 +119,14 @@ Widget _header() {
   return Column(
     children: [
       CircleAvatar(
-        radius: w * 0.12,
+        backgroundColor: Colors.white,
+        radius: w * 0.1,
         child: ClipRRect(
-          child: Image.asset('assets/images/logo.png'),
-          borderRadius: BorderRadius.circular(100.0),
+          child: Padding(
+            padding: EdgeInsets.all(w*0.05),
+            child: Image.asset('assets/images/logo.png'),
+          ),
+          borderRadius: BorderRadius.circular(w*0.5),
         ),
       ),
       Text(

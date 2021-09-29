@@ -4,20 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/router.dart' as router;
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/router_names.dart';
+import 'models/grihini.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   await SharedPreferences.getInstance().then((value) async  {
     isFirstTime = value.getBool('isFirstTime') ?? true;
     savedLocale = value.getString('savedLocale') ?? 'en';
-    currentUser = value.getString('currentUser') ?? '';
+    currentUser = value.getString('currentUid') ?? '';
+
   });
-  
+
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -45,7 +49,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: isFirstTime ? startupScreenRoute: loginScreenRoute,
+      //initialRoute: signupScreenRoute,
+      initialRoute: isFirstTime ? signupScreenRoute: loginScreenRoute,
     );
   }
 }

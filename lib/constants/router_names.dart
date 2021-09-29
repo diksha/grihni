@@ -6,4 +6,5 @@ const String trainingScreenRoute = 'training';
 const String startTaskScreenRoute = 'startTask';
 const String signupDemoScreenRoute = 'signupDemo';
 const String homeScreenRoute = 'home';
-
+const String profileSettingsScreenRoute = 'settings';
+const String taskDetailsScreenRoute = 'taskDetails';
