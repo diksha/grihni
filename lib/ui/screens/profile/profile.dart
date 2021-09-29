@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
@@ -62,7 +63,7 @@ class Profile extends StatelessWidget {
                     Text(
                       grihini.name,
                       style: TextStyle(
-                          fontSize: w * 0.05, fontWeight: FontWeight.bold,color: Color(0xFF58595B)),
+                          fontSize: w * 0.06,color: Color(0xFF58595B)),
                     ),
                     SizedBox(
                       height: h * 0.01,
@@ -135,7 +136,9 @@ class Profile extends StatelessWidget {
                             'assets/images/icons/assignments_done.png'),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                        },
                         child: Text(
                           "Assignments Done",
                           style: TextStyle(
