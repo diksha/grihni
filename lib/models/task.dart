@@ -4,7 +4,7 @@ class Task {
   final String jobId;
   final int orderStatus;
   final int amount;
-  final String groceryList;
+  final List groceryList;
   final String achaarType;
   final String pickedBy;
   final String paymentStatus;

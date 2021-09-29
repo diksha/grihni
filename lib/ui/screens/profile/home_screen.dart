@@ -24,7 +24,8 @@ class HomeScreen extends ConsumerWidget {
       body: grihini.when(
         data: (grihini) => buildBody(context, grihini),
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Text(err.toString()),
+
+        error: (err, stack) => Center(child: Text(err.toString())),
       ),
     );
   }

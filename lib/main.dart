@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: achaarPreparedScreenRoute,
+      initialRoute: startupScreenRoute,
       //initialRoute: isFirstTime ? signupScreenRoute: homeScreenRoute,
     );
   }

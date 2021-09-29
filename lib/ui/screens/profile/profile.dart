@@ -62,15 +62,15 @@ class Profile extends StatelessWidget {
                     Text(
                       grihini.name,
                       style: TextStyle(
-                          fontSize: w * 0.05, fontWeight: FontWeight.bold),
+                          fontSize: w * 0.05, fontWeight: FontWeight.bold,color: Color(0xFF58595B)),
                     ),
                     SizedBox(
                       height: h * 0.01,
                     ),
                     Text(
-                      "Junkiri Code: " + grihini.name,
+                      "Junkiri Code: J00001",
                       style: TextStyle(
-                        fontSize: w * 0.025,
+                        fontSize: w * 0.025, color: Color(0xFF58595B)
                       ),
                     ),
                   ],
