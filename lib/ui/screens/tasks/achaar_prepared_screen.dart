@@ -22,8 +22,8 @@ class AchaarPrepared extends StatelessWidget {
           ),
           Positioned(
             top: 0,
-            right: -w * 0.2,
-            left: -w * 0.2,
+            right: -w * 0.23,
+            left: -w * 0.23,
             child: Container(
               child: Image.asset("assets/images/background005.png"),
             ),
@@ -35,7 +35,7 @@ class AchaarPrepared extends StatelessWidget {
           Positioned(
             width: w,
             top: h * 0.18,
-            bottom: h * 0.11,
+            bottom: h*0.05,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -52,7 +52,7 @@ class AchaarPrepared extends StatelessWidget {
                   children: [
                     SizedBox(
                       child: Image.asset("assets/images/prepared.png"),
-                      height: h * 0.32,
+                      height: h * 0.25,
                     ),
                     SizedBox(
                       height: h * 0.02,
@@ -82,7 +82,7 @@ class AchaarPrepared extends StatelessWidget {
                           ])),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                            w * 0.09, h * 0.03, w * 0.08, h * 0.03),
+                            w * 0.09, h * 0.019, w * 0.08, h * 0.019),
                         child: SizedBox(
                           width: w / 2.5,
                           child: Row(
@@ -92,7 +92,7 @@ class AchaarPrepared extends StatelessWidget {
                                 "Start\nTask ",
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: w * 0.08,
+                                    fontSize: w * 0.07,
                                     fontWeight: FontWeight.bold),
                               ),
                               Expanded(
