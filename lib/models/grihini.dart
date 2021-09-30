@@ -4,8 +4,8 @@ class Grihini {
   final String phoneNumber;
   final String address;
   final String status;
-  final String completedTasks;
-  final String pendingTasks;
+  final List<String> completedTasks;
+  final List<String> pendingTasks;
 
   Grihini(
       {required this.completedTasks,
@@ -22,8 +22,8 @@ class Grihini {
         address = data['address'],
         status = data['status'],
         uid = data['uid'],
-        completedTasks = data['address'],
-        pendingTasks = data['status'];
+        completedTasks = List.from(data['completedTasks']),
+        pendingTasks = List.from(data['pendingTasks']);
 
   Map<String, dynamic> toMap() {
     return {

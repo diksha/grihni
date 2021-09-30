@@ -2,7 +2,7 @@
 
 class Task {
   final String jobId;
-  final int orderStatus;
+  final String orderStatus;
   final int amount;
   final List groceryList;
   final String achaarType;
@@ -20,12 +20,12 @@ class Task {
 
   Task.fromMap(Map<String, dynamic> data)
       : jobId = data['jobId'],
-        orderStatus = data['status'],
+        orderStatus = data['orderStatus'],
         amount = data['amount'],
         groceryList = data['groceryList'],
         achaarType = data['achaarType'],
         pickedBy = data['pickedBy'],
-        paymentStatus = data['achaarType'];
+        paymentStatus = data['paymentStatus'];
 
   Map<String, dynamic> toMap() {
     return {
