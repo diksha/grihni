@@ -1,12 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
-import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/screens/profile/profile.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
-
 
 
 class HomeScreen extends ConsumerWidget {
@@ -26,6 +25,7 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 }
+
 
 Widget buildBody(BuildContext context, Grihini grihini) {
   switch (grihini.status) {
@@ -106,4 +106,3 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
     ),
   );
 }
-

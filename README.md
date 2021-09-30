@@ -14,6 +14,6 @@ Software for grihni company
 <img src="/screenshots/8.jpg" width="300px"> 
     <img src="/screenshots/9.jpg" width="300px"> 
     <img src="/screenshots/10.jpg" width="300px"> 
-    <img src="/screenshots/11.jpg" width="300px"> 
+    <img src="/screenshots/11.jpg" width="300px">
 </div>
 

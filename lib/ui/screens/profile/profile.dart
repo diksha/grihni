@@ -64,6 +64,7 @@ class Profile extends StatelessWidget {
                       grihini.name,
                       style: TextStyle(
                           fontSize: w * 0.06,color: Color(0xFF58595B)),
+
                     ),
                     SizedBox(
                       height: h * 0.01,
@@ -72,6 +73,7 @@ class Profile extends StatelessWidget {
                       "Junkiri Code: J00001",
                       style: TextStyle(
                         fontSize: w * 0.025, color: Color(0xFF58595B)
+
                       ),
                     ),
                   ],
