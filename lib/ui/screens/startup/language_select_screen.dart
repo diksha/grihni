@@ -102,14 +102,14 @@ Widget _button(String language) {
       });
     },
     child: Padding(
-      padding: EdgeInsets.all(w*0.02),
+      padding: EdgeInsets.all(w*0.03),
       child: Ink(
         decoration: BoxDecoration(
             boxShadow: <BoxShadow>[
               BoxShadow(
                 blurRadius: w*0.01,
-                color: Colors.amberAccent.withOpacity(0.4),
-                offset: Offset(0, 2),
+                color: Colors.limeAccent.withOpacity(0.3),
+                offset: Offset(0, 0),
                 spreadRadius: w*0.02,
               ),
             ],
@@ -132,52 +132,47 @@ Widget _button(String language) {
 }
 
 Widget _buttonBar(context) {
-  return Stack(
-    alignment: Alignment.center,
-    children: [
-      Container(
-        width: w / 4,
-      ),
-      Positioned(
-        right: -w / 9,
-        child: MaterialButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12))),
-          elevation: 0.001,
-          height: h*0.06,
-          minWidth: w / 4,
-          color: Colors.white10,
-          onPressed: () {
-            Navigator.pushNamed(context, loginScreenRoute);
-          },
-          child: Text("Login",style: TextStyle(fontSize: w*0.03),),
-        ),
-      ),
-      Positioned(
-        left: -w / 9,
-        child: MaterialButton(
-          onPressed: () {
-            Navigator.pushNamed(context, signupScreenRoute);
-          },
-
-          child: Ink(
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(12)),
-                gradient: LinearGradient(
-                    colors: [AppColors.lightYellow, AppColors.darkYellow])),
-            width: w / 4,
-            height: h*0.06,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, h*0.02, 0, h*0.01),
-              child: Text(
-                "Signup",
-                textAlign: TextAlign.center,style: TextStyle(fontSize: w*0.03),
+  return Container(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: MaterialButton(
+            onPressed: () {
+              Navigator.pushNamed(context, signupScreenRoute);
+            },
+            child: Ink(
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  gradient: LinearGradient(
+                      colors: [AppColors.lightYellow, AppColors.darkYellow])),
+              width: w / 4,
+              height: h*0.06,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, h*0.02, 0, h*0.01),
+                child: Text(
+                  "Signup",
+                  textAlign: TextAlign.center,style: TextStyle(fontSize: w*0.03),
+                ),
               ),
             ),
           ),
         ),
-      ),
-    ],
-    overflow: Overflow.visible,
+        Container(
+          child: MaterialButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12))),
+            elevation: 0.001,
+            height: h*0.06,
+            minWidth: w / 4,
+            color: Colors.white10,
+            onPressed: () {
+              Navigator.pushNamed(context, loginScreenRoute);
+            },
+            child: Text("Login",style: TextStyle(fontSize: w*0.03),),
+          ),
+        ),
+      ],
+    ),
   );
 }

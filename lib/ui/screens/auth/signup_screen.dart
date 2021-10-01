@@ -90,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           name: nameController.text,
                           phoneNumber: phoneNumberController.text,
                           address: addressController.text,
-                          status: 'training_pending'));
+                          status: 'training_pending', uid: '', pendingTasks: [], completedTasks: []));
                 },
                 child: Ink(
                   decoration: yellowGradient(),
@@ -129,6 +129,7 @@ Widget _header() {
           borderRadius: BorderRadius.circular(w*0.5),
         ),
       ),
+      SizedBox(height: h*0.02,),
       Text(
         "Sign Up Form",
         style: TextStyle(
@@ -210,34 +211,40 @@ Widget signupForm(
               decoration: InputDecoration(
                   isDense: true,
                   contentPadding: EdgeInsets.all(w * 0.01),
-                  suffix: SizedBox(
-                    height: w*0.08,
-                    child: TextButton(
-                      onPressed: () async {
-                        await authService.verifyPhoneNumber(
-                            phoneNumberController.text, context, setData);
-                      },
-                      child: Text("Send OTP",style: TextStyle(fontSize: w*0.03),),
-                    ),
-                  )),
+                  ),
             ),
             SizedBox(
               height: h * 0.015,
             ),
-            Text(
-              "OTP",
-              style: TextStyle(
-                  color: AppColors.darkYellow,
-                  fontSize: w * 0.03,
-                  fontWeight: FontWeight.bold),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                isDense: true,
-                contentPadding: EdgeInsets.all(w * 0.01),
-              ),
-              controller: otpController,
-              inputFormatters: [WhitelistingTextInputFormatter(RegExp(r"\d"))],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: () async {
+                    await authService.verifyPhoneNumber(
+                        phoneNumberController.text, context, setData);
+                  },
+                  child: Text(
+                    "Click here \n for OTP",
+                    style: TextStyle(
+                        color: AppColors.darkYellow,
+                        fontSize: w * 0.03,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  width: w/4,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      fillColor: Colors.grey,
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(w * 0.01),
+                    ),
+                    controller: otpController,
+                    inputFormatters: [WhitelistingTextInputFormatter(RegExp(r"\d"))],
+                  ),
+                ),
+              ],
             ),
           ],
         ),

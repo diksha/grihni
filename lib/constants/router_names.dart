@@ -8,3 +8,7 @@ const String signupDemoScreenRoute = 'signupDemo';
 const String homeScreenRoute = 'home';
 const String profileSettingsScreenRoute = 'settings';
 const String taskDetailsScreenRoute = 'taskDetails';
+const String taskAcceptScreenRoute = 'taskAccept';
+const String groceryPendingScreenRoute = 'groceryPending';
+const String groceryReceivedScreenRoute = 'groceryReceived';
+const String achaarPreparedScreenRoute = 'achaarPrepared';

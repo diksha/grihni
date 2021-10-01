@@ -3,6 +3,7 @@ import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/shares/app_strings.dart';
+import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({Key? key}) : super(key: key);
@@ -13,7 +14,13 @@ class StartupScreen extends StatelessWidget {
     h = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
+
         children: [
+          Container(
+            width: w,
+            height: h,
+            decoration: whiteGradient(),
+          ),
           Positioned(
             bottom: 0,
             left: 0,
