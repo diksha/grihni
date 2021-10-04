@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
@@ -9,30 +10,30 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskDetails extends ConsumerWidget {
   const TaskDetails({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final task = watch(taskProvider);
     final grihini = watch(grihiniProvider);
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: task.when(
-      data: (task) => grihini.when(
-        data: (grihini) => _buildBody(context, task, grihini),
+      body: grihini.when(
+        data: (grihini) => _buildBody(context, grihini, watch),
         error: (err, stack) => Center(child: Text(err.toString())),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (err, stack) => Center(child: Text(err.toString())),
-    ));
+    );
   }
 }
 
-Widget _buildBody(context, Task task, Grihini grihini) {
-  List<String> completedTasks = grihini.completedTasks;
+Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
+  List<String> pendingTaskIds = grihini.pendingTasks;
+  List<String> completedTaskIds = grihini.completedTasks;
+  final pendingTask = watch(taskProvider(pendingTaskIds));
+  final completedTask = watch(taskProvider(completedTaskIds));
   return Stack(
     children: [
       Container(
@@ -81,7 +82,7 @@ Widget _buildBody(context, Task task, Grihini grihini) {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          task.achaarType,
+                          "Assignments Done",
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -91,16 +92,15 @@ Widget _buildBody(context, Task task, Grihini grihini) {
                     ],
                   ),
                   SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          taskCard(),
-                          taskCard(),
-                          taskCard(),
-                          taskCard(),
-                          taskCard(),
-                        ],
-                      )),
+                    scrollDirection: Axis.horizontal,
+                    child: completedTask.when(
+                      data: (taskList) => taskListGenerator(taskList,context),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      error: (err, stack) =>
+                          Center(child: Text(err.toString())),
+                    ),
+                  ),
                   Row(
                     children: [
                       SizedBox(
@@ -121,16 +121,15 @@ Widget _buildBody(context, Task task, Grihini grihini) {
                     ],
                   ),
                   SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          taskCard(),
-                          taskCard(),
-                          taskCard(),
-                          taskCard(),
-                          taskCard(),
-                        ],
-                      )),
+                    scrollDirection: Axis.horizontal,
+                    child: pendingTask.when(
+                      data: (taskList) => taskListGenerator(taskList,context),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      error: (err, stack) =>
+                          Center(child: Text(err.toString())),
+                    ),
+                  ),
                   Row(
                     children: [
                       SizedBox(
@@ -152,10 +151,7 @@ Widget _buildBody(context, Task task, Grihini grihini) {
                   SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: [
-                          taskCard(),
-                          taskCard(),
-                        ],
+                        children: [],
                       )),
                 ],
               ),
@@ -212,45 +208,76 @@ Widget _buildBody(context, Task task, Grihini grihini) {
   );
 }
 
-Widget taskCard() {
-  return Padding(
-    padding: EdgeInsets.all(w * 0.01),
-    child: Container(
-      height: h / 8,
-      width: w / 3.5,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(w * 0.02)),
-        gradient: LinearGradient(
-          colors: [
-            AppColors.lightYellow,
-            AppColors.darkYellow,
-          ],
+taskListGenerator(taskList,context) {
+  List<Widget> taskCards = [];
+  for (Task task in taskList) {
+    taskCards.add(taskCard(task,context));
+  }
+  return Row(
+    children: taskCards,
+  );
+}
+
+Widget taskCard(Task task,BuildContext context) {
+  return GestureDetector(
+    onTap: (){
+      currentTask = task;
+      String oderStatusRoute = taskAcceptScreenRoute;
+      switch (task.orderStatus) {
+        case OrderStatus.CREATED:
+          oderStatusRoute = taskAcceptScreenRoute;
+          break;
+        case OrderStatus.GROCERY_DROP_OFF:
+          oderStatusRoute = groceryPendingScreenRoute;
+          break;
+        case OrderStatus.READY_FOR_PICKUP:
+          oderStatusRoute = achaarPreparedScreenRoute;
+          break;
+        case OrderStatus.ORDER_COMPLETED:
+          oderStatusRoute = achaarPreparedScreenRoute;
+          break;
+      }
+      Navigator.pushNamed(context, oderStatusRoute,arguments: [task]);
+    },
+    child: Padding(
+      padding: EdgeInsets.all(w * 0.01),
+      child: Container(
+        height: h / 8,
+        width: w / 3.5,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(w * 0.02)),
+          gradient: LinearGradient(
+            colors: [
+              AppColors.lightYellow,
+              AppColors.darkYellow,
+            ],
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(w * 0.02),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              "Job 121A",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
-            ),
-            Card(
-              child: Padding(
-                padding: EdgeInsets.all(w * 0.01),
-                child: Text(
-                  "10 Kg",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: w * 0.04),
+        child: Padding(
+          padding: EdgeInsets.all(w * 0.02),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                task.jobId,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
+              ),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(w * 0.01),
+                  child: Text(
+                    "${task.amount} Kg",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: w * 0.04),
+                  ),
                 ),
               ),
-            ),
-            Text(
-              "Mango Achaar",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.03),
-            ),
-          ],
+              Text(
+                "${task.achaarType} Achaar",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.03),
+              ),
+            ],
+          ),
         ),
       ),
     ),

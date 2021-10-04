@@ -1,8 +1,8 @@
-// enum OrderStatus { CREATED, GROCERY_DROP_OFF, TIE_HAIR, READY_FOR_PICKUP }
+enum OrderStatus { CREATED, GROCERY_DROP_OFF, READY_FOR_PICKUP,ORDER_COMPLETED }
 
 class Task {
   final String jobId;
-  final String orderStatus;
+  final OrderStatus orderStatus;
   final int amount;
   final List groceryList;
   final String achaarType;
@@ -20,7 +20,7 @@ class Task {
 
   Task.fromMap(Map<String, dynamic> data)
       : jobId = data['jobId'],
-        orderStatus = data['orderStatus'],
+        orderStatus = OrderStatus.values.elementAt(data['orderStatus']),
         amount = data['amount'],
         groceryList = data['groceryList'],
         achaarType = data['achaarType'],
@@ -30,7 +30,7 @@ class Task {
   Map<String, dynamic> toMap() {
     return {
       'jobId': jobId,
-      'orderStatus': orderStatus,
+      'orderStatus': orderStatus.index,
       'amount': amount,
       'groceryList':groceryList,
       'achaarType': achaarType,

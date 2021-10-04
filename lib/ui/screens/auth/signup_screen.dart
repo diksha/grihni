@@ -90,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           name: nameController.text,
                           phoneNumber: phoneNumberController.text,
                           address: addressController.text,
-                          status: 'training_pending', uid: '', pendingTasks: [], completedTasks: []));
+                          status: 'training_pending', uid: '', pendingTasks: ["btofkz2RBAbdRxlCXHoX"], completedTasks: ["igfAyCtmedoaE8QLFink"]));
                 },
                 child: Ink(
                   decoration: yellowGradient(),

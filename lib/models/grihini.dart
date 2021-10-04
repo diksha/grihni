@@ -7,14 +7,15 @@ class Grihini {
   final List<String> completedTasks;
   final List<String> pendingTasks;
 
-  Grihini(
-      {required this.completedTasks,
-      required this.pendingTasks,
-      required this.uid,
-      required this.name,
-      required this.phoneNumber,
-      required this.address,
-      required this.status});
+  Grihini({
+    required this.uid,
+    required this.name,
+    required this.phoneNumber,
+    required this.address,
+    required this.status,
+    required this.completedTasks,
+    required this.pendingTasks,
+  });
 
   Grihini.fromMap(Map<String, dynamic> data)
       : name = data['name'],
@@ -32,8 +33,8 @@ class Grihini {
       'address': address,
       'status': status,
       'uid': uid,
-      'completedTasks': phoneNumber,
-      'pendingTasks': address,
+      'completedTasks': completedTasks,
+      'pendingTasks': pendingTasks,
     };
   }
 }
