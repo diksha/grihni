@@ -17,6 +17,7 @@ class Grihini {
     required this.pendingTasks,
   });
 
+
   Grihini.fromMap(Map<String, dynamic> data)
       : name = data['name'],
         phoneNumber = data['phoneNumber'],

@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
       initialRoute: isFirstTime ? startupScreenRoute: taskDetailsScreenRoute,
+
     );
   }
 }

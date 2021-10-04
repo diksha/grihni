@@ -7,4 +7,5 @@ final taskProvider = FutureProvider.family<List<Task>,List<String>>((ref,complet
   FirestoreService _firestoreService = FirestoreService();
   List<Task> completedTaskList = await _firestoreService.getTaskList(completedTasks);
   return completedTaskList;
+
 });

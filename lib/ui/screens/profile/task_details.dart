@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/constants/router_names.dart';
+
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
@@ -11,6 +12,7 @@ import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class TaskDetails extends ConsumerWidget {
   const TaskDetails({Key? key}) : super(key: key);

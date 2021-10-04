@@ -5,7 +5,9 @@ import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 
 class TaskAccept extends StatelessWidget {
-  const TaskAccept( {Key? key,}) : super(key: key);
+
+  const TaskAccept({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     w = MediaQuery.of(context).size.width;
