@@ -2,10 +2,8 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/services/firestore_service.dart';
 
-
-final taskProvider = FutureProvider.family<List<Task>,List<String>>((ref,completedTasks) async {
+final taskProvider = FutureProvider.family<List<Task>,List<String>>((ref,listOfTaskIds) async {
   FirestoreService _firestoreService = FirestoreService();
-  List<Task> completedTaskList = await _firestoreService.getTaskList(completedTasks);
-  return completedTaskList;
-
+  List<Task> taskList = await _firestoreService.getTaskList(listOfTaskIds);
+  return taskList;
 });
