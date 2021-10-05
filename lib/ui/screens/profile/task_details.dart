@@ -222,7 +222,6 @@ taskListGenerator(taskList,context) {
 Widget taskCard(Task task,BuildContext context) {
   return GestureDetector(
     onTap: (){
-      currentTask = task;
       String oderStatusRoute = taskAcceptScreenRoute;
       switch (task.orderStatus) {
         case OrderStatus.CREATED:
@@ -238,7 +237,7 @@ Widget taskCard(Task task,BuildContext context) {
           oderStatusRoute = achaarPreparedScreenRoute;
           break;
       }
-      Navigator.pushNamed(context, oderStatusRoute,arguments: [task]);
+      Navigator.pushNamed(context, oderStatusRoute,arguments: task);
     },
     child: Padding(
       padding: EdgeInsets.all(w * 0.01),
