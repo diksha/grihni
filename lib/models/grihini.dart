@@ -1,18 +1,18 @@
 class Grihini {
-  final String uid;
   final String name;
   final String phoneNumber;
   final String address;
   final String status;
+  final String uid;
   final List<String> completedTasks;
   final List<String> pendingTasks;
 
   Grihini({
-    required this.uid,
     required this.name,
     required this.phoneNumber,
     required this.address,
     required this.status,
+    required this.uid,
     required this.completedTasks,
     required this.pendingTasks,
   });
