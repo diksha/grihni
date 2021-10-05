@@ -1,5 +1,14 @@
 
-enum OrderStatus { CREATED, GROCERY_DROP_OFF, READY_FOR_PICKUP,ORDER_COMPLETED }
+enum OrderStatus { CREATED, GROCERY_DROP_OFF,PREPARING, READY_FOR_PICKUP,ORDER_COMPLETED }
+
+OrderStatus getOrderStatusEnum(String orderStatus) {
+  for (OrderStatus orderStatusVal in OrderStatus.values) {
+    if ( orderStatus== orderStatusVal.toString()) {
+      return orderStatusVal;
+    }
+  }
+  return OrderStatus.CREATED;
+}
 
 class Task {
   final String jobId;
@@ -21,7 +30,7 @@ class Task {
 
   Task.fromMap(Map<String, dynamic> data)
       : jobId = data['jobId'],
-        orderStatus = OrderStatus.values.elementAt(data['orderStatus']),
+        orderStatus = getOrderStatusEnum(data['orderStatus']),
         amount = data['amount'],
         groceryList = data['groceryList'],
         achaarType = data['achaarType'],
@@ -31,7 +40,7 @@ class Task {
   Map<String, dynamic> toMap() {
     return {
       'jobId': jobId,
-      'orderStatus': orderStatus.index,
+      'orderStatus': orderStatus,
       'amount': amount,
       'groceryList':groceryList,
       'achaarType': achaarType,
