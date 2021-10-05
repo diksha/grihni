@@ -24,19 +24,17 @@ class FirestoreService {
 
 
   Future<Grihini> getGrihini(uid) async {
-
     Grihini currentGrihini = await grihiniRef.doc(uid).get().then((snapshot) => snapshot.data()!);
-
     return currentGrihini;
   }
 
 
-  Future<List<Task>> getTaskList(pendingTasks) async {
-    List<Task> pendingTaskList=[];
-    for (String docId in pendingTasks){
+  Future<List<Task>> getTaskList(listOfTaskIds) async {
+    List<Task> taskList=[];
+    for (String docId in listOfTaskIds){
       Task task = await taskRef.doc(docId).get().then((value) => value.data()!);
-      pendingTaskList.add(task);
+      taskList.add(task);
     }
-    return pendingTaskList;
+    return taskList;
   }
 }
