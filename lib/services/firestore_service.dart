@@ -14,49 +14,27 @@ class FirestoreService {
     toFirestore: (task, _) => task.toMap(),
   );
 
-  Future<void> addGrihini(name,phoneNumber,address,status,uid) async {
+  Future<void> addGrihini(name,phoneNumber,address,status,uid,pendingTasks,completedTasks) async {
     await grihiniRef.doc(uid).set(
-      Grihini(address: address, phoneNumber: phoneNumber, name: name, status:status, uid: uid, pendingTasks: ["131A","121S"], completedTasks: ["141A","122S"],),
+      Grihini(address: address, phoneNumber: phoneNumber, name: name, status:status, uid: uid, pendingTasks:pendingTasks, completedTasks: completedTasks,),
+
     );
 
   }
 
+
   Future<Grihini> getGrihini(uid) async {
-
     Grihini currentGrihini = await grihiniRef.doc(uid).get().then((snapshot) => snapshot.data()!);
-
     return currentGrihini;
   }
 
-  Future<Task> getTask(jobId) async {
-      Task task = await taskRef.where('jobId', isEqualTo: "$jobId").get().then((value) => value.docs[0].data());
-      print(task);
-      return task;
-  }
-/*
-  Future<Task> getPendingTasks() async {
-      return
-  }
-    Future<Task> getNewTasksLimited() async {
-    FirebaseFirestore.instance.collection('Tasks')
-  .where('jobStatus', isEqualTo: "CREATED")
-  .orderBy('Timestamp')
-  .limitToLast(3)
-  .get()
-  .then(...);
-      return
-  }
 
-  Future<Task> getPendingTasksLimited() async {
-  FirebaseFirestore.instance.collection('Tasks')
-  .where('jobStatus', isEqualTo: "CREATED")
-  .orderBy('Timestamp')
-  .limitToLast(3)
-  .get()
-  .then(...);
-      return
+  Future<List<Task>> getTaskList(listOfTaskIds) async {
+    List<Task> taskList=[];
+    for (String docId in listOfTaskIds){
+      Task task = await taskRef.doc(docId).get().then((value) => value.data()!);
+      taskList.add(task);
+    }
+    return taskList;
   }
-*/
-
-
 }

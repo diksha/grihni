@@ -14,7 +14,7 @@ Widget appBarYellow(context) {
       children: [
         GestureDetector(
           onTap: (){
-            Navigator.pushNamed(context, languageSelectScreenRoute);
+            Navigator.pop(context);
           },
           child: SizedBox(
             height: w*0.08,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/screens/profile/profile_settings.dart';
 import 'package:junkiri/ui/screens/profile/task_details.dart';
@@ -29,7 +30,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case profileSettingsScreenRoute:
       return MaterialPageRoute(builder: (context) => const ProfileSettings());
     case taskAcceptScreenRoute:
-      return MaterialPageRoute(builder: (context) => const TaskAccept());
+      var task = settings.arguments as Task;
+      return MaterialPageRoute(builder: (context) => TaskAccept(task: task,));
     case groceryPendingScreenRoute:
       return MaterialPageRoute(builder: (context) => const GroceryPending());
     case groceryReceivedScreenRoute:
