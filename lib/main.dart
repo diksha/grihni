@@ -49,8 +49,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: taskStepYoutubeScreenRoute,
-      //initialRoute: isFirstTime ? startupScreenRoute: homeScreenRoute,
+      initialRoute: isFirstTime ? startupScreenRoute: homeScreenRoute,
     );
   }
 }
