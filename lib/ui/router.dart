@@ -31,7 +31,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case profileSettingsScreenRoute:
       return MaterialPageRoute(builder: (context) => const ProfileSettings());
     case taskAcceptScreenRoute:
-      return MaterialPageRoute(builder: (context) => const TaskAccept());
+      var task = settings.arguments as Task;
+      return MaterialPageRoute(builder: (context) => TaskAccept(task: task,));
     case groceryPendingScreenRoute:
       return MaterialPageRoute(builder: (context) => const GroceryPending());
     case groceryReceivedScreenRoute:
