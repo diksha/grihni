@@ -5,13 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:junkiri/services/locale_provider.dart';
+
 import 'package:junkiri/ui/router.dart' as router;
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/router_names.dart';
 
-String savedLocale = 'ne';
+String savedLocale = 'en';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +21,7 @@ void main() async {
 
   await SharedPreferences.getInstance().then((value) async  {
     isFirstTime = value.getBool('isFirstTime') ?? true;
-    savedLocale = value.getString('savedLocale') ?? 'ne';
+    savedLocale = value.getString('savedLocale') ?? 'en';
     currentUser = value.getString('currentUid') ?? '';
 
   });
@@ -27,7 +29,7 @@ void main() async {
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => ProviderScope(child: MyApp()), // Wrap your app
+      builder: (context) => const ProviderScope(child: MyApp()), // Wrap your app
     ),
   );
 }
@@ -51,10 +53,11 @@ class MyApp extends ConsumerWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: isFirstTime ? startupScreenRoute: homeScreenRoute,
+      initialRoute: isFirstTime ? startupScreenRoute: taskDetailsScreenRoute,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale.currentLocale,
+
     );
   }
 }
