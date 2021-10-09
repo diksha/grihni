@@ -4,7 +4,38 @@
   "statupDes": "तपाइँलाई कम्पनीको पाटनरको रूपमा पाउदा अधिक खुशी छौं । परम्परा र आधुनिकतालाई अँगालेर ईमानदारीका साथ हामी दुबै मिलेर  कम्पनीलाई  एउटा उचाइमा पुराउ ।",
   "tagLinePart1": "Here's to the Start of",
   "tagLinePart2": "fushion on the taste buds.",
+
   "selectLanguage": "भाषा छनोट गर्नुहोस्",
   "signup": "साइन अप",
-  "login": "लग - इन"
+  "login": "लग - इन",
+
+  "phoneNumber": "फोन नम्बर",
+  "otp": "OTP",
+  "clickHereForOTP": "OTP को लागी यहाँ क्लिक गर्नुहोस्",
+  "needHelp": "सहयोग चाहियो?",
+
+  "signupForm": "साइन अप फारम",
+  "name": "नाम",
+  "address": "ADDRESS",
+  "alreadyHaveAccount": "पहिले नै खाता छ?",
+  "clickHereForOTPBtn": "OTP को लागी यहाँ\nक्लिक गर्नुहोस्",
+
+  "hello":"नमस्कार",
+  "tainingPending":"प्रशिक्षण बाँकी छ",
+  "contactYouSoon": "हाम्रो प्रशिक्षण विशेषज्ञहरु चाँडै सम्पर्क गर्नुहुनेछ",
+
+  "taskDetails": "कार्य विवरण",
+  "assignmentsDone": "असाइनमेन्ट सम्पन्न भयो",
+  "myPendingTasks": "मेरो बाँकी काम",
+  "newTasks": "नयाँ कार्यहरु",
+  "home": "Home",
+  "task": "कार्य",
+  "achaar": "अचार",
+  "kg": "केजी",
+  "job": "काम",
+
+  "accept": "स्वीकार गर्नुहोस्",
+  "decline": "अस्वीकार"
+
+
 }

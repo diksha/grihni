@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
-import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class TaskStepYoutube extends StatelessWidget {

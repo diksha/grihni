@@ -6,6 +6,7 @@ import 'package:junkiri/repositories/grihini_repository.dart';
 import 'package:junkiri/ui/screens/profile/profile.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeScreen extends ConsumerWidget {
@@ -60,7 +61,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "Hello, ${grihini.name}",
+                "${AppLocalizations.of(context)!.hello}, ${grihini.name}",
                 style: TextStyle(
                   fontSize: w * 0.07,
                   color: Colors.white,
@@ -80,7 +81,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
           ),
         ),
         Positioned(
-          bottom: h * 0.02,
+          bottom: h * 0.05,
           right: 0,
           left: 0,
           child: Column(
@@ -94,7 +95,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
               Padding(
                 padding: EdgeInsets.all(w*0.08),
                 child: Text(
-                  "Our Training Experts will contact you soon.",
+                  AppLocalizations.of(context)!.contactYouSoon,
                   style: TextStyle(fontSize: w * 0.05, color: Colors.black),
                   textAlign: TextAlign.center,
                 ),

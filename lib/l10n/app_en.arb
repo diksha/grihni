@@ -4,7 +4,37 @@
     "statupDes":"Its incredible to have you as our partner. Bringing both the world’s  of tradition and modernism, lets us together take the company to great heights. ",
     "tagLinePart1": "Here's to the Start of",
     "tagLinePart2": "fushion on the taste buds.",
+
     "selectLanguage": "Select Language",
     "signup": "Signup",
-    "login": "Login"
+    "login": "Login",
+
+    "phoneNumber": "Phone Number",
+    "otp": "OTP",
+    "clickHereForOTP": "Click here for OTP",
+    "needHelp": "Need help?",
+
+    "signupForm": "Sign Up Form",
+    "name": "NAME",
+    "address": "ADDRESS",
+    "alreadyHaveAccount": "Already have account?",
+    "clickHereForOTPBtn": "Click here\nfor OTP",
+
+    "hello":"Hello",
+    "trainingPending":"Training Pending",
+    "contactYouSoon": "Our training Experts will contact you soon",
+
+    "taskDetails": "Task Details",
+    "assignmentsDone": "Assignments Done",
+    "myPendingTasks": "My Pending Tasks",
+    "newTasks": "New Tasks",
+    "home": "Home",
+    "task": "Task",
+    "achaar": "Achaar",
+    "kg": "kg",
+    "job": "Job",
+
+    "accept": "Accept",
+    "decline": "Decline"
+
 }

@@ -32,7 +32,7 @@ Widget appBar(BuildContext context, ScopedReader watch) {
             ),
             Text("|",style: TextStyle(color: Colors.white,fontSize: w*0.04),),
             TextButton(
-              child: Text("Nepali",style: TextStyle(color: Colors.white,fontSize: w*0.04),),
+              child: Text("नेपाली",style: TextStyle(color: Colors.white,fontSize: w*0.04),),
               onPressed: (){
                 locale.setNepali();
               },

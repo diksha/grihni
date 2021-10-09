@@ -4,8 +4,8 @@ import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
-import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 class Profile extends ConsumerWidget {
   const Profile({Key? key, required this.grihini}) : super(key: key);

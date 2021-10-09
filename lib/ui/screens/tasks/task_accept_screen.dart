@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
-import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
-class TaskAccept extends StatelessWidget {
+class TaskAccept extends ConsumerWidget {
   final Task task;
   const TaskAccept({Key? key, required this.task}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -26,7 +28,7 @@ class TaskAccept extends StatelessWidget {
             width: w,
             child: Container(
               height: h * 0.18,
-              child: appBarYellow(context),
+              child: appBarYellow(context, watch),
             ),
           ),
           Positioned(
@@ -44,14 +46,14 @@ class TaskAccept extends StatelessWidget {
                         height: h*0.1,
                       ),
                       Text(
-                        "Job ${task.jobId}",
+                        "${AppLocalizations.of(context)!.job} ${task.jobId}",
                         style: TextStyle(fontSize: w * 0.06,fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
 
                   Text(
-                    "Lapsi ${task.amount} Kg",
+                    "${task.achaarType} ${task.amount} ${AppLocalizations.of(context)!.kg}",
                     style: TextStyle(fontSize: w * 0.09),
                   ),
                 ],
@@ -68,6 +70,7 @@ class TaskAccept extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Positioned(
+                    width: w/1.6,
                     top: -h * 0.0435,
                     child: MaterialButton(
                       shape: StadiumBorder(),
@@ -76,6 +79,7 @@ class TaskAccept extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                               child:
@@ -83,7 +87,7 @@ class TaskAccept extends StatelessWidget {
                               height: h * 0.03,
                             ),
                             Text(
-                              " ACCEPT",
+                              " ${AppLocalizations.of(context)!.accept}",
                               style: TextStyle(
                                   color: Colors.white, fontSize: w * 0.06),
                             ),
@@ -94,6 +98,7 @@ class TaskAccept extends StatelessWidget {
                   ),
                   Positioned(
                     top: h * 0.08,
+                    width: w/1.6,
                     child: MaterialButton(
                       shape: const StadiumBorder(),
                       color: const Color(0xFFEF4F44),
@@ -101,6 +106,7 @@ class TaskAccept extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                               child: Image.asset(
@@ -108,7 +114,7 @@ class TaskAccept extends StatelessWidget {
                               height: h * 0.03,
                             ),
                             Text(
-                              " DECLINE",
+                              " ${AppLocalizations.of(context)!.decline}",
                               style: TextStyle(
                                   color: Colors.white, fontSize: w * 0.06),
                             ),
