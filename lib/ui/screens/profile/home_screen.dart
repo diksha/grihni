@@ -18,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
     h = MediaQuery.of(context).size.height;
     return Scaffold(
       body: grihini.when(
-        data: (grihini) => buildBody(context, grihini),
+        data: (grihini) => buildBody(context, grihini,watch),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text(err.toString())),
       ),
@@ -27,10 +27,10 @@ class HomeScreen extends ConsumerWidget {
 }
 
 
-Widget buildBody(BuildContext context, Grihini grihini) {
+Widget buildBody(BuildContext context, Grihini grihini,ScopedReader watch) {
   switch (grihini.status) {
     case "training_pending":
-      return trainingPending(context, grihini);
+      return trainingPending(context, grihini,watch);
     case "trained":
       print(grihini.completedTasks);
       return Profile(grihini: grihini);
@@ -38,7 +38,7 @@ Widget buildBody(BuildContext context, Grihini grihini) {
   return const Text("Something Went Wrong...");
 }
 
-Widget trainingPending(BuildContext context, Grihini grihini) {
+Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch) {
   return Scaffold(
     body: Stack(
       alignment: Alignment.center,
@@ -52,7 +52,7 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
         Positioned(
           width: w,
           top: h * 0.02,
-          child: appBar(context),
+          child: appBar(context,watch),
         ),
         Positioned(
           top: h * 0.15,

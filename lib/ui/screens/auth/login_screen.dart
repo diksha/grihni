@@ -49,11 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  color: Colors.transparent,
-                  width: w,
-                  child: appBar(context),
-                ),
                 Column(
                   children: [
                     Text(

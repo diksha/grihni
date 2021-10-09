@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LanguageSelectScreen extends StatelessWidget {
+class LanguageSelectScreen extends ConsumerWidget {
   const LanguageSelectScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -51,7 +55,7 @@ class LanguageSelectScreen extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(0, h*0.02, 0, 0),
                   child: Center(
                       child: Text(
-                    "Select Language",
+                        AppLocalizations.of(context)!.selectLanguage,
                     style: TextStyle(
                       fontSize: 25,
                     ),
@@ -59,8 +63,8 @@ class LanguageSelectScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    _button("नेपाली"),
-                    _button("English"),
+                    _button(watch, context,"नेपाली"),
+                    _button(watch,context,"English"),
                   ],
                 ),
                 _buttonBar(context)
@@ -92,13 +96,21 @@ Widget _header() {
   );
 }
 
-Widget _button(String language) {
+Widget _button(ScopedReader watch,BuildContext context,String language) {
+  final locale = watch(localeProvider);
   return MaterialButton(
     shape: const StadiumBorder(),
     onPressed: () {
+      if (language=="English"){
+        locale.setEnglish();
+      }
+      if(language=="नेपाली")
+        {
+          locale.setNepali();
+        }
+
       SharedPreferences.getInstance().then((value) {
-        value.setString('savedLocale', language);
-        print(language);
+        value.setString('savedLocale',language );
       });
     },
     child: Padding(
@@ -151,7 +163,7 @@ Widget _buttonBar(context) {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, h*0.02, 0, h*0.01),
                 child: Text(
-                  "Signup",
+                  AppLocalizations.of(context)!.signup,
                   textAlign: TextAlign.center,style: TextStyle(fontSize: w*0.03),
                 ),
               ),
@@ -169,7 +181,7 @@ Widget _buttonBar(context) {
             onPressed: () {
               Navigator.pushNamed(context, loginScreenRoute);
             },
-            child: Text("Login",style: TextStyle(fontSize: w*0.03),),
+            child: Text(AppLocalizations.of(context)!.login,style: TextStyle(fontSize: w*0.03),),
           ),
         ),
       ],

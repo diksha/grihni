@@ -3,13 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:junkiri/services/firestore_service.dart';
+import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/router.dart' as router;
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/router_names.dart';
-import 'models/grihini.dart';
+
+String savedLocale = 'ne';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +19,7 @@ void main() async {
 
   await SharedPreferences.getInstance().then((value) async  {
     isFirstTime = value.getBool('isFirstTime') ?? true;
-    savedLocale = value.getString('savedLocale') ?? 'en';
+    savedLocale = value.getString('savedLocale') ?? 'ne';
     currentUser = value.getString('currentUid') ?? '';
 
   });
@@ -30,18 +32,18 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch)  {
+    final locale = watch(localeProvider);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    return MaterialApp(
-      locale: DevicePreview.locale(context), // Add the locale here
+    return MaterialApp(// Add the locale here
       builder: DevicePreview.appBuilder,
       title: 'Grihini App',
       theme: ThemeData(
@@ -49,8 +51,10 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      //initialRoute: achaarPreparedScreenRoute,
       initialRoute: isFirstTime ? startupScreenRoute: homeScreenRoute,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale.currentLocale,
     );
   }
 }

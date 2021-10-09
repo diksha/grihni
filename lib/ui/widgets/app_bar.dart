@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 
-Widget appBar(context) {
+Widget appBar(BuildContext context, ScopedReader watch) {
+  final locale = watch(localeProvider);
   return Padding(
     padding: EdgeInsets.fromLTRB(20, h*0.03, 20, 0),
     child: Row(
@@ -23,12 +26,16 @@ Widget appBar(context) {
           children: [
             TextButton(
               child: Text("English",style: TextStyle(color: Colors.white,fontSize: w*0.04),),
-              onPressed: null,
+              onPressed: (){
+                locale.setEnglish();
+              },
             ),
             Text("|",style: TextStyle(color: Colors.white,fontSize: w*0.04),),
             TextButton(
               child: Text("Nepali",style: TextStyle(color: Colors.white,fontSize: w*0.04),),
-              onPressed: null,
+              onPressed: (){
+                locale.setNepali();
+              },
             ),
           ],
         ),

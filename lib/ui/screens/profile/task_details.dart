@@ -21,7 +21,7 @@ class TaskDetails extends ConsumerWidget {
     return Scaffold(
         body: task.when(
       data: (task) => grihini.when(
-        data: (grihini) => _buildBody(context, task, grihini),
+        data: (grihini) => _buildBody(context, task, grihini,watch),
         error: (err, stack) => Center(child: Text(err.toString())),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
@@ -31,7 +31,7 @@ class TaskDetails extends ConsumerWidget {
   }
 }
 
-Widget _buildBody(context, Task task, Grihini grihini) {
+Widget _buildBody(context, Task task, Grihini grihini,ScopedReader watch) {
   List<String> completedTasks = grihini.completedTasks;
   return Stack(
     children: [
@@ -45,7 +45,7 @@ Widget _buildBody(context, Task task, Grihini grihini) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            appBar(context),
+            appBar(context,watch),
             Padding(
               padding: EdgeInsets.only(left: w * 0.08),
               child: Text(

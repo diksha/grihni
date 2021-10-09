@@ -57,11 +57,6 @@ class _SignupScreenState extends State<SignupScreen> {
               Container(
                 color: Colors.transparent,
                 width: w,
-                child: appBar(context),
-              ),
-              Container(
-                color: Colors.transparent,
-                width: w,
                 child: _header(),
               ),
               Container(
