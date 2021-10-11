@@ -231,6 +231,9 @@ Widget taskCard(Task task,BuildContext context) {
         case OrderStatus.GROCERY_DROP_OFF:
           oderStatusRoute = groceryPendingScreenRoute;
           break;
+        case OrderStatus.PREPARING:
+          oderStatusRoute = groceryReceivedScreenRoute;
+          break;
         case OrderStatus.READY_FOR_PICKUP:
           oderStatusRoute = achaarPreparedScreenRoute;
           break;
@@ -260,7 +263,7 @@ Widget taskCard(Task task,BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "${AppLocalizations.of(context)!.job} ${task.jobId}",
+                AppLocalizations.of(context)!.job(task.jobId),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
               ),
               Card(

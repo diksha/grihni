@@ -32,10 +32,39 @@
   "task": "कार्य",
   "achaar": "अचार",
   "kg": "केजी",
-  "job": "काम",
+  "job": "काम {jobId}",
+  "@job": {
+    "placeholders": {
+      "jobId": {}
+    }
+  },
+  "achaarAndAmount": "{achaarType} {amount} केजी",
+  "@achaarAndAmount": {
+    "placeholders": {
+      "achaarType": {},
+      "amount": {}
+    }
+  },
 
   "accept": "स्वीकार गर्नुहोस्",
-  "decline": "अस्वीकार"
+  "decline": "अस्वीकार",
+
+  "awesome": "अति उत्तम !",
+  "letsBegin": "{jobId} काम शुरू गरौं",
+  "@letsBegin": {
+    "placeholders": {
+      "jobId": {}
+    }
+  },
+  "purchaceManagerWillContactYou": "हाम्रो खरीद प्रबन्धक कच्चा पदार्थको वितरण को लागी तुरुन्तै सम्पर्क गर्नुहुनेछ ।",
+
+  "groceriesforlapsireceived": "लप्सीको लागी कच्चा पदार्थ {amount} किलो प्राप्त भयो ।",
+  "@groceriesforlapsireceived": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "startTask": "कार्य सुरु\nगर्नुहोस्"
 
 
 }

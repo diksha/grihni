@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
+import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
-import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroceryReceived extends ConsumerWidget {
-  const GroceryReceived({Key? key}) : super(key: key);
+  final Task task;
+  const GroceryReceived({Key? key, required this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -39,13 +42,13 @@ class GroceryReceived extends ConsumerWidget {
                       height: h*0.15,
                     ),
                     SizedBox(height: h*0.02,),
-                    Text("JOB 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
+                    Text("${AppLocalizations.of(context)!.job} 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
                   ],
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(w*0.08),
-                  child: Text("Groceries for Lapsi 10Kg Received",style: TextStyle(fontSize: w*0.07,),textAlign: TextAlign.center,),
+                  child: Text(AppLocalizations.of(context)!.groceriesforlapsireceived(15),style: TextStyle(fontSize: w*0.07,),textAlign: TextAlign.center,),
                 ),
                 MaterialButton(
                   onPressed: () {
@@ -63,7 +66,7 @@ class GroceryReceived extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Start\nTask ",
+                              AppLocalizations.of(context)!.startTask,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: w*0.08,
@@ -90,47 +93,7 @@ class GroceryReceived extends ConsumerWidget {
           Positioned(
             bottom: 0,
             height: h * 0.11,
-            child: Container(
-              width: w,
-              decoration: yellowGradient(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/home.png'),
-                        width: w * 0.07,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Home",
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.06),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/task.png'),
-                        width: w * 0.05,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          " Task",
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.06),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            child: bottomNavigationTwo(context)
           ),
         ],
       ),

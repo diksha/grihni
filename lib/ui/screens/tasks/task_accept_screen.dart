@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
+import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
@@ -46,14 +47,14 @@ class TaskAccept extends ConsumerWidget {
                         height: h*0.1,
                       ),
                       Text(
-                        "${AppLocalizations.of(context)!.job} ${task.jobId}",
+                        AppLocalizations.of(context)!.job(task.jobId),
                         style: TextStyle(fontSize: w * 0.06,fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
 
                   Text(
-                    "${task.achaarType} ${task.amount} ${AppLocalizations.of(context)!.kg}",
+                    AppLocalizations.of(context)!.achaarAndAmount(task.achaarType, task.amount),
                     style: TextStyle(fontSize: w * 0.09),
                   ),
                 ],
@@ -125,50 +126,7 @@ class TaskAccept extends ConsumerWidget {
                   ),
                   Positioned(
                     bottom: h * 0.03,
-                    child: Container(
-                      width: w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                child:
-                                    Image.asset('assets/images/icons/home.png'),
-                                width: w * 0.07,
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Home",
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: w * 0.06),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                child:
-                                    Image.asset('assets/images/icons/task.png'),
-                                width: w * 0.05,
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  " Task",
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: w * 0.06),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: bottomNavigationTwo(context)
                   ),
                 ],
                 overflow: Overflow.visible,

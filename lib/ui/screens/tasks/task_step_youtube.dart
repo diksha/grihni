@@ -4,6 +4,7 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskStepYoutube extends StatelessWidget {
   final String youtubeVideoId = "PgCliOxl41o";

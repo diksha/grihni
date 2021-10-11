@@ -32,9 +32,37 @@
     "task": "Task",
     "achaar": "Achaar",
     "kg": "kg",
-    "job": "Job",
+    "achaarAndAmount": "{achaarType} {amount} kg",
+    "@achaarAndAmount": {
+        "placeholders": {
+            "achaarType": {},
+            "amount": {}
+        }
+    },
+    "job": "JOB {jobId}",
+    "@job": {
+        "placeholders": {
+            "jobId": {}
+        }
+    },
 
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+
+    "awesome": "Awesome !",
+    "letsBegin": "Let's Begin JOB {jobId}",
+    "@letsBegin": {
+        "placeholders": {
+            "jobId": {}
+        }
+    },
+    "purchaceManagerWillContactYou": "Our purchase manager will contact you soon for the delivery of groceries",
+    "groceriesforlapsireceived": "Groceries for Lapsi {amount} kg received",
+    "@groceriesforlapsireceived": {
+        "placeholders": {
+            "amount": {}
+        }
+    },
+    "startTask": "Start\nTask"
 
 }

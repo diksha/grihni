@@ -34,11 +34,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       var task = settings.arguments as Task;
       return MaterialPageRoute(builder: (context) => TaskAccept(task: task,));
     case groceryPendingScreenRoute:
-      return MaterialPageRoute(builder: (context) => const GroceryPending());
+      var task = settings.arguments as Task;
+      return MaterialPageRoute(builder: (context) => GroceryPending(task: task,));
     case groceryReceivedScreenRoute:
-      return MaterialPageRoute(builder: (context) => const GroceryReceived());
+      var task = settings.arguments as Task;
+      return MaterialPageRoute(builder: (context) => GroceryReceived(task: task,));
     case achaarPreparedScreenRoute:
-      return MaterialPageRoute(builder: (context) => const AchaarPrepared());
+      var task = settings.arguments as Task;
+      return MaterialPageRoute(builder: (context) => AchaarPrepared(task: task,));
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
     case taskStepYoutubeScreenRoute:

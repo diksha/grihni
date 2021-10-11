@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
-import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
-import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AchaarPrepared extends ConsumerWidget {
-  const AchaarPrepared({Key? key}) : super(key: key);
+  final Task task;
+  const AchaarPrepared({Key? key, required this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {

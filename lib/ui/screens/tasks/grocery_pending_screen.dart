@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroceryPending extends ConsumerWidget {
-  const GroceryPending({Key? key}) : super(key: key);
+  final Task task;
+  const GroceryPending({Key? key, required this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -39,11 +42,11 @@ class GroceryPending extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Lets Begin",style: TextStyle(fontSize: w*0.06),),
+                    Text(AppLocalizations.of(context)!.letsBegin("121 A"),style: TextStyle(fontSize: w*0.06),),
                     SizedBox(
                       width: w*0.02,
                     ),
-                    Text("JOB 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
+                    Text("${AppLocalizations.of(context)!.job} 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
                   ],
                 ),
                 SizedBox(
@@ -52,7 +55,7 @@ class GroceryPending extends ConsumerWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.all(w*0.08),
-                  child: Text("Our Purchase manager will contact you soonfor the delivery of groceries",style: TextStyle(fontSize: w*0.05,),textAlign: TextAlign.center,),
+                  child: Text(AppLocalizations.of(context)!.purchaceManagerWillContactYou,style: TextStyle(fontSize: w*0.05,),textAlign: TextAlign.center,),
                 ),
               ],
             ),
@@ -75,7 +78,7 @@ class GroceryPending extends ConsumerWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "Home",
+                          AppLocalizations.of(context)!.home,
                           style: TextStyle(
                               color: Colors.black54, fontSize: w * 0.06),
                         ),
@@ -91,7 +94,7 @@ class GroceryPending extends ConsumerWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          " Task",
+                          AppLocalizations.of(context)!.task,
                           style: TextStyle(
                               color: Colors.black54, fontSize: w * 0.06),
                         ),
