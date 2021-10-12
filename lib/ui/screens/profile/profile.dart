@@ -53,7 +53,7 @@ class Profile extends StatelessWidget {
                     CircleAvatar(
                       radius: w * 0.15,
                       child: ClipRRect(
-                        child: Image.asset('assets/images/person.png'),
+                        child: Image.asset('assets/images/profile_pic.png'),
                         borderRadius: BorderRadius.circular(w * 0.5),
                       ),
                     ),
@@ -119,7 +119,9 @@ class Profile extends StatelessWidget {
                         child: Image.asset('assets/images/icons/settings.png'),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, profileSettingsScreenRoute,arguments: grihini);
+                        },
                         child: Text(
                           "Profile Settings",
                           style: TextStyle(

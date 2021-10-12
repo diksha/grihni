@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/screens/profile/profile_settings.dart';
@@ -29,7 +30,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case homeScreenRoute:
       return MaterialPageRoute(builder: (context) => const HomeScreen());
     case profileSettingsScreenRoute:
-      return MaterialPageRoute(builder: (context) => const ProfileSettings());
+      var grihini = settings.arguments as Grihini;
+      return MaterialPageRoute(builder: (context) => ProfileSettings(grihini: grihini,));
     case taskAcceptScreenRoute:
       var task = settings.arguments as Task;
       return MaterialPageRoute(builder: (context) => TaskAccept(task: task,));

@@ -98,7 +98,6 @@ Widget _button(String language) {
     onPressed: () {
       SharedPreferences.getInstance().then((value) {
         value.setString('savedLocale', language);
-        print(language);
       });
     },
     child: Padding(
@@ -106,12 +105,6 @@ Widget _button(String language) {
       child: Ink(
         decoration: BoxDecoration(
             boxShadow: <BoxShadow>[
-              BoxShadow(
-                blurRadius: w*0.01,
-                color: Colors.limeAccent.withOpacity(0.3),
-                offset: Offset(0, 0),
-                spreadRadius: w*0.02,
-              ),
             ],
             borderRadius: BorderRadius.all(Radius.circular(w*0.08)),
             gradient: LinearGradient(

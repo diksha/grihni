@@ -120,7 +120,7 @@ Widget _header() {
     children: [
       CircleAvatar(
         backgroundColor: Colors.white,
-        radius: w * 0.1,
+        radius: w * 0.15,
         child: ClipRRect(
           child: Padding(
             padding: EdgeInsets.all(w*0.05),
@@ -129,7 +129,7 @@ Widget _header() {
           borderRadius: BorderRadius.circular(w*0.5),
         ),
       ),
-      SizedBox(height: h*0.02,),
+      SizedBox(height: h*0.01,),
       Text(
         "Sign Up Form",
         style: TextStyle(
