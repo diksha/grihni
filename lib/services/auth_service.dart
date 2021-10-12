@@ -62,7 +62,7 @@ class AuthService {
       _auth
           .signInWithCredential(authCredential)
           .then((UserCredential result) async {
-        _firestoreService.addGrihini(grihini.name, result.user!.phoneNumber,grihini.address,grihini.status, result.user!.uid,);
+        _firestoreService.addGrihini(grihini.name, result.user!.phoneNumber,grihini.address,grihini.status, result.user!.uid,grihini.completedTasks,grihini.pendingTasks);
         SharedPreferences.getInstance().then((value) {
           value.setBool('isFirstTime', false);
           value.setString('currentUid',result.user!.uid );

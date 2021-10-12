@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:junkiri/models/task.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
+
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 
 class TaskAccept extends StatelessWidget {
-  const TaskAccept({Key? key}) : super(key: key);
+  final Task task;
+  const TaskAccept({Key? key, required this.task}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +49,14 @@ class TaskAccept extends StatelessWidget {
                         height: h*0.1,
                       ),
                       Text(
-                        "Job 121A",
+                        "Job ${task.jobId}",
                         style: TextStyle(fontSize: w * 0.06,fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
 
                   Text(
-                    "Lapsi 10 Kg",
+                    "Lapsi ${task.amount} Kg",
                     style: TextStyle(fontSize: w * 0.09),
                   ),
                 ],

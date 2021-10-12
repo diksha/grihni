@@ -12,3 +12,5 @@ const String taskAcceptScreenRoute = 'taskAccept';
 const String groceryPendingScreenRoute = 'groceryPending';
 const String groceryReceivedScreenRoute = 'groceryReceived';
 const String achaarPreparedScreenRoute = 'achaarPrepared';
+const taskStepYoutubeScreenRoute = 'stepYoutube';
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/screens/profile/profile_settings.dart';
 import 'package:junkiri/ui/screens/profile/task_details.dart';
@@ -11,6 +12,7 @@ import 'package:junkiri/ui/screens/tasks/achaar_prepared_screen.dart';
 import 'package:junkiri/ui/screens/tasks/grocery_received_screen.dart';
 import 'package:junkiri/ui/screens/tasks/task_accept_screen.dart';
 import 'package:junkiri/ui/screens/tasks/grocery_pending_screen.dart';
+import 'package:junkiri/ui/screens/tasks/task_step_youtube.dart';
 
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,7 +31,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case profileSettingsScreenRoute:
       return MaterialPageRoute(builder: (context) => const ProfileSettings());
     case taskAcceptScreenRoute:
-      return MaterialPageRoute(builder: (context) => const TaskAccept());
+      var task = settings.arguments as Task;
+      return MaterialPageRoute(builder: (context) => TaskAccept(task: task,));
     case groceryPendingScreenRoute:
       return MaterialPageRoute(builder: (context) => const GroceryPending());
     case groceryReceivedScreenRoute:
@@ -38,6 +41,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const AchaarPrepared());
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
+    case taskStepYoutubeScreenRoute:
+      return MaterialPageRoute(builder: (context) => const TaskStepYoutube());
+
 
     default:
       return MaterialPageRoute(builder: (context) => const StartupScreen());

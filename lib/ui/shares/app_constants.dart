@@ -1,3 +1,5 @@
+import 'package:junkiri/models/task.dart';
+
 bool isFirstTime = true;
 String savedLocale = 'en';
 String currentUser = '';
