@@ -6,6 +6,7 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Profile extends ConsumerWidget {
   const Profile({Key? key, required this.grihini}) : super(key: key);
@@ -31,7 +32,7 @@ class Profile extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.only(left: w * 0.08),
                 child: Text(
-                  "Home",
+                  AppLocalizations.of(context)!.home,
                   style: TextStyle(
                       fontSize: w * 0.07,
                       color: Colors.white,
@@ -71,7 +72,7 @@ class Profile extends ConsumerWidget {
                       height: h * 0.01,
                     ),
                     Text(
-                      "Junkiri Code: J00001",
+                      "${AppLocalizations.of(context)!.junkiriCode}: J00001",
                       style: TextStyle(
                         fontSize: w * 0.025, color: Color(0xFF58595B)
 
@@ -92,9 +93,9 @@ class Profile extends ConsumerWidget {
                       fontSize: w * 0.1,
                     ),
                   ),Text(
-                    "of Achaar prepared" + grihini.name,
+                    AppLocalizations.of(context)!.ofAchaarPrepared,
                     style: TextStyle(
-                      fontSize: w * 0.025,
+                      fontSize: w * 0.04,
                     ),
                   ),
 
@@ -122,7 +123,7 @@ class Profile extends ConsumerWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "Profile Settings",
+                          AppLocalizations.of(context)!.profileSettings,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -143,7 +144,7 @@ class Profile extends ConsumerWidget {
                           Navigator.pushNamed(context, taskDetailsScreenRoute);
                         },
                         child: Text(
-                          "Assignments Done",
+                          AppLocalizations.of(context)!.assignmentsDone,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -162,7 +163,7 @@ class Profile extends ConsumerWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "My Pending Tasks",
+                          AppLocalizations.of(context)!.myPendingTasks,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -180,7 +181,7 @@ class Profile extends ConsumerWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "New Tasks",
+                          AppLocalizations.of(context)!.newTasks,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -217,7 +218,7 @@ class Profile extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Payment Pending",
+                        Text(AppLocalizations.of(context)!.paymentPending,
                             style: TextStyle(
                               fontSize: w * 0.03,
                               color: Colors.grey,
@@ -231,7 +232,7 @@ class Profile extends ConsumerWidget {
                   ),
                   Column(
                     children: [
-                      Text("Payment Received",
+                      Text(AppLocalizations.of(context)!.paymentReceived,
                           style: TextStyle(
                             fontSize: w * 0.03,
                             color: Colors.grey,

@@ -75,6 +75,12 @@
       "jobId": {}
     }
   },
-  "collectAchaarSoon": "तपाइँको पिकअप साथीले चाँडै  अचार संकलन गर्नुहुनेछ ।"
+  "collectAchaarSoon": "तपाइँको पिकअप साथीले चाँडै  अचार संकलन गर्नुहुनेछ ।",
+
+  "profileSettings": "प्रोफाइल सेटिंग्स",
+  "paymentPending": "भुक्तानी बाँकी छ",
+  "paymentReceived": "भुक्तानी प्राप्त",
+  "junkiriCode": "जुन्किरी कोड",
+  "ofAchaarPrepared": "लिअचार तयार छ"
 
 }

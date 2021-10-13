@@ -65,5 +65,11 @@
             "jobId": {}
         }
     },
-    "collectAchaarSoon": "Your pickup sathi will collect the achaar soon !"
+    "collectAchaarSoon": "Your pickup sathi will collect the achaar soon !",
+
+    "profileSettings": "Profile Settings",
+    "paymentPending": "Payment Pending",
+    "paymentReceived": "Payment Received",
+    "junkiriCode": "Junkiri Code",
+    "ofAchaarPrepared": "of Achaar Prepared"
 }
