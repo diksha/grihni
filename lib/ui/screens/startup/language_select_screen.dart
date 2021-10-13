@@ -120,7 +120,7 @@ Widget _button(ScopedReader watch,BuildContext context,String language) {
             boxShadow: <BoxShadow>[
               BoxShadow(
                 blurRadius: w*0.01,
-                color: Colors.limeAccent.withOpacity(0.3),
+                color: Colors.white60.withOpacity(0.8),
                 offset: Offset(0, 0),
                 spreadRadius: w*0.02,
               ),
@@ -164,7 +164,7 @@ Widget _buttonBar(context) {
                 padding: EdgeInsets.fromLTRB(0, h*0.02, 0, h*0.01),
                 child: Text(
                   AppLocalizations.of(context)!.signup,
-                  textAlign: TextAlign.center,style: TextStyle(fontSize: w*0.03),
+                  textAlign: TextAlign.center,style: TextStyle(fontSize: w*0.04),
                 ),
               ),
             ),
@@ -181,7 +181,7 @@ Widget _buttonBar(context) {
             onPressed: () {
               Navigator.pushNamed(context, loginScreenRoute);
             },
-            child: Text(AppLocalizations.of(context)!.login,style: TextStyle(fontSize: w*0.03),),
+            child: Text(AppLocalizations.of(context)!.login,style: TextStyle(fontSize: w*0.04),),
           ),
         ),
       ],

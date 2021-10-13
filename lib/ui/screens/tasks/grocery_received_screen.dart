@@ -42,13 +42,13 @@ class GroceryReceived extends ConsumerWidget {
                       height: h*0.15,
                     ),
                     SizedBox(height: h*0.02,),
-                    Text("${AppLocalizations.of(context)!.job} 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
+                    Text(AppLocalizations.of(context)!.job(task.jobId),style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
                   ],
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(w*0.08),
-                  child: Text(AppLocalizations.of(context)!.groceriesforlapsireceived(15),style: TextStyle(fontSize: w*0.07,),textAlign: TextAlign.center,),
+                  child: Text(AppLocalizations.of(context)!.groceriesforlapsireceived(task.amount),style: TextStyle(fontSize: w*0.07,),textAlign: TextAlign.center,),
                 ),
                 MaterialButton(
                   onPressed: () {

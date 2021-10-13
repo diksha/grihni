@@ -64,7 +64,17 @@
       "amount": {}
     }
   },
-  "startTask": "कार्य सुरु\nगर्नुहोस्"
+  "startTask": "कार्य सुरु\nगर्नुहोस्",
 
+  "readyForPickup": "पिकअप को\nलागी तयार छ",
+  "yourAchaarHasbeenPrepared": "तपाइँको अचार सफलतापूर्वक तयार गरीएको छ । धन्यवाद !",
+
+  "jobCompleted": "काम {jobId} पूरा भयो",
+  "@jobCompleted": {
+    "placeholders": {
+      "jobId": {}
+    }
+  },
+  "collectAchaarSoon": "तपाइँको पिकअप साथीले चाँडै  अचार संकलन गर्नुहुनेछ ।"
 
 }

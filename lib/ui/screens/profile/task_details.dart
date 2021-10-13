@@ -8,6 +8,7 @@ import 'package:junkiri/repositories/task_repository.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
@@ -164,47 +165,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
       Positioned(
         bottom: 0,
         height: h * 0.11,
-        child: Container(
-          width: w,
-          decoration: yellowGradient(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    child: Image.asset('assets/images/icons/home.png'),
-                    width: w * 0.07,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      AppLocalizations.of(context)!.home,
-                      style:
-                          TextStyle(color: Colors.black54, fontSize: w * 0.06),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    child: Image.asset('assets/images/icons/task.png'),
-                    width: w * 0.05,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      AppLocalizations.of(context)!.task,
-                      style:
-                          TextStyle(color: Colors.black54, fontSize: w * 0.06),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        child: bottomNavigationTwo(context)
       ),
     ],
   );
@@ -224,6 +185,7 @@ Widget taskCard(Task task,BuildContext context) {
   return GestureDetector(
     onTap: (){
       String oderStatusRoute = taskAcceptScreenRoute;
+      print(task.orderStatus);
       switch (task.orderStatus) {
         case OrderStatus.CREATED:
           oderStatusRoute = taskAcceptScreenRoute;
@@ -238,7 +200,7 @@ Widget taskCard(Task task,BuildContext context) {
           oderStatusRoute = achaarPreparedScreenRoute;
           break;
         case OrderStatus.ORDER_COMPLETED:
-          oderStatusRoute = achaarPreparedScreenRoute;
+          oderStatusRoute = taskCompletedScreenRoute;
           break;
       }
       Navigator.pushNamed(context, oderStatusRoute,arguments: task);

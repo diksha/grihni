@@ -2,10 +2,17 @@
 enum OrderStatus { CREATED, GROCERY_DROP_OFF,PREPARING, READY_FOR_PICKUP,ORDER_COMPLETED }
 
 OrderStatus getOrderStatusEnum(String orderStatus) {
-  for (OrderStatus orderStatusVal in OrderStatus.values) {
-    if ( orderStatus== orderStatusVal.toString()) {
-      return orderStatusVal;
-    }
+  switch (orderStatus) {
+    case "CREATED":
+      return OrderStatus.CREATED;
+    case "GROCERY_DROP_OFF":
+     return OrderStatus.GROCERY_DROP_OFF;
+    case "PREPARING":
+      return OrderStatus.PREPARING;
+    case "READY_FOR_PICKUP":
+      return OrderStatus.READY_FOR_PICKUP;
+    case "ORDER_COMPLETED":
+      return OrderStatus.ORDER_COMPLETED;
   }
   return OrderStatus.CREATED;
 }

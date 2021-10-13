@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
+import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
@@ -39,16 +40,7 @@ class GroceryPending extends ConsumerWidget {
                   child: Image.asset("assets/images/job.png"),
                   height: h*0.15,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(AppLocalizations.of(context)!.letsBegin("121 A"),style: TextStyle(fontSize: w*0.06),),
-                    SizedBox(
-                      width: w*0.02,
-                    ),
-                    Text("${AppLocalizations.of(context)!.job} 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
-                  ],
-                ),
+                Text(AppLocalizations.of(context)!.letsBegin(task.jobId),style: TextStyle(fontSize: w*0.06),),
                 SizedBox(
                   child: Image.asset("assets/images/grocery_pending.png"),
                   height: h*0.2,
@@ -63,47 +55,7 @@ class GroceryPending extends ConsumerWidget {
           Positioned(
             bottom: 0,
             height: h * 0.11,
-            child: Container(
-              width: w,
-              decoration: yellowGradient(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/home.png'),
-                        width: w * 0.07,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.home,
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.06),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/task.png'),
-                        width: w * 0.05,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.task,
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.06),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            child: bottomNavigationTwo(context)
           ),
         ],
       ),
