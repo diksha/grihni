@@ -10,7 +10,8 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 
 class TaskDetails extends ConsumerWidget {
@@ -30,6 +31,7 @@ class TaskDetails extends ConsumerWidget {
   }
 }
 
+
 Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   List<String> pendingTaskIds = grihini.pendingTasks;
   List<String> completedTaskIds = grihini.completedTasks;
@@ -47,11 +49,11 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            appBar(context),
+            appBar(context,watch),
             Padding(
               padding: EdgeInsets.only(left: w * 0.08),
               child: Text(
-                "Task Details",
+                AppLocalizations.of(context)!.taskDetails,
                 style: TextStyle(
                     fontSize: w * 0.07,
                     color: Colors.white,
@@ -83,7 +85,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "Assignments Done",
+                          AppLocalizations.of(context)!.assignmentsDone,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -112,7 +114,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "My Pending Tasks",
+                          AppLocalizations.of(context)!.myPendingTasks,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -140,7 +142,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "New Tasks",
+                          AppLocalizations.of(context)!.newTasks,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -163,47 +165,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
       Positioned(
         bottom: 0,
         height: h * 0.11,
-        child: Container(
-          width: w,
-          decoration: yellowGradient(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    child: Image.asset('assets/images/icons/home.png'),
-                    width: w * 0.07,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Home",
-                      style:
-                          TextStyle(color: Colors.black54, fontSize: w * 0.06),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    child: Image.asset('assets/images/icons/task.png'),
-                    width: w * 0.05,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      " Task",
-                      style:
-                          TextStyle(color: Colors.black54, fontSize: w * 0.06),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        child: bottomNavigationTwo(context)
       ),
     ],
   );
@@ -223,6 +185,7 @@ Widget taskCard(Task task,BuildContext context) {
   return GestureDetector(
     onTap: (){
       String oderStatusRoute = taskAcceptScreenRoute;
+      print(task.orderStatus);
       switch (task.orderStatus) {
         case OrderStatus.CREATED:
           oderStatusRoute = taskAcceptScreenRoute;
@@ -230,11 +193,14 @@ Widget taskCard(Task task,BuildContext context) {
         case OrderStatus.GROCERY_DROP_OFF:
           oderStatusRoute = groceryPendingScreenRoute;
           break;
+        case OrderStatus.PREPARING:
+          oderStatusRoute = groceryReceivedScreenRoute;
+          break;
         case OrderStatus.READY_FOR_PICKUP:
           oderStatusRoute = achaarPreparedScreenRoute;
           break;
         case OrderStatus.ORDER_COMPLETED:
-          oderStatusRoute = achaarPreparedScreenRoute;
+          oderStatusRoute = taskCompletedScreenRoute;
           break;
       }
       Navigator.pushNamed(context, oderStatusRoute,arguments: task);
@@ -259,21 +225,21 @@ Widget taskCard(Task task,BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                task.jobId,
+                AppLocalizations.of(context)!.job(task.jobId),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
               ),
               Card(
                 child: Padding(
                   padding: EdgeInsets.all(w * 0.01),
                   child: Text(
-                    "${task.amount} Kg",
+                    "${task.amount} ${AppLocalizations.of(context)!.kg}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: w * 0.04),
                   ),
                 ),
               ),
               Text(
-                "${task.achaarType} Achaar",
+                "${task.achaarType} ${AppLocalizations.of(context)!.achaar}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.03),
               ),
             ],

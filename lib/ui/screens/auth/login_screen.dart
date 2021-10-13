@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/services/auth_service.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -49,15 +51,20 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  color: Colors.transparent,
-                  width: w,
-                  child: appBar(context),
+                Consumer(
+                  builder: (BuildContext context, ScopedReader watch, child) {
+                    return Container(
+                      color: Colors.transparent,
+                      width: w,
+                      child: appBar(context,watch),
+                    );
+                  },
+
                 ),
                 Column(
                   children: [
                     Text(
-                      "Log in",
+                      AppLocalizations.of(context)!.login,
                       style: TextStyle(
                         fontSize: h*0.05,
                         color: Colors.white,
@@ -88,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: TextField(
                           controller: phoneNumberController,
-                          decoration: const InputDecoration(hintText: "   Phone Number"),
+                          decoration: InputDecoration(hintText: "   ${AppLocalizations.of(context)!.phoneNumber}"),
                         ),
                       ),
                     ),
@@ -100,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               phoneNumberController.text, context, setData);
                         },
                         child: Text(
-                          "Click here for OTP",
+                          AppLocalizations.of(context)!.clickHereForOTP,
                           style: TextStyle(
                             fontSize: w*0.05,
                             color: Colors.white,
@@ -139,8 +146,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(w*0.1, h*0.02, w*0.1, h*0.02),
                       child: Text(
-                        "Login",
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.login,
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 25,
                             fontWeight: FontWeight.bold),
@@ -148,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                TextButton(onPressed: (){}, child: Text("Need help?",style: TextStyle(color: Colors.black,fontSize: w*0.04),))
+                TextButton(onPressed: (){}, child: Text(AppLocalizations.of(context)!.needHelp,style: TextStyle(color: Colors.black,fontSize: w*0.04),))
               ],
             ),
           ),
