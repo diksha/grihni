@@ -35,6 +35,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   List<String> completedTaskIds = grihini.completedTasks;
   final pendingTask = watch(taskProvider(pendingTaskIds));
   final completedTask = watch(taskProvider(completedTaskIds));
+  final newTask = watch(newTaskProvider);
   return Stack(
     children: [
       Container(
@@ -150,10 +151,15 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                     ],
                   ),
                   SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [],
-                      )),
+                    scrollDirection: Axis.horizontal,
+                    child: newTask.when(
+                      data: (newTaskList) => taskListGenerator(newTaskList,context),
+                      loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                      error: (err, stack) =>
+                          Center(child: Text(err.toString())),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -222,12 +228,15 @@ taskListGenerator(taskList,context) {
 Widget taskCard(Task task,BuildContext context) {
   return GestureDetector(
     onTap: (){
-      String oderStatusRoute = taskAcceptScreenRoute;
+      String oderStatusRoute = "";
       switch (task.orderStatus) {
         case OrderStatus.CREATED:
           oderStatusRoute = taskAcceptScreenRoute;
           break;
         case OrderStatus.GROCERY_DROP_OFF:
+          oderStatusRoute = groceryPendingScreenRoute;
+          break;
+        case OrderStatus.PREPARING:
           oderStatusRoute = groceryPendingScreenRoute;
           break;
         case OrderStatus.READY_FOR_PICKUP:

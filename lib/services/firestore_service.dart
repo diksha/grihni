@@ -17,9 +17,7 @@ class FirestoreService {
   Future<void> addGrihini(name,phoneNumber,address,status,uid,pendingTasks,completedTasks) async {
     await grihiniRef.doc(uid).set(
       Grihini(address: address, phoneNumber: phoneNumber, name: name, status:status, uid: uid, pendingTasks:pendingTasks, completedTasks: completedTasks,),
-
     );
-
   }
 
 
@@ -36,5 +34,30 @@ class FirestoreService {
       taskList.add(task);
     }
     return taskList;
+  }
+
+  Future<List<Task>> getNewTaskList() async {
+    List<Task> newTaskList=[];
+    taskRef
+        .where('pickedBy', isEqualTo: "")
+        .get()
+        .then((value) async {
+          for (var result in value.docs) {
+            Task task = await taskRef.doc(result.id).get().then((task) => task.data()!);
+            newTaskList.add(task);
+          }});
+    return newTaskList;
+  }
+
+  Future<void> acceptTask(uid, docId) async {
+
+  }
+
+  Future<void> startTask(docId) async {
+
+  }
+
+  Future<void> finishedTask(docId) async {
+
   }
 }
