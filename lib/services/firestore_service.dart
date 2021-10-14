@@ -42,10 +42,13 @@ class FirestoreService {
         .where('pickedBy', isEqualTo: "")
         .get()
         .then((value) async {
+        List<Task> newTaskList=[];
           for (var result in value.docs) {
             Task task = await taskRef.doc(result.id).get().then((task) => task.data()!);
             newTaskList.add(task);
-          }});
+          }
+        return newTaskList;
+        });
     return newTaskList;
   }
 
