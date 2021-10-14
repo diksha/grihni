@@ -13,7 +13,6 @@ import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
-
 class TaskDetails extends ConsumerWidget {
   const TaskDetails({Key? key}) : super(key: key);
   @override
@@ -31,12 +30,12 @@ class TaskDetails extends ConsumerWidget {
   }
 }
 
-
 Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   List<String> pendingTaskIds = grihini.pendingTasks;
   List<String> completedTaskIds = grihini.completedTasks;
   final pendingTask = watch(taskProvider(pendingTaskIds));
   final completedTask = watch(taskProvider(completedTaskIds));
+  final newTask = watch(newTaskProvider);
   return Stack(
     children: [
       Container(
@@ -49,7 +48,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            appBar(context,watch),
+            appBar(context, watch),
             Padding(
               padding: EdgeInsets.only(left: w * 0.08),
               child: Text(
@@ -97,7 +96,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: completedTask.when(
-                      data: (taskList) => taskListGenerator(taskList,context),
+                      data: (taskList) => taskListGenerator(taskList, context),
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       error: (err, stack) =>
@@ -126,7 +125,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: pendingTask.when(
-                      data: (taskList) => taskListGenerator(taskList,context),
+                      data: (taskList) => taskListGenerator(taskList, context),
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       error: (err, stack) =>
@@ -153,8 +152,13 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                   ),
                   SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [],
+                      child: newTask.when(
+                        data: (taskList) =>
+                            taskListGenerator(taskList, context),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            Center(child: Text(err.toString())),
                       )),
                 ],
               ),
@@ -163,27 +167,24 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
         ),
       ),
       Positioned(
-        bottom: 0,
-        height: h * 0.11,
-        child: bottomNavigationTwo(context)
-      ),
+          bottom: 0, height: h * 0.11, child: bottomNavigationTwo(context)),
     ],
   );
 }
 
-taskListGenerator(taskList,context) {
+taskListGenerator(taskList, context) {
   List<Widget> taskCards = [];
   for (Task task in taskList) {
-    taskCards.add(taskCard(task,context));
+    taskCards.add(taskCard(task, context));
   }
   return Row(
     children: taskCards,
   );
 }
 
-Widget taskCard(Task task,BuildContext context) {
+Widget taskCard(Task task, BuildContext context) {
   return GestureDetector(
-    onTap: (){
+    onTap: () {
       String oderStatusRoute = taskAcceptScreenRoute;
       print(task.orderStatus);
       switch (task.orderStatus) {
@@ -203,7 +204,7 @@ Widget taskCard(Task task,BuildContext context) {
           oderStatusRoute = taskCompletedScreenRoute;
           break;
       }
-      Navigator.pushNamed(context, oderStatusRoute,arguments: task);
+      Navigator.pushNamed(context, oderStatusRoute, arguments: task);
     },
     child: Padding(
       padding: EdgeInsets.all(w * 0.01),
@@ -226,7 +227,8 @@ Widget taskCard(Task task,BuildContext context) {
             children: [
               Text(
                 AppLocalizations.of(context)!.job(task.jobId),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.04),
               ),
               Card(
                 child: Padding(
@@ -240,7 +242,8 @@ Widget taskCard(Task task,BuildContext context) {
               ),
               Text(
                 "${task.achaarType} ${AppLocalizations.of(context)!.achaar}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.03),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: w * 0.03),
               ),
             ],
           ),

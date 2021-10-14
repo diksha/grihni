@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
 
 class FirestoreService {
   final grihiniRef =
@@ -36,5 +37,29 @@ class FirestoreService {
       taskList.add(task);
     }
     return taskList;
+  }
+
+  Future<List<Task>> getListofNewTasks() async {
+    List<Task> newTaskList=[];
+    QuerySnapshot value = await taskRef
+        .where('pickedBy', isEqualTo: "")
+        .get();
+    for (var result in value.docs){
+      Task task = await taskRef.doc(result.id).get().then((value) => value.data()!);
+      newTaskList.add(task);
+    }
+    return newTaskList;
+  }
+
+  Future<void> acceptTask(uid, docId) async {
+
+  }
+
+  Future<void> startTask(docId) async {
+
+  }
+
+  Future<void> finishedTask(docId) async {
+
   }
 }
