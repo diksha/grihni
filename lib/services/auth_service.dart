@@ -7,7 +7,6 @@ import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class AuthService {
   FirestoreService _firestoreService = FirestoreService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
