@@ -96,7 +96,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: completedTask.when(
-                      data: (taskList) => taskListGenerator(taskList, context),
+                      data: (taskList) => taskListGenerator(taskList,grihini, context),
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       error: (err, stack) =>
@@ -125,7 +125,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: pendingTask.when(
-                      data: (taskList) => taskListGenerator(taskList, context),
+                      data: (taskList) => taskListGenerator(taskList,grihini, context),
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       error: (err, stack) =>
@@ -154,7 +154,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       scrollDirection: Axis.horizontal,
                       child: newTask.when(
                         data: (taskList) =>
-                            taskListGenerator(taskList, context),
+                            taskListGenerator(taskList,grihini, context),
                         loading: () =>
                             const Center(child: CircularProgressIndicator()),
                         error: (err, stack) =>
@@ -172,17 +172,17 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   );
 }
 
-taskListGenerator(taskList, context) {
+taskListGenerator(taskList,grihini, context) {
   List<Widget> taskCards = [];
   for (Task task in taskList) {
-    taskCards.add(taskCard(task, context));
+    taskCards.add(taskCard(task,grihini, context));
   }
   return Row(
     children: taskCards,
   );
 }
 
-Widget taskCard(Task task, BuildContext context) {
+Widget taskCard(Task task,Grihini grihini, BuildContext context) {
   return GestureDetector(
     onTap: () {
       String oderStatusRoute = taskAcceptScreenRoute;
@@ -204,7 +204,7 @@ Widget taskCard(Task task, BuildContext context) {
           oderStatusRoute = taskCompletedScreenRoute;
           break;
       }
-      Navigator.pushNamed(context, oderStatusRoute, arguments: task);
+      Navigator.pushNamed(context, oderStatusRoute, arguments: [task,grihini]);
     },
     child: Padding(
       padding: EdgeInsets.all(w * 0.01),

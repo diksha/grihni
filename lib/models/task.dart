@@ -25,6 +25,7 @@ class Task {
   final String achaarType;
   final String pickedBy;
   final String paymentStatus;
+  final String docId;
 
   Task(
       {required this.jobId,
@@ -33,7 +34,9 @@ class Task {
       required this.groceryList,
       required this.achaarType,
       required this.pickedBy,
-      required this.paymentStatus});
+      required this.paymentStatus,
+        required this.docId
+      });
 
   Task.fromMap(Map<String, dynamic> data)
       : jobId = data['jobId'],
@@ -42,7 +45,9 @@ class Task {
         groceryList = data['groceryList'],
         achaarType = data['achaarType'],
         pickedBy = data['pickedBy'],
-        paymentStatus = data['paymentStatus'];
+        paymentStatus = data['paymentStatus'],
+  docId = data['docId'];
+
 
   Map<String, dynamic> toMap() {
     return {
@@ -52,7 +57,8 @@ class Task {
       'groceryList':groceryList,
       'achaarType': achaarType,
       'pickedBy': pickedBy,
-      'paymentStatus': paymentStatus
+      'paymentStatus': paymentStatus,
+      'docId':docId
     };
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/screens/profile/profile_settings.dart';
@@ -14,7 +15,6 @@ import 'package:junkiri/ui/screens/tasks/task_accept_screen.dart';
 import 'package:junkiri/ui/screens/tasks/grocery_pending_screen.dart';
 import 'package:junkiri/ui/screens/tasks/task_completed.dart';
 import 'package:junkiri/ui/screens/tasks/task_step_youtube.dart';
-
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -32,25 +32,34 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case profileSettingsScreenRoute:
       return MaterialPageRoute(builder: (context) => const ProfileSettings());
     case taskAcceptScreenRoute:
-      var task = settings.arguments as Task;
-      return MaterialPageRoute(builder: (context) => TaskAccept(task: task,));
+      var arguments = settings.arguments as List;
+      var task = arguments[0] as Task;
+      var grihini = arguments[1] as Grihini;
+      return MaterialPageRoute(builder: (context) => TaskAccept(task: task, grihini: grihini,));
     case groceryPendingScreenRoute:
-      var task = settings.arguments as Task;
+      var arguments = settings.arguments as List;
+      var task = arguments[0] as Task;
+      var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(builder: (context) => GroceryPending(task: task,));
     case groceryReceivedScreenRoute:
-      var task = settings.arguments as Task;
+      var arguments = settings.arguments as List;
+      var task = arguments[0] as Task;
+      var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(builder: (context) => GroceryReceived(task: task,));
     case achaarPreparedScreenRoute:
-      var task = settings.arguments as Task;
+      var arguments = settings.arguments as List;
+      var task = arguments[0] as Task;
+      var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(builder: (context) => AchaarPrepared(task: task,));
     case taskCompletedScreenRoute:
-      var task = settings.arguments as Task;
+      var arguments = settings.arguments as List;
+      var task = arguments[0] as Task;
+      var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(builder: (context) => TaskCompleted(task: task,));
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
     case taskStepYoutubeScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskStepYoutube());
-
     default:
       return MaterialPageRoute(builder: (context) => const StartupScreen());
   }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
@@ -10,12 +13,14 @@ import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 class TaskAccept extends ConsumerWidget {
   final Task task;
-  const TaskAccept({Key? key, required this.task}) : super(key: key);
+  final Grihini grihini;
+  const TaskAccept({Key? key, required this.task, required this.grihini}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+    FirestoreService fireService = FirestoreService();
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -76,7 +81,10 @@ class TaskAccept extends ConsumerWidget {
                     child: MaterialButton(
                       shape: StadiumBorder(),
                       color: const Color(0xFF97C85C),
-                      onPressed: () {},
+                      onPressed: () {
+                        fireService.acceptTask(grihini.uid, task.docId);
+                        Navigator.pushReplacementNamed(context, groceryPendingScreenRoute,arguments: [task,grihini]);
+                      },
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: Row(

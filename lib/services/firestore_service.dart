@@ -52,14 +52,22 @@ class FirestoreService {
   }
 
   Future<void> acceptTask(uid, docId) async {
-
+    taskRef.doc(docId).update({"pickedBy":uid,"jobStatus":OrderStatus.GROCERY_DROP_OFF});
+    Grihini grihini = await grihiniRef.doc(uid).get().then((value) => value.data()!);
+    List<String> pendingTasks = grihini.pendingTasks;
+    pendingTasks.add(docId);
+    grihiniRef.doc(uid).update({"pendingTasks":pendingTasks});
   }
 
   Future<void> startTask(docId) async {
-
+    taskRef.doc(docId).update({"jobStatus":OrderStatus.PREPARING});
   }
 
-  Future<void> finishedTask(docId) async {
-
+  Future<void> completedTask(uid, docId) async {
+    taskRef.doc(docId).update({"pickedBy":uid,"jobStatus":OrderStatus.ORDER_COMPLETED});
+    Grihini grihini = await grihiniRef.doc(uid).get().then((value) => value.data()!);
+    List<String> completedTasks = grihini.completedTasks;
+    completedTasks.add(docId);
+    grihiniRef.doc(uid).update({"completedTasks":completedTasks});
   }
 }
