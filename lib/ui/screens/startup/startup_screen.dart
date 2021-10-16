@@ -5,6 +5,7 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/shares/app_strings.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({Key? key}) : super(key: key);
 
@@ -36,7 +37,7 @@ class StartupScreen extends StatelessWidget {
                     children: [
                       SizedBox(
                         height: h*0.3,
-                        child: Image.asset('assets/images/logo.png'),
+                        child: SvgPicture.asset('assets/images/svg/logo.svg'),
                       ),
 
                       Column(
