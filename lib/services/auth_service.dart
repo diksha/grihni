@@ -70,11 +70,10 @@ class AuthService {
         currentUser =result.user!.uid;
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (builder) => HomeScreen()),
+            MaterialPageRoute(builder: (builder) => const HomeScreen()),
                 (route) => false);
-        print('Signup completed.');
       }).catchError((e) {
-        print(e);
+        showSnackBar(context, "Your mobile number or the OTP is incorrect.");
       });
 
 
@@ -110,7 +109,7 @@ class AuthService {
                    (route) => false);
         print('Login completed.');
       }).catchError((e) {
-        print(e);
+        showSnackBar(context, "Your mobile number or the OTP is incorrect.");
       });
 
 
