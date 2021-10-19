@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
-import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends ConsumerWidget {
   const Profile({Key? key, required this.grihini}) : super(key: key);
   final Grihini grihini;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Stack(
@@ -26,11 +28,11 @@ class Profile extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              appBar(context),
+              appBar(context,watch),
               Padding(
                 padding: EdgeInsets.only(left: w * 0.08),
                 child: Text(
-                  "Home",
+                  AppLocalizations.of(context)!.home,
                   style: TextStyle(
                       fontSize: w * 0.07,
                       color: Colors.white,
@@ -70,7 +72,7 @@ class Profile extends StatelessWidget {
                       height: h * 0.01,
                     ),
                     Text(
-                      "Junkiri Code: J00001",
+                      "${AppLocalizations.of(context)!.junkiriCode}: J00001",
                       style: TextStyle(
                         fontSize: w * 0.025, color: Color(0xFF58595B)
 
@@ -91,9 +93,9 @@ class Profile extends StatelessWidget {
                       fontSize: w * 0.1,
                     ),
                   ),Text(
-                    "of Achaar prepared" + grihini.name,
+                    AppLocalizations.of(context)!.ofAchaarPrepared,
                     style: TextStyle(
-                      fontSize: w * 0.025,
+                      fontSize: w * 0.04,
                     ),
                   ),
 
@@ -121,7 +123,7 @@ class Profile extends StatelessWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "Profile Settings",
+                          AppLocalizations.of(context)!.profileSettings,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -142,7 +144,7 @@ class Profile extends StatelessWidget {
                           Navigator.pushNamed(context, taskDetailsScreenRoute);
                         },
                         child: Text(
-                          "Assignments Done",
+                          AppLocalizations.of(context)!.assignmentsDone,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -161,7 +163,7 @@ class Profile extends StatelessWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "My Pending Tasks",
+                          AppLocalizations.of(context)!.myPendingTasks,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -179,7 +181,7 @@ class Profile extends StatelessWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "New Tasks",
+                          AppLocalizations.of(context)!.newTasks,
                           style: TextStyle(
                               fontSize: w * 0.05,
                               color: Colors.grey,
@@ -216,7 +218,7 @@ class Profile extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Payment Pending",
+                        Text(AppLocalizations.of(context)!.paymentPending,
                             style: TextStyle(
                               fontSize: w * 0.03,
                               color: Colors.grey,
@@ -230,7 +232,7 @@ class Profile extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text("Payment Received",
+                      Text(AppLocalizations.of(context)!.paymentReceived,
                           style: TextStyle(
                             fontSize: w * 0.03,
                             color: Colors.grey,
