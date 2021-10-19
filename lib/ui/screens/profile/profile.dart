@@ -97,7 +97,7 @@ class Profile extends ConsumerWidget {
                 children: [
                   SizedBox(
                     height: h*0.1,
-                    child: SvgPicture.asset('assets/images/svg/job.svg'),
+                    child: Image.asset('assets/images/job.png'),
                   ),
                   Text(
                     "400 ltrs",

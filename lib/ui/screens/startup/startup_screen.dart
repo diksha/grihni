@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
@@ -36,7 +37,7 @@ class StartupScreen extends StatelessWidget {
                     children: [
                       SizedBox(
                         height: h*0.3,
-                        child: Image.asset('assets/images/logo.png'),
+                        child: SvgPicture.asset('assets/images/svg/logo.svg'),
                       ),
 
                       Column(

@@ -129,7 +129,7 @@ Widget _header(BuildContext context) {
     children: [
       CircleAvatar(
         backgroundColor: Colors.white,
-        radius: w * 0.1,
+        radius: w * 0.12,
         child: ClipRRect(
           child: Padding(
             padding: EdgeInsets.all(w*0.05),
