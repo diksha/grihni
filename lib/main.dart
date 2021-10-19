@@ -3,11 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/router.dart' as router;
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/router_names.dart';
+
+String savedLocale = 'en';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,18 +32,18 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch)  {
+    final locale = watch(localeProvider);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
 
-    return MaterialApp(
-      locale: DevicePreview.locale(context), // Add the locale here
+    return MaterialApp(// Add the locale here
       builder: DevicePreview.appBuilder,
       title: 'Grihini App',
       theme: ThemeData(
@@ -48,6 +52,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
       initialRoute: isFirstTime ? startupScreenRoute: taskDetailsScreenRoute,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale.currentLocale,
     );
   }
 }

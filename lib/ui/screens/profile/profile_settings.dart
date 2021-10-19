@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
-import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
-class ProfileSettings extends StatelessWidget {
+class ProfileSettings extends ConsumerWidget {
   final Grihini grihini;
   const ProfileSettings({Key? key, required this.grihini}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -27,7 +27,7 @@ class ProfileSettings extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                appBar(context),
+                appBar(context,watch),
                 Padding(
                   padding: EdgeInsets.only(left: w * 0.08),
                   child: Text(

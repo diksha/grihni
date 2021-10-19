@@ -6,6 +6,7 @@ import 'package:junkiri/repositories/grihini_repository.dart';
 import 'package:junkiri/ui/screens/profile/profile.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeScreen extends ConsumerWidget {
@@ -18,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
     h = MediaQuery.of(context).size.height;
     return Scaffold(
       body: grihini.when(
-        data: (grihini) => buildBody(context, grihini),
+        data: (grihini) => buildBody(context, grihini,watch),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text(err.toString())),
       ),
@@ -27,10 +28,10 @@ class HomeScreen extends ConsumerWidget {
 }
 
 
-Widget buildBody(BuildContext context, Grihini grihini) {
+Widget buildBody(BuildContext context, Grihini grihini,ScopedReader watch) {
   switch (grihini.status) {
     case "training_pending":
-      return trainingPending(context, grihini);
+      return trainingPending(context, grihini,watch);
     case "trained":
       print(grihini.completedTasks);
       return Profile(grihini: grihini);
@@ -38,7 +39,7 @@ Widget buildBody(BuildContext context, Grihini grihini) {
   return const Text("Something Went Wrong...");
 }
 
-Widget trainingPending(BuildContext context, Grihini grihini) {
+Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch) {
   return Scaffold(
     body: Stack(
       alignment: Alignment.center,
@@ -52,7 +53,7 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
         Positioned(
           width: w,
           top: h * 0.02,
-          child: appBar(context),
+          child: appBar(context,watch),
         ),
         Positioned(
           top: h * 0.15,
@@ -60,7 +61,7 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "Hello, ${grihini.name}",
+                "${AppLocalizations.of(context)!.hello}, ${grihini.name}",
                 style: TextStyle(
                   fontSize: w * 0.07,
                   color: Colors.white,
@@ -80,7 +81,7 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
           ),
         ),
         Positioned(
-          bottom: h * 0.02,
+          bottom: h * 0.05,
           right: 0,
           left: 0,
           child: Column(
@@ -94,7 +95,7 @@ Widget trainingPending(BuildContext context, Grihini grihini) {
               Padding(
                 padding: EdgeInsets.all(w*0.08),
                 child: Text(
-                  "Our Training Experts will contact you soon.",
+                  AppLocalizations.of(context)!.contactYouSoon,
                   style: TextStyle(fontSize: w * 0.05, color: Colors.black),
                   textAlign: TextAlign.center,
                 ),

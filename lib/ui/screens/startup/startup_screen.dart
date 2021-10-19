@@ -4,7 +4,7 @@ import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/shares/app_strings.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
-import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class StartupScreen extends StatelessWidget {
   const StartupScreen({Key? key}) : super(key: key);
 
@@ -43,7 +43,7 @@ class StartupScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            StartupStrings.greeting,
+                            AppLocalizations.of(context)!.namasteJunkiri,
                             style: TextStyle(
                               fontSize: w*0.045,
                             ),
@@ -52,7 +52,7 @@ class StartupScreen extends StatelessWidget {
                             height: h*0.01,
                           ),
                           Text(
-                            StartupStrings.phrase1,
+                            AppLocalizations.of(context)!.statupDes,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: w*0.03,
@@ -65,14 +65,17 @@ class StartupScreen extends StatelessWidget {
                             alignment: WrapAlignment.center,
                             children: [
                               Text(
-                                StartupStrings.phrase2,
+                                AppLocalizations.of(context)!.tagLinePart1,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: w*0.03,
                                 ),
                               ),
+                              SizedBox(
+                                width: w*0.01,
+                              ),
                               Text(
-                                StartupStrings.phrase3,
+                                AppLocalizations.of(context)!.tagLinePart2,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -100,7 +103,7 @@ class StartupScreen extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(w*0.09, 10, w*0.09, 10),
                                 child: Text(
-                                  "CLICK HERE",
+                                  AppLocalizations.of(context)!.clickHere,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: w*0.04,

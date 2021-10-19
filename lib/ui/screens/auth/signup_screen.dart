@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/services/auth_service.dart';
 import 'package:junkiri/services/firestore_service.dart';
@@ -7,6 +8,7 @@ import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -54,15 +56,20 @@ class _SignupScreenState extends State<SignupScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                color: Colors.transparent,
-                width: w,
-                child: appBar(context),
+              Consumer(
+                builder: (BuildContext context, ScopedReader watch, child) {
+                  return Container(
+                    color: Colors.transparent,
+                    width: w,
+                    child: appBar(context,watch),
+                  );
+                },
+
               ),
               Container(
                 color: Colors.transparent,
                 width: w,
-                child: _header(),
+                child: _header(context),
               ),
               Container(
                 color: Colors.transparent,
@@ -98,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     padding: EdgeInsets.fromLTRB(
                         w * 0.08, h * 0.01, w * 0.08, h * 0.01),
                     child: Text(
-                      "SIGN UP",
+                      AppLocalizations.of(context)!.signup,
                       style:
                           TextStyle(color: Colors.white, fontSize: w * 0.055),
                     ),
@@ -106,7 +113,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 elevation: 0,
               ),
-              _footer(),
+              _footer(context),
             ],
           ),
         ],
@@ -115,7 +122,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 }
 
-Widget _header() {
+Widget _header(BuildContext context) {
   return Column(
     children: [
       CircleAvatar(
@@ -131,9 +138,9 @@ Widget _header() {
       ),
       SizedBox(height: h*0.01,),
       Text(
-        "Sign Up Form",
+        AppLocalizations.of(context)!.signupForm,
         style: TextStyle(
-            fontSize: w * 0.06,
+            fontSize: w * 0.08,
             fontWeight: FontWeight.bold,
             color: Colors.white),
       ),
@@ -162,7 +169,7 @@ Widget signupForm(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "NAME",
+              AppLocalizations.of(context)!.name,
               style: TextStyle(
                   color: AppColors.darkYellow,
                   fontSize: w * 0.03,
@@ -182,7 +189,7 @@ Widget signupForm(
               height: h * 0.015,
             ),
             Text(
-              "ADDRESS",
+              AppLocalizations.of(context)!.address,
               style: TextStyle(
                   color: AppColors.darkYellow,
                   fontSize: w * 0.03,
@@ -199,7 +206,7 @@ Widget signupForm(
               height: h * 0.015,
             ),
             Text(
-              "PHONE NUMBER",
+              AppLocalizations.of(context)!.phoneNumber,
               style: TextStyle(
                   color: AppColors.darkYellow,
                   fontSize: w * 0.03,
@@ -225,7 +232,8 @@ Widget signupForm(
                         phoneNumberController.text, context, setData);
                   },
                   child: Text(
-                    "Click here \n for OTP",
+                    AppLocalizations.of(context)!.clickHereForOTPBtn,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.darkYellow,
                         fontSize: w * 0.03,
@@ -253,13 +261,16 @@ Widget signupForm(
   );
 }
 
-Widget _footer() {
+Widget _footer(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
-    children: const [
-      Text("Already have account? "),
+    children: [
+      Text(AppLocalizations.of(context)!.alreadyHaveAccount),
+      SizedBox(
+        width: w*0.02,
+      ),
       Text(
-        "Log in",
+        AppLocalizations.of(context)!.login,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
     ],
