@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   AuthService authService = AuthService();
   FirestoreService fireService = FirestoreService();
   String verificationIdFinal = "";
+
   String smsCode = "";
   void setData(String verificationId) {
     setState(() {
@@ -29,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String otpBtnLabel = AppLocalizations.of(context)!.clickHereForOTP;
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -105,9 +107,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           await authService.verifyPhoneNumber(
                               phoneNumberController.text, context, setData);
+                          setState(() {
+                            otpBtnLabel = AppLocalizations.of(context)!.resendOTP;
+                          });
+
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.clickHereForOTP,
+                          otpBtnLabel,
                           style: TextStyle(
                             fontSize: w*0.05,
                             color: Colors.white,

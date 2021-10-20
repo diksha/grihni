@@ -186,16 +186,18 @@ Widget taskCard(Task task,Grihini grihini, BuildContext context) {
   return GestureDetector(
     onTap: () {
       String oderStatusRoute = taskAcceptScreenRoute;
-      print(task.orderStatus);
       switch (task.orderStatus) {
         case OrderStatus.CREATED:
           oderStatusRoute = taskAcceptScreenRoute;
           break;
-        case OrderStatus.GROCERY_DROP_OFF:
+        case OrderStatus.GROCERY_PENDING:
           oderStatusRoute = groceryPendingScreenRoute;
           break;
-        case OrderStatus.PREPARING:
+        case OrderStatus.GROCERY_DROP_OFF:
           oderStatusRoute = groceryReceivedScreenRoute;
+          break;
+        case OrderStatus.PREPARING:
+          oderStatusRoute = taskStepYoutubeScreenRoute;
           break;
         case OrderStatus.READY_FOR_PICKUP:
           oderStatusRoute = achaarPreparedScreenRoute;
@@ -204,6 +206,7 @@ Widget taskCard(Task task,Grihini grihini, BuildContext context) {
           oderStatusRoute = taskCompletedScreenRoute;
           break;
       }
+      Navigator.pop(context);
       Navigator.pushNamed(context, oderStatusRoute, arguments: [task,grihini]);
     },
     child: Padding(

@@ -81,9 +81,11 @@ class TaskAccept extends ConsumerWidget {
                     child: MaterialButton(
                       shape: StadiumBorder(),
                       color: const Color(0xFF97C85C),
-                      onPressed: () {
-                        fireService.acceptTask(grihini.uid, task.docId);
-                        Navigator.pushReplacementNamed(context, groceryPendingScreenRoute,arguments: [task,grihini]);
+                      onPressed: () async {
+                        await fireService.acceptTask(grihini, task).whenComplete(() =>
+                            Navigator.pushReplacementNamed(context, groceryPendingScreenRoute,arguments: [task,grihini])
+                        );
+
                       },
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),

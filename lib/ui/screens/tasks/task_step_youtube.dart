@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/models/task.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
@@ -7,9 +10,11 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskStepYoutube extends StatelessWidget {
-  final String youtubeVideoId = "PgCliOxl41o";
+  final Task task;
+  final Grihini grihini;
+  final String youtubeVideoId = "PL8DsqBzICQZJq_g77ybt1bObjwDIqqhry";
   final String message = "Tie your hair and cover with Scaf";
-  const TaskStepYoutube({Key? key,}) : super(key: key);
+  const TaskStepYoutube({Key? key,required this.task,required this.grihini}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,7 @@ class TaskStepYoutube extends StatelessWidget {
     );
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+    FirestoreService fireService = FirestoreService();
     return Scaffold(
       body: Stack(
         children: [
@@ -69,7 +75,9 @@ class TaskStepYoutube extends StatelessWidget {
                   child: Text(message,style: TextStyle(fontSize: w*0.06,),textAlign: TextAlign.center,),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    fireService.completedTheStep(task);
+                  },
                   child: SizedBox(
                     child: Image.asset("assets/images/icons/done.png"),
                     height: h*0.1,

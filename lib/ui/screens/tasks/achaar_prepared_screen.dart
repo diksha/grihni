@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
@@ -9,12 +12,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AchaarPrepared extends ConsumerWidget {
   final Task task;
-  const AchaarPrepared({Key? key, required this.task}) : super(key: key);
+  final Grihini grihini;
+  const AchaarPrepared({Key? key, required this.task,required this.grihini}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+    FirestoreService fireService = FirestoreService();
     return Scaffold(
       body: Stack(
         children: [
@@ -69,7 +74,10 @@ class AchaarPrepared extends ConsumerWidget {
                       height: h*0.08,
                     ),
                     MaterialButton(
-                      onPressed: () {
+                      onPressed: () async{
+                        await fireService.completedTask(grihini, task).whenComplete(() =>
+                            Navigator.pushReplacementNamed(context, taskCompletedScreenRoute,arguments: [task,grihini])
+                        );
                       },
                       child: Ink(
                         decoration: BoxDecoration(

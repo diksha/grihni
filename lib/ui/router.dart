@@ -45,12 +45,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;
       var grihini = arguments[1] as Grihini;
-      return MaterialPageRoute(builder: (context) => GroceryReceived(task: task,));
+      return MaterialPageRoute(builder: (context) => GroceryReceived(task: task,grihini: grihini,));
     case achaarPreparedScreenRoute:
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;
       var grihini = arguments[1] as Grihini;
-      return MaterialPageRoute(builder: (context) => AchaarPrepared(task: task,));
+      return MaterialPageRoute(builder: (context) => AchaarPrepared(task: task,grihini: grihini,));
     case taskCompletedScreenRoute:
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;
@@ -59,7 +59,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
     case taskStepYoutubeScreenRoute:
-      return MaterialPageRoute(builder: (context) => const TaskStepYoutube());
+      var arguments = settings.arguments as List;
+      var task = arguments[0] as Task;
+      var grihini = arguments[1] as Grihini;
+      return MaterialPageRoute(builder: (context) => TaskStepYoutube(task: task,grihini: grihini,));
     default:
       return MaterialPageRoute(builder: (context) => const StartupScreen());
   }

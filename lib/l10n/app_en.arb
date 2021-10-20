@@ -10,6 +10,7 @@
     "phoneNumber": "Phone Number",
     "otp": "OTP",
     "clickHereForOTP": "Click here for OTP",
+    "resendOTP": "Resend OTP",
     "needHelp": "Need help?",
     "signupForm": "Sign Up Form",
     "name": "NAME",
