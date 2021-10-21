@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
@@ -38,7 +39,7 @@ class TaskCompleted extends ConsumerWidget {
           ),
           Positioned(
             width: w,
-            top: h * 0.2,
+            top: h * 0.15,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -56,7 +57,7 @@ class TaskCompleted extends ConsumerWidget {
                     Padding(
                       padding: EdgeInsets.all(w * 0.05),
                       child: SizedBox(
-                        child: Image.asset("assets/images/task_completed.png"),
+                        child: SvgPicture.asset("assets/images/svg/completed.svg"),
                         height: w * 0.5,
                       ),
                     ),
@@ -79,7 +80,7 @@ class TaskCompleted extends ConsumerWidget {
                       children: [
                         Container(
                           height: h * 0.2,
-                          width: w * 0.7,
+                          width: w * 0.78,
                           color: Colors.white,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,8 +96,7 @@ class TaskCompleted extends ConsumerWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       SizedBox(
-                                        child: Image.asset(
-                                            "assets/images/icons/pending_tasks.png"),
+                                        child: Image.asset("assets/images/icons/pending_tasks.png"),
                                         height: w * 0.18,
                                       ),
                                       Text(AppLocalizations.of(context)!
@@ -116,8 +116,7 @@ class TaskCompleted extends ConsumerWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       SizedBox(
-                                        child: Image.asset(
-                                            "assets/images/icons/new_tasks.png"),
+                                        child: Image.asset("assets/images/icons/new_tasks.png"),
                                         height: w * 0.18,
                                       ),
                                       Text(AppLocalizations.of(context)!
@@ -135,6 +134,7 @@ class TaskCompleted extends ConsumerWidget {
                           bottom: -25,
                           child: MaterialButton(
                             onPressed: () {
+                              Navigator.pushReplacementNamed(context, homeScreenRoute);
                             },
                             child: Ink(
                               decoration: yellowGradient(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
@@ -44,6 +45,7 @@ class Profile extends ConsumerWidget {
         ),
         Positioned(
           top: h * 0.2,
+          height: h*0.4,
           width: w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -53,9 +55,9 @@ class Profile extends ConsumerWidget {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      radius: w * 0.15,
+                      radius: w * 0.12,
                       child: ClipRRect(
-                        child: Image.asset('assets/images/person.png'),
+                        child: SvgPicture.asset('assets/images/svg/person.svg'),
                         borderRadius: BorderRadius.circular(w * 0.5),
                       ),
                     ),
@@ -78,10 +80,20 @@ class Profile extends ConsumerWidget {
 
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        width: w*0.3,
+                        height:h*0.002,
+                        color: Colors.grey,
+                      ),
+                    )
+                    ,
                   ],
                 ),
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: h*0.1,
@@ -105,7 +117,7 @@ class Profile extends ConsumerWidget {
           ),
         ),
         Positioned(
-          bottom: h * 0.15,
+          top: h * 0.5,
           child: Padding(
             padding: EdgeInsets.only(left: w * 0.12),
             child: SizedBox(
@@ -122,12 +134,24 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.profileSettings,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
+                        child: Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.profileSettings,
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                width: w*0.45,
+                                height:h*0.002,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
@@ -136,19 +160,30 @@ class Profile extends ConsumerWidget {
                     children: [
                       SizedBox(
                         width: w * 0.1,
-                        child: Image.asset(
-                            'assets/images/icons/assignments_done.png'),
+                        child: Image.asset('assets/images/icons/assignments_done.png'),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, taskDetailsScreenRoute);
                         },
-                        child: Text(
-                          AppLocalizations.of(context)!.assignmentsDone,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
+                        child: Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.assignmentsDone,
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                width: w*0.45,
+                                height:h*0.002,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
@@ -157,19 +192,31 @@ class Profile extends ConsumerWidget {
                     children: [
                       SizedBox(
                         width: w * 0.1,
-                        child: Image.asset(
-                            'assets/images/icons/pending_tasks.png'),
+                        child: Image.asset('assets/images/icons/pending_tasks.png'),
                       ),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.myPendingTasks,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
+                        child: Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.myPendingTasks,
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                width: w*0.45,
+                                height:h*0.002,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
                         ),
                       ),
+
                     ],
                   ),
                   Row(
@@ -180,12 +227,24 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.newTasks,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
+                        child: Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.newTasks,
+                              style: TextStyle(
+                                  fontSize: w * 0.05,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                width: w*0.45,
+                                height:h*0.002,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
