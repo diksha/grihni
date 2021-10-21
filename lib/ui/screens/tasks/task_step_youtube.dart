@@ -42,7 +42,7 @@ class TaskStepYoutube extends StatelessWidget {
             right: -w * 0.14,
             left: -w * 0.14,
             child: Container(
-              child: Image.asset("assets/images/background005.png"),
+              child: Image.asset("assets/images/background001.png"),
             ),
           ),
           Positioned(

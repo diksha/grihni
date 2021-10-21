@@ -113,7 +113,9 @@ class TaskAccept extends ConsumerWidget {
                     child: MaterialButton(
                       shape: const StadiumBorder(),
                       color: const Color(0xFFEF4F44),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, taskDetailsScreenRoute);
+                      },
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: Row(

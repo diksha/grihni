@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
@@ -31,7 +32,7 @@ class AchaarPrepared extends ConsumerWidget {
             top: 0,
             right: -w * 0.15,
             left: -w * 0.15,
-            child: Image.asset("assets/images/background005.png"),
+            child: Image.asset("assets/images/background001.png"),
           ),
           Container(
             height: h * 0.18,
@@ -55,7 +56,7 @@ class AchaarPrepared extends ConsumerWidget {
                 Column(
                   children: [
                     SizedBox(
-                      child: Image.asset("assets/images/prepared.png"),
+                      child: SvgPicture.asset("assets/images/svg/prepared.png"),
                       height: h * 0.3,
                     ),
                     SizedBox(

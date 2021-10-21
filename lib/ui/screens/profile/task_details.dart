@@ -212,7 +212,7 @@ Widget taskCard(Task task,Grihini grihini, BuildContext context) {
     child: Padding(
       padding: EdgeInsets.all(w * 0.01),
       child: Container(
-        height: h / 8,
+        height: h / 7.6,
         width: w / 3.5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(w * 0.02)),
