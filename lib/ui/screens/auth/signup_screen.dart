@@ -99,7 +99,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           phoneNumber: phoneNumberController.text,
                           address: addressController.text,
                           status: 'training_pending', uid: '', pendingTasks: [], completedTasks: []));
-
                 },
                 child: Ink(
                   decoration: yellowGradient(),
@@ -129,16 +128,17 @@ Widget _header(BuildContext context) {
     children: [
       CircleAvatar(
         backgroundColor: Colors.white,
-        radius: w * 0.12,
+        radius: w * 0.15,
+
         child: ClipRRect(
           child: Padding(
             padding: EdgeInsets.all(w*0.05),
-            child: SvgPicture.asset('assets/images/svg/logo.svg'),
+            child: Image.asset('assets/images/logo.png'),
           ),
           borderRadius: BorderRadius.circular(w*0.5),
         ),
       ),
-      SizedBox(height: h*0.02,),
+      SizedBox(height: h*0.01,),
       Text(
         AppLocalizations.of(context)!.signupForm,
         style: TextStyle(

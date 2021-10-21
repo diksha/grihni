@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/task.dart';
-import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
@@ -12,6 +12,7 @@ import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 class TaskAccept extends ConsumerWidget {
   final Task task;
   const TaskAccept({Key? key, required this.task}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
