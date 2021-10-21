@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
@@ -85,10 +86,10 @@ Widget _header() {
         child: Image.asset('assets/images/world.png'),
       ),
       Positioned(
-        bottom: -h*0.05,
+        bottom: -h*0.02,
         child: Container(
           height: h*0.16,
-          child: Image.asset('assets/images/lang.png'),
+          child: SvgPicture.asset('assets/images/svg/lang.svg'),
         ),
       )
     ],

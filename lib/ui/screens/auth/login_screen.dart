@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/services/auth_service.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
@@ -44,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
             top: 0,
             left: -w*0.16,
             right: -w*0.16,
-            child: Image.asset('assets/images/background002.png'),
+            child: Image.asset('assets/images/background001.png'),
           ),
 
           Container(
@@ -77,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     CircleAvatar(
                       radius: w * 0.15,
                       child: ClipRRect(
-                        child: Image.asset('assets/images/person.png'),
+                        child: SvgPicture.asset('assets/images/svg/person.svg'),
                         borderRadius: BorderRadius.circular(w*0.5),
                       ),
                     ),

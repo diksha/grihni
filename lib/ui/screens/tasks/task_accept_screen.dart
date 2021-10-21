@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
@@ -77,7 +78,9 @@ class TaskAccept extends ConsumerWidget {
                     child: MaterialButton(
                       shape: StadiumBorder(),
                       color: const Color(0xFF97C85C),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, groceryPendingScreenRoute,arguments: task);
+                      },
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: Row(
@@ -104,7 +107,9 @@ class TaskAccept extends ConsumerWidget {
                     child: MaterialButton(
                       shape: const StadiumBorder(),
                       color: const Color(0xFFEF4F44),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, taskDetailsScreenRoute);
+                      },
                       child: Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
@@ -52,6 +53,7 @@ class GroceryReceived extends ConsumerWidget {
                 ),
                 MaterialButton(
                   onPressed: () {
+                    Navigator.pushReplacementNamed(context, taskStepYoutubeScreenRoute);
                   },
                   child: Ink(
                     decoration: BoxDecoration(

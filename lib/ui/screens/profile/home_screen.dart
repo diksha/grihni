@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
 import 'package:junkiri/ui/screens/profile/profile.dart';
@@ -73,7 +74,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
               CircleAvatar(
                 radius: w * 0.15,
                 child: ClipRRect(
-                  child: Image.asset('assets/images/person.png'),
+                  child: SvgPicture.asset('assets/images/svg/person.svg'),
                   borderRadius: BorderRadius.circular(w*0.5),
                 ),
               ),
@@ -90,7 +91,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
             children: [
               SizedBox(
                 height: h*0.16,
-                child: Image.asset('assets/images/training.png'),
+                child: SvgPicture.asset('assets/images/svg/training_pending.svg'),
               ),
               Padding(
                 padding: EdgeInsets.all(w*0.08),

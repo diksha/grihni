@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/services/auth_service.dart';
 import 'package:junkiri/services/firestore_service.dart';
@@ -128,6 +129,7 @@ Widget _header(BuildContext context) {
       CircleAvatar(
         backgroundColor: Colors.white,
         radius: w * 0.15,
+
         child: ClipRRect(
           child: Padding(
             padding: EdgeInsets.all(w*0.05),
