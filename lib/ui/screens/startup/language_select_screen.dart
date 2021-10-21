@@ -83,7 +83,7 @@ Widget _header() {
     alignment: Alignment.center,
     children: [
       Positioned(
-        child: SvgPicture.asset('assets/images/svg/world.svg'),
+        child: Image.asset('assets/images/world.png'),
       ),
       Positioned(
         bottom: -h*0.02,
@@ -111,7 +111,7 @@ Widget _button(ScopedReader watch,BuildContext context,String language) {
         }
 
       SharedPreferences.getInstance().then((value) {
-        value.setString('savedLocale',language );
+        value.setString('savedLocale', language);
       });
     },
     child: Padding(

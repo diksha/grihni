@@ -37,7 +37,7 @@ class StartupScreen extends StatelessWidget {
                     children: [
                       SizedBox(
                         height: h*0.3,
-                        child: SvgPicture.asset('assets/images/svg/logo.svg'),
+                        child: Image.asset('assets/images/logo.png'),
                       ),
 
                       Column(

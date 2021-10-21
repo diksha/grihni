@@ -30,7 +30,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case homeScreenRoute:
       return MaterialPageRoute(builder: (context) => const HomeScreen());
     case profileSettingsScreenRoute:
-      return MaterialPageRoute(builder: (context) => const ProfileSettings());
+      var grihini = settings.arguments as Grihini;
+      return MaterialPageRoute(builder: (context) => ProfileSettings(grihini: grihini,));
     case taskAcceptScreenRoute:
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;

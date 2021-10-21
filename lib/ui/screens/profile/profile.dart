@@ -133,7 +133,9 @@ class Profile extends ConsumerWidget {
                         child: Image.asset('assets/images/icons/settings.png'),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, profileSettingsScreenRoute,arguments: grihini);
+                        },
                         child: Column(
                           children: [
                             Text(

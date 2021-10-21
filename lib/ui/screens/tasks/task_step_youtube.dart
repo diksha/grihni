@@ -12,7 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class TaskStepYoutube extends StatelessWidget {
   final Task task;
   final Grihini grihini;
-  final String youtubeVideoId = "PL8DsqBzICQZJq_g77ybt1bObjwDIqqhry";
+  final String youtubeVideoId = "PgCliOxl41";
   final String message = "Tie your hair and cover with Scaf";
   const TaskStepYoutube({Key? key,required this.task,required this.grihini}) : super(key: key);
 

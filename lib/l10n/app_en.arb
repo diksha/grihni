@@ -72,5 +72,11 @@
     "paymentPending": "Payment Pending",
     "paymentReceived": "Payment Received",
     "junkiriCode": "Junkiri Code",
-    "ofAchaarPrepared": "of Achaar Prepared"
+    "ofAchaarPrepared": "of Achaar Prepared",
+
+    "uploadProfilePhoto": "Upload Profile Photo",
+    "uploadCitizenshipProof": "Upload Citizenship Proof",
+    "mailingAddress": "Mailing Address",
+    "uploadOtherPhotos": "Upload Other Photos",
+    "edit": "Edit"
 }

@@ -57,7 +57,7 @@ class TaskCompleted extends ConsumerWidget {
                     Padding(
                       padding: EdgeInsets.all(w * 0.05),
                       child: SizedBox(
-                        child: SvgPicture.asset("assets/images/svg/completed.svg"),
+                        child: Image.asset("assets/images/task_completed.png"),
                         height: w * 0.5,
                       ),
                     ),

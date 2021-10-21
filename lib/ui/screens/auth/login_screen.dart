@@ -108,10 +108,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           await authService.verifyPhoneNumber(
                               phoneNumberController.text, context, setData);
-                          setState(() {
-                            otpBtnLabel = AppLocalizations.of(context)!.resendOTP;
-                          });
-
                         },
                         child: Text(
                           otpBtnLabel,
