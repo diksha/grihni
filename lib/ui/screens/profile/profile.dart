@@ -57,7 +57,10 @@ class Profile extends ConsumerWidget {
                     CircleAvatar(
                       radius: w * 0.12,
                       child: ClipRRect(
-                        child: SvgPicture.asset('assets/images/svg/person.svg'),
+                        child: grihini.profilePicture != null
+                            ? Image.network(grihini.profilePicture!!)
+                            : Image.asset(
+                            'assets/images/person.png'),
                         borderRadius: BorderRadius.circular(w * 0.5),
                       ),
                     ),
