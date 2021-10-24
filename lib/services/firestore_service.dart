@@ -14,26 +14,37 @@ class FirestoreService {
     toFirestore: (task, _) => task.toMap(),
   );
 
-  Future<void> addGrihini(name,phoneNumber,address,status,uid,pendingTasks,completedTasks) async {
+  Future<void> addGrihini(name, phoneNumber, address, status, uid, pendingTasks,
+      completedTasks) async {
     await grihiniRef.doc(uid).set(
-
-      Grihini(address: address, phoneNumber: phoneNumber, name: name, status:status, uid: uid, pendingTasks:pendingTasks, completedTasks: completedTasks,),
-
+      Grihini(
+        address: address,
+        phoneNumber: phoneNumber,
+        name: name,
+        status: status,
+        uid: uid,
+        pendingTasks: pendingTasks,
+        completedTasks: completedTasks,
+        profilePicture: ''
+      ),
     );
-
   }
 
+  Future<void> updateGrihni(String currentUser, String value) async {
+    await grihiniRef
+        .doc(currentUser)
+        .update({'profilePicture': value});
+  }
 
   Future<Grihini> getGrihini(uid) async {
-    Grihini currentGrihini = await grihiniRef.doc(uid).get().then((snapshot) => snapshot.data()!);
+    Grihini currentGrihini =
+    await grihiniRef.doc(uid).get().then((snapshot) => snapshot.data()!);
     return currentGrihini;
   }
 
-
-
   Future<List<Task>> getTaskList(listOfTaskIds) async {
-    List<Task> taskList=[];
-    for (String docId in listOfTaskIds){
+    List<Task> taskList = [];
+    for (String docId in listOfTaskIds) {
       Task task = await taskRef.doc(docId).get().then((value) => value.data()!);
       taskList.add(task);
     }
