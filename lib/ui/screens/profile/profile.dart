@@ -197,7 +197,9 @@ class Profile extends ConsumerWidget {
                         child: Image.asset('assets/images/icons/pending_tasks.png'),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                        },
                         child: Column(
                           children: [
                             Text(
@@ -228,7 +230,9 @@ class Profile extends ConsumerWidget {
                         child: Image.asset('assets/images/icons/new_tasks.png'),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                        },
                         child: Column(
                           children: [
                             Text(
