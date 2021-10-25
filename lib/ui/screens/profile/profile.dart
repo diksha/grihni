@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
-import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -29,7 +29,7 @@ class Profile extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              appBar(context,watch),
+              appBarWithoutBackButton(context,watch),
               Padding(
                 padding: EdgeInsets.only(left: w * 0.08),
                 child: Text(
