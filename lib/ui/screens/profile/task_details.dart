@@ -94,14 +94,17 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: completedTask.when(
-                      data: (taskList) => taskListGenerator(taskList,context),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      error: (err, stack) =>
-                          Center(child: Text(err.toString())),
+                  Container(
+                    width: w,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: completedTask.when(
+                        data: (taskList) => taskListGenerator(taskList,context),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            Center(child: Text(err.toString())),
+                      ),
                     ),
                   ),
                   Row(
@@ -123,14 +126,17 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: pendingTask.when(
-                      data: (taskList) => taskListGenerator(taskList,context),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      error: (err, stack) =>
-                          Center(child: Text(err.toString())),
+                  Container(
+                    width: w,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: pendingTask.when(
+                        data: (taskList) => taskListGenerator(taskList,context),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            Center(child: Text(err.toString())),
+                      ),
                     ),
                   ),
                   Row(
@@ -151,12 +157,15 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-
-                        children: [],
-                      )),
+                  Container(
+                    width: w,
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [],
+                        )),
+                  ),
                 ],
               ),
             ),
@@ -178,6 +187,8 @@ taskListGenerator(taskList,context) {
     taskCards.add(taskCard(task,context));
   }
   return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: taskCards,
   );
 }
