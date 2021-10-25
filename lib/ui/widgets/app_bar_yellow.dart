@@ -16,9 +16,13 @@ Widget appBarYellow(BuildContext context, ScopedReader watch) {
           onTap: (){
             Navigator.pop(context);
           },
-          child: SizedBox(
+          child: Container(
             height: w*0.08,
-            child: Image.asset('assets/images/icons/back_yellow.png'),
+            width: h*0.05,
+            child: SizedBox(
+              height: w*0.08,
+              child: Image.asset('assets/images/icons/back_yellow.png'),
+            ),
           ),
         ),
         //Buttons Should be replaced here
