@@ -82,15 +82,15 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         child: Image.asset(
                             'assets/images/icons/assignments_done.png'),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.assignmentsDone,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        width: w*0.02,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.assignmentsDone,
+                        style: TextStyle(
+                            fontSize: w * 0.05,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -111,15 +111,15 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         child: Image.asset(
                             'assets/images/icons/pending_tasks.png'),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.myPendingTasks,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        width: w*0.02,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.myPendingTasks,
+                        style: TextStyle(
+                            fontSize: w * 0.05,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -139,15 +139,15 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         width: w * 0.1,
                         child: Image.asset('assets/images/icons/new_tasks.png'),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.newTasks,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        width: w*0.02,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.newTasks,
+                        style: TextStyle(
+                            fontSize: w * 0.05,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
