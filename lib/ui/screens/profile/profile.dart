@@ -100,7 +100,7 @@ class Profile extends ConsumerWidget {
                     child: Image.asset('assets/images/job.png'),
                   ),
                   Text(
-                    "400 ltrs",
+                    "400 Kg",
                     style: TextStyle(
                       fontSize: w * 0.1,
                     ),
@@ -148,7 +148,7 @@ class Profile extends ConsumerWidget {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
-                                width: w*0.45,
+                                width: w*0.38,
                                 height:h*0.002,
                                 color: Colors.grey,
                               ),
@@ -245,7 +245,7 @@ class Profile extends ConsumerWidget {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
-                                width: w*0.45,
+                                width: w*0.28,
                                 height:h*0.002,
                                 color: Colors.grey,
                               ),
