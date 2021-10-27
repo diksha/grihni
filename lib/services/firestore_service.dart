@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:junkiri/models/Achaar.dart';
 import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/models/step.dart';
 import 'package:junkiri/models/task.dart';
 
 class FirestoreService {
@@ -13,6 +15,13 @@ class FirestoreService {
             fromFirestore: (snapshot, _) => Task.fromMap(snapshot.data()!),
             toFirestore: (task, _) => task.toMap(),
           );
+
+  final achaarRef =
+  FirebaseFirestore.instance.collection('achaarType').withConverter<Achaar>(
+    fromFirestore: (snapshot, _) => Achaar.fromMap(snapshot.data()!),
+    toFirestore: (achaar, _) => achaar.toMap(),
+  );
+
 
   Future<void> addGrihini(name, phoneNumber, address, status, uid, pendingTasks,
       completedTasks) async {
@@ -45,7 +54,6 @@ class FirestoreService {
           await taskRef.doc(result.id).get().then((value) => value.data()!);
       newTaskList.add(task);
     }
-
     return newTaskList;
   }
 
@@ -58,7 +66,7 @@ class FirestoreService {
   }
 
   Future<void> startTask(Task task) async {
-    taskRef.doc(task.docId).update({"jobStatus": "PREPARING"});
+    taskRef.doc(task.docId).update({"orderStatus": "PREPARING"});
   }
 
   Future<void> completedTheStep(Task task) async {
@@ -67,12 +75,20 @@ class FirestoreService {
   }
 
   Future<void> completedTask(Grihini grihini, Task task) async {
-    taskRef.doc(task.docId).update({"jobStatus": "ORDER_COMPLETED"});
+    taskRef.doc(task.docId).update({"orderStatus": "ORDER_COMPLETED"});
     List<String> pendingTasks = grihini.pendingTasks;
     pendingTasks.remove(task.docId);
     grihiniRef.doc(grihini.uid).update({"pendingTasks": pendingTasks});
     List<String> completedTasks = grihini.completedTasks;
     completedTasks.add(task.docId);
     grihiniRef.doc(grihini.uid).update({"completedTasks": completedTasks});
+  }
+
+  Future<Achaar> getAchaar(String achaarType) async {
+    print(achaarType);
+    await achaarRef.doc(achaarType).get().then((value) {
+      print(value.data().toString()+"Charu");
+    });
+    return Future.value(null);
   }
 }
