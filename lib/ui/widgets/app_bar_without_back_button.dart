@@ -5,26 +5,13 @@ import 'package:junkiri/constants/router_names.dart';
 import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 
-Widget appBar(BuildContext context, ScopedReader watch) {
+Widget appBarWithoutBackButton(BuildContext context, ScopedReader watch) {
   final locale = watch(localeProvider);
   return Padding(
     padding: EdgeInsets.fromLTRB(20, h*0.03, 20, 0),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        GestureDetector(
-          onTap: (){
-            Navigator.pop(context);
-          },
-          child: Container(
-            height: w*0.08,
-            width: h*0.05,
-            child: SizedBox(
-              height: w*0.08,
-              child: Image.asset('assets/images/icons/back.png'),
-            ),
-          ),
-        ),
         //Buttons Should be replaced here
         Row(
           children: [

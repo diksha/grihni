@@ -50,7 +50,7 @@ class MyApp extends ConsumerWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
-      initialRoute: isFirstTime ? startupScreenRoute: taskDetailsScreenRoute,
+      initialRoute: isFirstTime ? startupScreenRoute: homeScreenRoute,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale.currentLocale,
