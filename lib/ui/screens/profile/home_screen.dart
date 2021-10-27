@@ -6,8 +6,8 @@ import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
 import 'package:junkiri/ui/screens/profile/profile.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
-import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 
 
 class HomeScreen extends ConsumerWidget {
@@ -54,7 +54,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
         Positioned(
           width: w,
           top: h * 0.02,
-          child: appBar(context,watch),
+          child: appBarWithoutBackButton(context,watch),
         ),
         Positioned(
           top: h * 0.15,

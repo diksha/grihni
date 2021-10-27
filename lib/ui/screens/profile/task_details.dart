@@ -82,26 +82,29 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         child: Image.asset(
                             'assets/images/icons/assignments_done.png'),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.assignmentsDone,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        width: w*0.02,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.assignmentsDone,
+                        style: TextStyle(
+                            fontSize: w * 0.05,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: completedTask.when(
-                      data: (taskList) => taskListGenerator(taskList,context),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      error: (err, stack) =>
-                          Center(child: Text(err.toString())),
+                  Container(
+                    width: w,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: completedTask.when(
+                        data: (taskList) => taskListGenerator(taskList,context),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            Center(child: Text(err.toString())),
+                      ),
                     ),
                   ),
                   Row(
@@ -111,26 +114,29 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         child: Image.asset(
                             'assets/images/icons/pending_tasks.png'),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.myPendingTasks,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        width: w*0.02,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.myPendingTasks,
+                        style: TextStyle(
+                            fontSize: w * 0.05,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: pendingTask.when(
-                      data: (taskList) => taskListGenerator(taskList,context),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      error: (err, stack) =>
-                          Center(child: Text(err.toString())),
+                  Container(
+                    width: w,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: pendingTask.when(
+                        data: (taskList) => taskListGenerator(taskList,context),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            Center(child: Text(err.toString())),
+                      ),
                     ),
                   ),
                   Row(
@@ -139,24 +145,27 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         width: w * 0.1,
                         child: Image.asset('assets/images/icons/new_tasks.png'),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.newTasks,
-                          style: TextStyle(
-                              fontSize: w * 0.05,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      SizedBox(
+                        width: w*0.02,
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.newTasks,
+                        style: TextStyle(
+                            fontSize: w * 0.05,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-
-                        children: [],
-                      )),
+                  Container(
+                    width: w,
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [],
+                        )),
+                  ),
                 ],
               ),
             ),
@@ -178,6 +187,8 @@ taskListGenerator(taskList,context) {
     taskCards.add(taskCard(task,context));
   }
   return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: taskCards,
   );
 }
