@@ -62,10 +62,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   return Container(
                     color: Colors.transparent,
                     width: w,
-                    child: appBar(context,watch),
+                    child: appBar(context, watch),
                   );
                 },
-
               ),
               Container(
                 color: Colors.transparent,
@@ -98,7 +97,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           name: nameController.text,
                           phoneNumber: phoneNumberController.text,
                           address: addressController.text,
-                          status: 'training_pending', uid: '', pendingTasks: [], completedTasks: []));
+                          status: 'training_pending',
+                          uid: '',
+                          pendingTasks: [],
+                          completedTasks: []));
                 },
                 child: Ink(
                   decoration: yellowGradient(),
@@ -129,16 +131,17 @@ Widget _header(BuildContext context) {
       CircleAvatar(
         backgroundColor: Colors.white,
         radius: w * 0.15,
-
         child: ClipRRect(
           child: Padding(
-            padding: EdgeInsets.all(w*0.05),
+            padding: EdgeInsets.all(w * 0.05),
             child: Image.asset('assets/images/logo.png'),
           ),
-          borderRadius: BorderRadius.circular(w*0.5),
+          borderRadius: BorderRadius.circular(w * 0.5),
         ),
       ),
-      SizedBox(height: h*0.01,),
+      SizedBox(
+        height: h * 0.01,
+      ),
       Text(
         AppLocalizations.of(context)!.signupForm,
         style: TextStyle(
@@ -214,13 +217,12 @@ Widget signupForm(
                   fontSize: w * 0.03,
                   fontWeight: FontWeight.bold),
             ),
-
             TextField(
               controller: phoneNumberController,
               decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.all(w * 0.01),
-                  ),
+                isDense: true,
+                contentPadding: EdgeInsets.all(w * 0.01),
+              ),
             ),
             SizedBox(
               height: h * 0.015,
@@ -243,7 +245,7 @@ Widget signupForm(
                   ),
                 ),
                 Container(
-                  width: w/4,
+                  width: w / 4,
                   child: TextField(
                     decoration: InputDecoration(
                       fillColor: Colors.grey,
@@ -251,7 +253,9 @@ Widget signupForm(
                       contentPadding: EdgeInsets.all(w * 0.01),
                     ),
                     controller: otpController,
-                    inputFormatters: [WhitelistingTextInputFormatter(RegExp(r"\d"))],
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp(r"\d"))
+                    ],
                   ),
                 ),
               ],
@@ -269,7 +273,7 @@ Widget _footer(BuildContext context) {
     children: [
       Text(AppLocalizations.of(context)!.alreadyHaveAccount),
       SizedBox(
-        width: w*0.02,
+        width: w * 0.02,
       ),
       Text(
         AppLocalizations.of(context)!.login,

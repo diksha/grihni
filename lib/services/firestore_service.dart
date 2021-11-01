@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:junkiri/models/Achaar.dart';
 import 'package:junkiri/models/grihini.dart';
-import 'package:junkiri/models/step.dart';
 import 'package:junkiri/models/task.dart';
 
 class FirestoreService {
@@ -17,18 +16,24 @@ class FirestoreService {
           );
 
   final achaarRef =
-  FirebaseFirestore.instance.collection('achaarType').withConverter<Achaar>(
-    fromFirestore: (snapshot, _) => Achaar.fromMap(snapshot.data()!),
-    toFirestore: (achaar, _) => achaar.toMap(),
-  );
-
+      FirebaseFirestore.instance.collection('achaarType').withConverter<Achaar>(
+            fromFirestore: (snapshot, _) => Achaar.fromMap(snapshot.data()!),
+            toFirestore: (achaar, _) => achaar.toMap(),
+          );
 
   Future<void> addGrihini(name, phoneNumber, address, status, uid, pendingTasks,
       completedTasks) async {
     await grihiniRef.doc(uid).set(
-
-      Grihini(address: address, phoneNumber: phoneNumber, name: name, status:status, uid: uid, pendingTasks:pendingTasks, completedTasks: completedTasks,),
-    );
+          Grihini(
+            address: address,
+            phoneNumber: phoneNumber,
+            name: name,
+            status: status,
+            uid: uid,
+            pendingTasks: pendingTasks,
+            completedTasks: completedTasks,
+          ),
+        );
   }
 
   Future<Grihini> getGrihini(uid) async {
@@ -85,10 +90,8 @@ class FirestoreService {
   }
 
   Future<Achaar> getAchaar(String achaarType) async {
-    print(achaarType);
-    await achaarRef.doc(achaarType).get().then((value) {
-      print(value.data().toString()+"Charu");
-    });
-    return Future.value(null);
+    Achaar achaar =
+        await achaarRef.doc(achaarType).get().then((value) => value.data()!);
+    return achaar;
   }
 }

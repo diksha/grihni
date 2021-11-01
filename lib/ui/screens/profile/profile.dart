@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
@@ -14,7 +14,7 @@ class Profile extends ConsumerWidget {
   final Grihini grihini;
 
   @override
-  Widget build(BuildContext context,ScopedReader watch) {
+  Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Stack(
@@ -29,7 +29,7 @@ class Profile extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              appBarWithoutBackButton(context,watch),
+              appBarWithoutBackButton(context, watch),
               Padding(
                 padding: EdgeInsets.only(left: w * 0.08),
                 child: Text(
@@ -45,7 +45,7 @@ class Profile extends ConsumerWidget {
         ),
         Positioned(
           top: h * 0.2,
-          height: h*0.4,
+          height: h * 0.4,
           width: w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,8 +67,7 @@ class Profile extends ConsumerWidget {
                     Text(
                       grihini.name,
                       style: TextStyle(
-                          fontSize: w * 0.06,color: Color(0xFF58595B)),
-
+                          fontSize: w * 0.06, color: Color(0xFF58595B)),
                     ),
                     SizedBox(
                       height: h * 0.01,
@@ -76,19 +75,16 @@ class Profile extends ConsumerWidget {
                     Text(
                       "${AppLocalizations.of(context)!.junkiriCode}: J00001",
                       style: TextStyle(
-                        fontSize: w * 0.025, color: Color(0xFF58595B)
-
-                      ),
+                          fontSize: w * 0.025, color: Color(0xFF58595B)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Container(
-                        width: w*0.3,
-                        height:h*0.002,
+                        width: w * 0.3,
+                        height: h * 0.002,
                         color: Colors.grey,
                       ),
-                    )
-                    ,
+                    ),
                   ],
                 ),
               ),
@@ -96,7 +92,7 @@ class Profile extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: h*0.1,
+                    height: h * 0.1,
                     child: Image.asset('assets/images/job.png'),
                   ),
                   Text(
@@ -104,13 +100,13 @@ class Profile extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: w * 0.1,
                     ),
-                  ),Text(
+                  ),
+                  Text(
                     AppLocalizations.of(context)!.ofAchaarPrepared,
                     style: TextStyle(
                       fontSize: w * 0.04,
                     ),
                   ),
-
                 ],
               ),
             ],
@@ -122,7 +118,7 @@ class Profile extends ConsumerWidget {
             padding: EdgeInsets.only(left: w * 0.12),
             child: SizedBox(
               width: w,
-              height: h*0.31,
+              height: h * 0.31,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -134,7 +130,9 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, profileSettingsScreenRoute,arguments: grihini);
+                          Navigator.pushNamed(
+                              context, profileSettingsScreenRoute,
+                              arguments: grihini);
                         },
                         child: Column(
                           children: [
@@ -148,8 +146,8 @@ class Profile extends ConsumerWidget {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
-                                width: w*0.38,
-                                height:h*0.002,
+                                width: w * 0.38,
+                                height: h * 0.002,
                                 color: Colors.grey,
                               ),
                             )
@@ -162,7 +160,8 @@ class Profile extends ConsumerWidget {
                     children: [
                       SizedBox(
                         width: w * 0.1,
-                        child: Image.asset('assets/images/icons/assignments_done.png'),
+                        child: Image.asset(
+                            'assets/images/icons/assignments_done.png'),
                       ),
                       TextButton(
                         onPressed: () {
@@ -180,8 +179,8 @@ class Profile extends ConsumerWidget {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
-                                width: w*0.45,
-                                height:h*0.002,
+                                width: w * 0.45,
+                                height: h * 0.002,
                                 color: Colors.grey,
                               ),
                             )
@@ -194,7 +193,8 @@ class Profile extends ConsumerWidget {
                     children: [
                       SizedBox(
                         width: w * 0.1,
-                        child: Image.asset('assets/images/icons/pending_tasks.png'),
+                        child: Image.asset(
+                            'assets/images/icons/pending_tasks.png'),
                       ),
                       TextButton(
                         onPressed: () {
@@ -212,15 +212,14 @@ class Profile extends ConsumerWidget {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
-                                width: w*0.45,
-                                height:h*0.002,
+                                width: w * 0.45,
+                                height: h * 0.002,
                                 color: Colors.grey,
                               ),
                             )
                           ],
                         ),
                       ),
-
                     ],
                   ),
                   Row(
@@ -245,8 +244,8 @@ class Profile extends ConsumerWidget {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
-                                width: w*0.28,
-                                height:h*0.002,
+                                width: w * 0.28,
+                                height: h * 0.002,
                                 color: Colors.grey,
                               ),
                             )

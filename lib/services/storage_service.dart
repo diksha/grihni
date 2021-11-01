@@ -1,5 +1,1 @@
-
-class StorageService {
-
-
-}
+class StorageService {}

@@ -68,7 +68,7 @@ class Task {
       'pickedBy': pickedBy,
       'paymentStatus': paymentStatus,
       'docId': docId,
-      'currentStep':currentStep
+      'currentStep': currentStep
     };
   }
 }

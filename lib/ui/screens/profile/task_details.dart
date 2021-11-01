@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
-import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
@@ -82,7 +82,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                             'assets/images/icons/assignments_done.png'),
                       ),
                       SizedBox(
-                        width: w*0.02,
+                        width: w * 0.02,
                       ),
                       Text(
                         AppLocalizations.of(context)!.assignmentsDone,
@@ -98,7 +98,8 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: completedTask.when(
-                        data: (taskList) => taskListGenerator(taskList,grihini,context),
+                        data: (taskList) =>
+                            taskListGenerator(taskList, grihini, context),
                         loading: () =>
                             const Center(child: CircularProgressIndicator()),
                         error: (err, stack) =>
@@ -114,7 +115,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                             'assets/images/icons/pending_tasks.png'),
                       ),
                       SizedBox(
-                        width: w*0.02,
+                        width: w * 0.02,
                       ),
                       Text(
                         AppLocalizations.of(context)!.myPendingTasks,
@@ -130,7 +131,8 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: pendingTask.when(
-                        data: (taskList) => taskListGenerator(taskList,grihini,context),
+                        data: (taskList) =>
+                            taskListGenerator(taskList, grihini, context),
                         loading: () =>
                             const Center(child: CircularProgressIndicator()),
                         error: (err, stack) =>
@@ -145,7 +147,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                         child: Image.asset('assets/images/icons/new_tasks.png'),
                       ),
                       SizedBox(
-                        width: w*0.02,
+                        width: w * 0.02,
                       ),
                       Text(
                         AppLocalizations.of(context)!.newTasks,
@@ -156,15 +158,19 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
                       ),
                     ],
                   ),
-
                   Container(
                     width: w,
                     child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [],
-                        )),
+                      scrollDirection: Axis.horizontal,
+                      child: newTask.when(
+                        data: (taskList) =>
+                            taskListGenerator(taskList, grihini, context),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            Center(child: Text(err.toString())),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -178,10 +184,10 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   );
 }
 
-taskListGenerator(taskList,grihini, context) {
+taskListGenerator(taskList, grihini, context) {
   List<Widget> taskCards = [];
   for (Task task in taskList) {
-    taskCards.add(taskCard(task,grihini, context));
+    taskCards.add(taskCard(task, grihini, context));
   }
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
@@ -190,7 +196,7 @@ taskListGenerator(taskList,grihini, context) {
   );
 }
 
-Widget taskCard(Task task,Grihini grihini, BuildContext context) {
+Widget taskCard(Task task, Grihini grihini, BuildContext context) {
   return GestureDetector(
     onTap: () {
       String oderStatusRoute = taskAcceptScreenRoute;
@@ -215,7 +221,7 @@ Widget taskCard(Task task,Grihini grihini, BuildContext context) {
           break;
       }
       Navigator.pop(context);
-      Navigator.pushNamed(context, oderStatusRoute, arguments: [task,grihini]);
+      Navigator.pushNamed(context, oderStatusRoute, arguments: [task, grihini]);
     },
     child: Padding(
       padding: EdgeInsets.all(w * 0.01),

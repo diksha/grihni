@@ -4,9 +4,7 @@ import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
-
 import 'package:junkiri/ui/widgets/white_gradient.dart';
-import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroceryPending extends ConsumerWidget {
@@ -26,7 +24,7 @@ class GroceryPending extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBarYellow(context,watch),
+            child: appBarYellow(context, watch),
           ),
           Positioned(
             width: w,
@@ -38,25 +36,31 @@ class GroceryPending extends ConsumerWidget {
               children: [
                 SizedBox(
                   child: Image.asset("assets/images/job.png"),
-                  height: h*0.15,
+                  height: h * 0.15,
                 ),
-                Text(AppLocalizations.of(context)!.letsBegin(task.jobId),style: TextStyle(fontSize: w*0.06),),
+                Text(
+                  AppLocalizations.of(context)!.letsBegin(task.jobId),
+                  style: TextStyle(fontSize: w * 0.06),
+                ),
                 SizedBox(
                   child: Image.asset("assets/images/grocery_pending.png"),
-                  height: h*0.2,
+                  height: h * 0.2,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(w*0.08),
-                  child: Text(AppLocalizations.of(context)!.purchaceManagerWillContactYou,style: TextStyle(fontSize: w*0.05,),textAlign: TextAlign.center,),
+                  padding: EdgeInsets.all(w * 0.08),
+                  child: Text(
+                    AppLocalizations.of(context)!.purchaceManagerWillContactYou,
+                    style: TextStyle(
+                      fontSize: w * 0.05,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
           ),
           Positioned(
-            bottom: 0,
-            height: h * 0.11,
-            child: bottomNavigationTwo(context)
-          ),
+              bottom: 0, height: h * 0.11, child: bottomNavigationTwo(context)),
         ],
       ),
     );

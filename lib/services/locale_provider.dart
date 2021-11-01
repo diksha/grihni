@@ -39,4 +39,4 @@ class LocaleNotifier extends ChangeNotifier {
 }
 
 final localeProvider =
-ChangeNotifierProvider<LocaleNotifier>((ref) => LocaleNotifier(ref));
+    ChangeNotifierProvider<LocaleNotifier>((ref) => LocaleNotifier(ref));

@@ -8,7 +8,7 @@ import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/router.dart' as router;
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'constants/router_names.dart';
+import 'ui/shares/router_names.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 String savedLocale = 'en';

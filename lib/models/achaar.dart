@@ -1,24 +1,22 @@
 import 'package:junkiri/models/step.dart';
 
-class Achaar{
-  final String name;
-  final List<String> groceries;
-  final List<Step> steps;
+class Achaar {
+  late String name;
+  late List<String> groceries;
+  late Map<int, Step> steps;
 
-
-  Achaar({required this.name, required this.groceries,required this.steps});
+  Achaar({required this.name, required this.groceries, required this.steps});
 
   Map<String, dynamic> toMap() =>
-      {
-        "name": name,
-        "groceries": groceries,
-        "steps":steps
-      };
+      {"name": name, "groceries": groceries, "steps": steps};
 
-  Achaar.fromMap(Map<dynamic, dynamic> map)
-      : name = map["name"],
-        groceries = map["groceries"],
-        steps = map['steps'].map((step) {
-          return Step.fromMap(step);
-        });
+  Achaar.fromMap(Map<String, dynamic> map) {
+    name = map["name"];
+    groceries = List.from(map["groceries"]);
+    steps = Map<int, Step>();
+    Map.from(map["steps"]).entries.forEach((element) {
+      steps.putIfAbsent(
+          int.parse(element.key), () => Step.fromJson(element.value));
+    });
+  }
 }

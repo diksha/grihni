@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
-import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/repositories/achaar_repository.dart';
@@ -14,8 +14,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class TaskStepYoutube extends ConsumerWidget {
   final Task task;
   final Grihini grihini;
-  final String youtubeVideoId = "PgCliOxl41";
-  final String message = "Tie your hair and cover with Scaf";
   const TaskStepYoutube({Key? key, required this.task, required this.grihini})
       : super(key: key);
 
@@ -23,9 +21,9 @@ class TaskStepYoutube extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final achaar = watch(achaarProvider(task.achaarType));
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: youtubeVideoId,
+      initialVideoId: achaar.data!.value.steps[task.currentStep]!.videoId,
       params: const YoutubePlayerParams(
-        startAt: Duration(seconds: 6),
+        startAt: Duration(seconds: 0),
         showControls: true,
         showFullscreenButton: true,
         playsInline: false,
@@ -58,12 +56,12 @@ class TaskStepYoutube extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Job 121A",
+                  task.jobId,
                   style: TextStyle(
                       fontSize: w * 0.06, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "Lapsi 10 Kg",
+                  "${task.achaarType} ${task.amount} Kg",
                   style: TextStyle(fontSize: w * 0.08),
                 ),
                 Padding(
@@ -85,18 +83,23 @@ class TaskStepYoutube extends ConsumerWidget {
                   padding: EdgeInsets.all(w * 0.04),
                   child: achaar.when(
                       data: (achaar) => Text(
-                            message,// when i call the achar it doesnot show parameters of acharr, but it shows parameters of step.
+                            achaar.steps[0]!.title,
                             style: TextStyle(
                               fontSize: w * 0.06,
                             ),
                             textAlign: TextAlign.center,
                           ),
-                    loading: () => const Center(child: CircularProgressIndicator()),
-                    error: (err, stack) => Center(child: Text(err.toString()))),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      error: (err, stack) =>
+                          Center(child: Text(err.toString()))),
                 ),
                 GestureDetector(
                   onTap: () {
                     fireService.completedTheStep(task);
+                    Navigator.popAndPushNamed(
+                        context, taskStepYoutubeScreenRoute,
+                        arguments: [task, grihini]);
                   },
                   child: SizedBox(
                     child: Image.asset("assets/images/icons/done.png"),
