@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:junkiri/constants/router_names.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/services/locale_provider.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 

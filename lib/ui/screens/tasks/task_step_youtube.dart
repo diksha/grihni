@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:junkiri/constants/router_names.dart';
+import 'package:flutter_riverpod/all.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
+import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/models/task.dart';
+import 'package:junkiri/repositories/achaar_repository.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TaskStepYoutube extends StatelessWidget {
-  final String youtubeVideoId = "PgCliOxl41o";
-  final String message = "Tie your hair and cover with Scaf";
-  const TaskStepYoutube({Key? key,}) : super(key: key);
+class TaskStepYoutube extends ConsumerWidget {
+  final Task task;
+  final Grihini grihini;
+  const TaskStepYoutube({Key? key, required this.task, required this.grihini})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final achaar = watch(achaarProvider(task.achaarType));
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: youtubeVideoId,
+      initialVideoId: achaar.data!.value.steps[task.currentStep]!.videoId,
       params: const YoutubePlayerParams(
-        startAt: Duration(seconds: 6),
+        startAt: Duration(seconds: 0),
         showControls: true,
         showFullscreenButton: true,
         playsInline: false,
@@ -24,6 +31,7 @@ class TaskStepYoutube extends StatelessWidget {
     );
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+    FirestoreService fireService = FirestoreService();
     return Scaffold(
       body: Stack(
         children: [
@@ -32,7 +40,7 @@ class TaskStepYoutube extends StatelessWidget {
             decoration: whiteGradient(),
           ),
           Positioned(
-            top: -h*0.01,
+            top: -h * 0.01,
             right: -w * 0.14,
             left: -w * 0.14,
             child: Container(
@@ -47,10 +55,17 @@ class TaskStepYoutube extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Job 121A",style: TextStyle(fontSize: w*0.06,fontWeight: FontWeight.bold),),
-                Text("Lapsi 10 Kg",style: TextStyle(fontSize: w*0.08),),
+                Text(
+                  task.jobId,
+                  style: TextStyle(
+                      fontSize: w * 0.06, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "${task.achaarType} ${task.amount} Kg",
+                  style: TextStyle(fontSize: w * 0.08),
+                ),
                 Padding(
-                  padding: EdgeInsets.all(w*0.09),
+                  padding: EdgeInsets.all(w * 0.09),
                   child: YoutubePlayerIFrame(
                     controller: _controller,
                     aspectRatio: 16 / 9,
@@ -60,25 +75,40 @@ class TaskStepYoutube extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom:  h * 0.11,
-            height: h*0.2,
+            bottom: h * 0.11,
+            height: h * 0.2,
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(w*0.04),
-                  child: Text(message,style: TextStyle(fontSize: w*0.06,),textAlign: TextAlign.center,),
+                  padding: EdgeInsets.all(w * 0.04),
+                  child: achaar.when(
+                      data: (achaar) => Text(
+                            achaar.steps[0]!.title,
+                            style: TextStyle(
+                              fontSize: w * 0.06,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      error: (err, stack) =>
+                          Center(child: Text(err.toString()))),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () {
+                    fireService.completedTheStep(task);
+                    Navigator.popAndPushNamed(
+                        context, taskStepYoutubeScreenRoute,
+                        arguments: [task, grihini]);
+                  },
                   child: SizedBox(
                     child: Image.asset("assets/images/icons/done.png"),
-                    height: h*0.1,
+                    height: h * 0.1,
                   ),
                 ),
               ],
             ),
           ),
-
           Positioned(
             bottom: 0,
             height: h * 0.11,
@@ -113,9 +143,7 @@ class TaskStepYoutube extends StatelessWidget {
                         width: w * 0.06,
                       ),
                       TextButton(
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                         child: Text(
                           "Call",
                           style: TextStyle(

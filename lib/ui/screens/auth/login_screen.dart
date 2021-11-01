@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   AuthService authService = AuthService();
   FirestoreService fireService = FirestoreService();
   String verificationIdFinal = "";
+
   String smsCode = "";
   void setData(String verificationId) {
     setState(() {
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String otpBtnLabel = AppLocalizations.of(context)!.clickHereForOTP;
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -43,11 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Positioned(
             top: 0,
-            left: -w*0.16,
-            right: -w*0.16,
+            left: -w * 0.16,
+            right: -w * 0.16,
             child: Image.asset('assets/images/background001.png'),
           ),
-
           Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -57,60 +58,60 @@ class _LoginScreenState extends State<LoginScreen> {
                     return Container(
                       color: Colors.transparent,
                       width: w,
-                      child: appBar(context,watch),
+                      child: appBar(context, watch),
                     );
                   },
-
                 ),
                 Column(
                   children: [
                     Text(
                       AppLocalizations.of(context)!.login,
                       style: TextStyle(
-                        fontSize: h*0.05,
+                        fontSize: h * 0.05,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(
-                      height: h*0.05,
+                      height: h * 0.05,
                     ),
                     CircleAvatar(
                       radius: w * 0.15,
                       child: ClipRRect(
                         child: SvgPicture.asset('assets/images/svg/person.svg'),
-                        borderRadius: BorderRadius.circular(w*0.5),
+                        borderRadius: BorderRadius.circular(w * 0.5),
                       ),
                     ),
                   ],
                 ),
-
                 Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(w*0.15, 0, w*0.15, 0),
+                      padding: EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(w*0.01))
-                        ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(w * 0.01))),
                         child: TextField(
                           controller: phoneNumberController,
-                          decoration: InputDecoration(hintText: "   ${AppLocalizations.of(context)!.phoneNumber}"),
+                          decoration: InputDecoration(
+                              hintText:
+                                  "   ${AppLocalizations.of(context)!.phoneNumber}"),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(w*0.15, 0, w*0.15, 0),
+                      padding: EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
                       child: TextButton(
                         onPressed: () async {
                           await authService.verifyPhoneNumber(
                               phoneNumberController.text, context, setData);
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.clickHereForOTP,
+                          otpBtnLabel,
                           style: TextStyle(
-                            fontSize: w*0.05,
+                            fontSize: w * 0.05,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -118,21 +119,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(w*0.15, 0, w*0.15, 0),
+                      padding: EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(w*0.01))
-                        ),
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(w * 0.01))),
                         child: TextField(
                           controller: otpController,
-                          decoration: const InputDecoration(hintText: "   OTP",prefixText: "  "),
+                          decoration: const InputDecoration(
+                              hintText: "   OTP", prefixText: "  "),
                         ),
                       ),
                     ),
                   ],
                 ),
-
                 MaterialButton(
                   onPressed: () {
                     smsCode = otpController.text;
@@ -141,11 +142,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: Ink(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(w*0.5)),
-                        gradient: LinearGradient(
-                            colors: [AppColors.lightYellow, AppColors.darkYellow])),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(w * 0.5)),
+                        gradient: LinearGradient(colors: [
+                          AppColors.lightYellow,
+                          AppColors.darkYellow
+                        ])),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(w*0.1, h*0.02, w*0.1, h*0.02),
+                      padding: EdgeInsets.fromLTRB(
+                          w * 0.1, h * 0.02, w * 0.1, h * 0.02),
                       child: Text(
                         AppLocalizations.of(context)!.login,
                         style: const TextStyle(
@@ -156,7 +161,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                TextButton(onPressed: (){}, child: Text(AppLocalizations.of(context)!.needHelp,style: TextStyle(color: Colors.black,fontSize: w*0.04),))
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      AppLocalizations.of(context)!.needHelp,
+                      style: TextStyle(color: Colors.black, fontSize: w * 0.04),
+                    ))
               ],
             ),
           ),

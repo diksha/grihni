@@ -7,7 +7,6 @@ import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class AuthService {
   FirestoreService _firestoreService = FirestoreService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,8 +20,7 @@ class AuthService {
         (FirebaseAuthException exception) {
       showSnackBar(context, exception.toString());
     };
-    PhoneCodeSent codeSent =
-        (String verificationID, int? forceResnedingtoken) {
+    PhoneCodeSent codeSent = (String verificationID, int? forceResnedingtoken) {
       showSnackBar(context, "Verification Code sent on the phone number");
       setData(verificationID);
     };
@@ -44,7 +42,6 @@ class AuthService {
     }
   }
 
-
   Future<void> signOut({required BuildContext context}) async {
     try {
       await _auth.signOut();
@@ -54,30 +51,34 @@ class AuthService {
     }
   }
 
-  Future<void> signupWithPhoneNumber(
-      String verificationId, String smsCode, BuildContext context,Grihini grihini) async {
+  Future<void> signupWithPhoneNumber(String verificationId, String smsCode,
+      BuildContext context, Grihini grihini) async {
     try {
       AuthCredential authCredential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: smsCode);
       _auth
           .signInWithCredential(authCredential)
           .then((UserCredential result) async {
-        _firestoreService.addGrihini(grihini.name, result.user!.phoneNumber,grihini.address,grihini.status, result.user!.uid,grihini.completedTasks,grihini.pendingTasks);
+        _firestoreService.addGrihini(
+            grihini.name,
+            result.user!.phoneNumber,
+            grihini.address,
+            grihini.status,
+            result.user!.uid,
+            grihini.completedTasks,
+            grihini.pendingTasks);
         SharedPreferences.getInstance().then((value) {
           value.setBool('isFirstTime', false);
-          value.setString('currentUid',result.user!.uid );
+          value.setString('currentUid', result.user!.uid);
         });
-        currentUser =result.user!.uid;
+        currentUser = result.user!.uid;
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (builder) => const HomeScreen()),
-                (route) => false);
+            (route) => false);
       }).catchError((e) {
         showSnackBar(context, "Your mobile number or the OTP is incorrect.");
       });
-
-
-
     } catch (e) {
       showSnackBar(context, e.toString());
     }
@@ -96,23 +97,21 @@ class AuthService {
 
       _auth
           .signInWithCredential(authCredential)
-          .then((UserCredential result) async{
-           SharedPreferences.getInstance().then((value) {
-             value.setBool('isFirstTime', false);
-             value.setString('currentUid',result.user!.uid );
-           });
-           currentUser =result.user!.uid;
-           Navigator.pop(context);
-           Navigator.pushAndRemoveUntil(
-               context,
-               MaterialPageRoute(builder: (builder) => HomeScreen()),
-                   (route) => false);
+          .then((UserCredential result) async {
+        SharedPreferences.getInstance().then((value) {
+          value.setBool('isFirstTime', false);
+          value.setString('currentUid', result.user!.uid);
+        });
+        currentUser = result.user!.uid;
+        Navigator.pop(context);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (builder) => HomeScreen()),
+            (route) => false);
         print('Login completed.');
       }).catchError((e) {
         showSnackBar(context, "Your mobile number or the OTP is incorrect.");
       });
-
-
     } catch (e) {
       showSnackBar(context, e.toString());
     }

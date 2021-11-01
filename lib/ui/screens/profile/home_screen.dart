@@ -9,7 +9,6 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 
-
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -20,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
     h = MediaQuery.of(context).size.height;
     return Scaffold(
       body: grihini.when(
-        data: (grihini) => buildBody(context, grihini,watch),
+        data: (grihini) => buildBody(context, grihini, watch),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text(err.toString())),
       ),
@@ -28,11 +27,10 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-
-Widget buildBody(BuildContext context, Grihini grihini,ScopedReader watch) {
+Widget buildBody(BuildContext context, Grihini grihini, ScopedReader watch) {
   switch (grihini.status) {
     case "training_pending":
-      return trainingPending(context, grihini,watch);
+      return trainingPending(context, grihini, watch);
     case "trained":
       print(grihini.completedTasks);
       return Profile(grihini: grihini);
@@ -40,7 +38,8 @@ Widget buildBody(BuildContext context, Grihini grihini,ScopedReader watch) {
   return const Text("Something Went Wrong...");
 }
 
-Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch) {
+Widget trainingPending(
+    BuildContext context, Grihini grihini, ScopedReader watch) {
   return Scaffold(
     body: Stack(
       alignment: Alignment.center,
@@ -54,7 +53,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
         Positioned(
           width: w,
           top: h * 0.02,
-          child: appBarWithoutBackButton(context,watch),
+          child: appBarWithoutBackButton(context, watch),
         ),
         Positioned(
           top: h * 0.15,
@@ -75,7 +74,7 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
                 radius: w * 0.15,
                 child: ClipRRect(
                   child: SvgPicture.asset('assets/images/svg/person.svg'),
-                  borderRadius: BorderRadius.circular(w*0.5),
+                  borderRadius: BorderRadius.circular(w * 0.5),
                 ),
               ),
             ],
@@ -90,11 +89,12 @@ Widget trainingPending(BuildContext context, Grihini grihini,ScopedReader watch)
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: h*0.16,
-                child: SvgPicture.asset('assets/images/svg/training_pending.svg'),
+                height: h * 0.16,
+                child:
+                    SvgPicture.asset('assets/images/svg/training_pending.svg'),
               ),
               Padding(
-                padding: EdgeInsets.all(w*0.08),
+                padding: EdgeInsets.all(w * 0.08),
                 child: Text(
                   AppLocalizations.of(context)!.contactYouSoon,
                   style: TextStyle(fontSize: w * 0.05, color: Colors.black),
