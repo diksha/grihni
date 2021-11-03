@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:junkiri/repositories/task_repository.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
@@ -20,8 +21,9 @@ class TaskStepYoutube extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final achaar = watch(achaarProvider(task.achaarType));
+    final currentTask = watch(taskProvider(task.docId));
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: achaar.data!.value.steps[task.currentStep]!.videoId,
+      initialVideoId: achaar.data!.value.steps[currentTask.data!.value.currentStep]!.videoId,
       params: const YoutubePlayerParams(
         startAt: Duration(seconds: 0),
         showControls: true,
@@ -83,7 +85,7 @@ class TaskStepYoutube extends ConsumerWidget {
                   padding: EdgeInsets.all(w * 0.04),
                   child: achaar.when(
                       data: (achaar) => Text(
-                            achaar.steps[0]!.title,
+                            achaar.steps[currentTask.data!.value.currentStep]!.title,
                             style: TextStyle(
                               fontSize: w * 0.06,
                             ),
@@ -96,10 +98,10 @@ class TaskStepYoutube extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    fireService.completedTheStep(task);
+                    fireService.completedTheStep(currentTask.data!.value);
                     Navigator.popAndPushNamed(
                         context, taskStepYoutubeScreenRoute,
-                        arguments: [task, grihini]);
+                        arguments: [currentTask.data!.value, grihini]);
                   },
                   child: SizedBox(
                     child: Image.asset("assets/images/icons/done.png"),

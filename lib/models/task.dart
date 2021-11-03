@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 enum OrderStatus {
   CREATED,
   GROCERY_PENDING,
@@ -25,7 +27,7 @@ OrderStatus getOrderStatusEnum(String orderStatus) {
   return OrderStatus.CREATED;
 }
 
-class Task {
+class Task{
   final String jobId;
   final OrderStatus orderStatus;
   final int amount;

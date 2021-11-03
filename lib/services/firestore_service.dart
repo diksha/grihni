@@ -51,6 +51,12 @@ class FirestoreService {
     return taskList;
   }
 
+  Future<Task> getTask(docId) async {
+    Task task = await taskRef.doc(docId).get().then((value) => value.data()!);
+    return task;
+  }
+
+
   Future<List<Task>> getListofNewTasks() async {
     List<Task> newTaskList = [];
     QuerySnapshot value = await taskRef.where('pickedBy', isEqualTo: "").get();
