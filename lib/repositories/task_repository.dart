@@ -15,7 +15,7 @@ final newTaskProvider = FutureProvider.autoDispose<List<Task>>((ref) async {
   return taskList;
 });
 
-final taskProvider = FutureProvider.autoDispose
+final currentTaskProvider = FutureProvider.autoDispose
     .family<Task, String>((ref, docId) async {
   FirestoreService _firestoreService = FirestoreService();
   Task task = await _firestoreService.getTask(docId);

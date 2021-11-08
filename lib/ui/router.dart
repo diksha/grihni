@@ -86,7 +86,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(
           builder: (context) => TaskStepYoutube(
-                task: task,
+                docId: task.docId,
                 grihini: grihini,
               ));
     default:

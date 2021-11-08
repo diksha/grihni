@@ -13,17 +13,18 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskStepYoutube extends ConsumerWidget {
-  final Task task;
+  final String docId;
   final Grihini grihini;
-  const TaskStepYoutube({Key? key, required this.task, required this.grihini})
+  const TaskStepYoutube({Key? key, required this.docId, required this.grihini})
       : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
+    final currentTask = watch(currentTaskProvider(docId));
+    final Task task = currentTask.data!.value;
     final achaar = watch(achaarProvider(task.achaarType));
-    final currentTask = watch(taskProvider(task.docId));
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: achaar.data!.value.steps[currentTask.data!.value.currentStep]!.videoId,
+      initialVideoId: achaar.data!.value.steps[task.currentStep]!.videoId,
       params: const YoutubePlayerParams(
         startAt: Duration(seconds: 0),
         showControls: true,
@@ -85,7 +86,7 @@ class TaskStepYoutube extends ConsumerWidget {
                   padding: EdgeInsets.all(w * 0.04),
                   child: achaar.when(
                       data: (achaar) => Text(
-                            achaar.steps[currentTask.data!.value.currentStep]!.title,
+                            achaar.steps[task.currentStep]!.title,
                             style: TextStyle(
                               fontSize: w * 0.06,
                             ),
@@ -97,11 +98,11 @@ class TaskStepYoutube extends ConsumerWidget {
                           Center(child: Text(err.toString()))),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    fireService.completedTheStep(currentTask.data!.value);
-                    Navigator.popAndPushNamed(
+                  onTap: () async {
+                    await fireService.completedTheStep(currentTask.data!.value);
+                    Navigator.pushReplacementNamed(
                         context, taskStepYoutubeScreenRoute,
-                        arguments: [currentTask.data!.value, grihini]);
+                        arguments: [task.docId, grihini]);
                   },
                   child: SizedBox(
                     child: Image.asset("assets/images/icons/done.png"),
