@@ -76,7 +76,7 @@ class FirestoreService {
 
   Future<void> completedTheStep(Task task) async {
     int currentStep = task.currentStep + 1;
-    taskRef.doc(task.docId).update({"currentStep": currentStep});
+    return taskRef.doc(task.docId).update({"currentStep": currentStep});
   }
 
   Future<void> completedTask(Grihini grihini, Task task) async {
@@ -93,5 +93,11 @@ class FirestoreService {
     Achaar achaar =
         await achaarRef.doc(achaarType).get().then((value) => value.data()!);
     return achaar;
+  }
+
+  Future<Task> getTask(String docId) async {
+    Task currentTask =
+        await taskRef.doc(docId).get().then((snapshot) => snapshot.data()!);
+    return currentTask;
   }
 }

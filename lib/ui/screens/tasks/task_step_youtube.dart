@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
+import 'package:junkiri/repositories/task_repository.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
@@ -17,11 +18,21 @@ class TaskStepYoutube extends ConsumerWidget {
   const TaskStepYoutube({Key? key, required this.task, required this.grihini})
       : super(key: key);
 
+
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final achaar = watch(achaarProvider(task.achaarType));
+    final currentTask = watch(currentTaskProvider);
+    var taskLocal = task;
+    if(currentTask.task==null){
+      currentTask.setTaskId(task.docId);
+    } else {
+      print('dikshag Getting from current taskk' + currentTask.task!.currentStep.toString());
+      taskLocal = currentTask.task!;
+    }
+    print('dikshag current value' + taskLocal.currentStep.toString());
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: achaar.data!.value.steps[task.currentStep]!.videoId,
+      initialVideoId: taskLocal != null ? achaar.data!.value.steps[taskLocal.currentStep]!.videoId: "",
       params: const YoutubePlayerParams(
         startAt: Duration(seconds: 0),
         showControls: true,
@@ -56,12 +67,12 @@ class TaskStepYoutube extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  task.jobId,
+                  taskLocal.jobId,
                   style: TextStyle(
                       fontSize: w * 0.06, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "${task.achaarType} ${task.amount} Kg",
+                  "${taskLocal.achaarType} ${taskLocal.amount} Kg",
                   style: TextStyle(fontSize: w * 0.08),
                 ),
                 Padding(
@@ -96,10 +107,7 @@ class TaskStepYoutube extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    fireService.completedTheStep(task);
-                    Navigator.popAndPushNamed(
-                        context, taskStepYoutubeScreenRoute,
-                        arguments: [task, grihini]);
+                    currentTask.incrementSteps(taskLocal);
                   },
                   child: SizedBox(
                     child: Image.asset("assets/images/icons/done.png"),
