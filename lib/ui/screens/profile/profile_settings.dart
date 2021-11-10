@@ -155,7 +155,7 @@ class ProfileSettings extends ConsumerWidget {
 
 Widget _button(btnLabel, String imgUrl) {
   return MaterialButton(
-    onPressed: () {},
+    onPressed: (){},
     child: Ink(
       width: w * 0.7,
       decoration: BoxDecoration(
