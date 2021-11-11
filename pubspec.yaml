@@ -48,7 +48,7 @@ dependencies:
   youtube_player_iframe: ^2.2.2
   path_provider: ^2.0.5
   json_serializable: ^6.0.1
-  image_picker: ^0.8.4+4
+  image_picker: ^0.8.4
 
 
 dev_dependencies:

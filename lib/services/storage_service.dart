@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class StorageService {
-  Future<String> uploadProfilePicture(File file,task) async {
+  Future<String> uploadPhoto(XFile file,task) async {
     String filename = file.path;
     Reference firebaseStorageRef =
     FirebaseStorage.instance.ref().child('tasks/${task.taskId}/$filename');

@@ -57,8 +57,8 @@ class AchaarPrepared extends ConsumerWidget {
                 Column(
                   children: [
                     SizedBox(
-                      child: SvgPicture.asset("assets/images/svg/prepared.png"),
-                      height: h * 0.3,
+                      child: Image.asset("assets/images/prepared.png"),
+                      height: h * 0.28,
                     ),
                     SizedBox(
                       height: h * 0.02,
