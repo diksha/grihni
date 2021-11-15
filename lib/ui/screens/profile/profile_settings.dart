@@ -4,6 +4,7 @@ import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
@@ -133,15 +134,15 @@ class ProfileSettings extends ConsumerWidget {
                   ),
                 ),
                 _button(AppLocalizations.of(context)!.uploadProfilePhoto,
-                    "assets/images/icons/photo.png"),
+                    "assets/images/icons/photo.png",context,grihini),
                 _button(AppLocalizations.of(context)!.uploadCitizenshipProof,
-                    "assets/images/icons/photo.png"),
+                    "assets/images/icons/photo.png",context,grihini),
                 _button(AppLocalizations.of(context)!.phoneNumber,
-                    "assets/images/icons/phonenumicon.png"),
+                    "assets/images/icons/phonenumicon.png",context,grihini),
                 _button(AppLocalizations.of(context)!.mailingAddress,
-                    "assets/images/icons/location.png"),
+                    "assets/images/icons/location.png",context,grihini),
                 _button(AppLocalizations.of(context)!.uploadOtherPhotos,
-                    "assets/images/icons/photo.png"),
+                    "assets/images/icons/photo.png",context,grihini),
               ],
             ),
           ),
@@ -153,9 +154,11 @@ class ProfileSettings extends ConsumerWidget {
   }
 }
 
-Widget _button(btnLabel, String imgUrl) {
+Widget _button(btnLabel, String imgUrl,context,grihini) {
   return MaterialButton(
-    onPressed: (){},
+    onPressed: (){
+      Navigator.pushNamed(context,photoUploadScreenRoute,arguments: "users/${grihini.uid}");
+    },
     child: Ink(
       width: w * 0.7,
       decoration: BoxDecoration(

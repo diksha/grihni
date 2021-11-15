@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkiri/ui/screens/tasks/photo_upload_screen.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
@@ -80,6 +81,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               ));
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
+
+    case photoUploadScreenRoute:
+      var uploadLink = settings.arguments as String;
+      return MaterialPageRoute(builder: (context) => UploadPhoto(uploadLink: uploadLink,));
     case taskStepYoutubeScreenRoute:
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;

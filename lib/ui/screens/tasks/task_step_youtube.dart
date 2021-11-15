@@ -24,7 +24,6 @@ class TaskStepYoutube extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     FirestoreService fireService = FirestoreService();
-    StorageService _storageService = StorageService();
     final achaar = watch(achaarProvider(task.achaarType));
     final currentTask = watch(currentTaskProvider);
     var taskLocal = task;
@@ -118,13 +117,7 @@ class TaskStepYoutube extends ConsumerWidget {
                         achaar.steps[taskLocal.currentStep]!.shouldUpload
                             ? MaterialButton(
                                 onPressed: () async {
-                                  final ImagePicker _picker = ImagePicker();
-                                  XFile? image =
-                                      await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-                                  if (image != null) {
-                                    _storageService.uploadPhoto(image!, task);
-                                  }
-
+                                  Navigator.pushNamed(context,photoUploadScreenRoute,arguments: "tasks/${taskLocal.docId}");
                                 },
                                 child: Ink(
                                   width: w * 0.7,

@@ -64,7 +64,11 @@ class Profile extends ConsumerWidget {
                     SizedBox(
                       height: h * 0.03,
                     ),
-                    Text(
+                    grihini.name.length>9? Text(
+                      grihini.name.substring(0,8)+"...",
+                      style: TextStyle(
+                          fontSize: w * 0.06, color: Color(0xFF58595B)),
+                    ):Text(
                       grihini.name,
                       style: TextStyle(
                           fontSize: w * 0.06, color: Color(0xFF58595B)),
