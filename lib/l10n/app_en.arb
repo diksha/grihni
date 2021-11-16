@@ -78,5 +78,8 @@
     "uploadCitizenshipProof": "Upload Citizenship Proof",
     "mailingAddress": "Mailing Address",
     "uploadOtherPhotos": "Upload Other Photos",
-    "edit": "Edit"
+    "edit": "Edit",
+    "language": "English",
+    "uploadPhoto": "Upload Photo",
+    "call": "Call"
 }

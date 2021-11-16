@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:junkiri/models/Achaar.dart';
 import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/models/step.dart';
 import 'package:junkiri/models/task.dart';
 
 class FirestoreService {
@@ -76,7 +77,11 @@ class FirestoreService {
 
   Future<void> completedTheStep(Task task) async {
     int currentStep = task.currentStep + 1;
-    taskRef.doc(task.docId).update({"currentStep": currentStep});
+    return taskRef.doc(task.docId).update({"currentStep": currentStep});
+  }
+
+  Future<void> achaarPrepared(Task task) async {
+    taskRef.doc(task.docId).update({"orderStatus": "READY_FOR_PICKUP"});
   }
 
   Future<void> completedTask(Grihini grihini, Task task) async {
@@ -93,5 +98,10 @@ class FirestoreService {
     Achaar achaar =
         await achaarRef.doc(achaarType).get().then((value) => value.data()!);
     return achaar;
+  }
+  Future<Task> getTask(String docId) async {
+    Task currentTask =
+    await taskRef.doc(docId).get().then((snapshot) => snapshot.data()!);
+    return currentTask;
   }
 }

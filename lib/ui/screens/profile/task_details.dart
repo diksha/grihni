@@ -33,8 +33,8 @@ class TaskDetails extends ConsumerWidget {
 Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   List<String> pendingTaskIds = grihini.pendingTasks;
   List<String> completedTaskIds = grihini.completedTasks;
-  final pendingTask = watch(taskProvider(pendingTaskIds));
-  final completedTask = watch(taskProvider(completedTaskIds));
+  final pendingTask = watch(tasksProvider(pendingTaskIds));
+  final completedTask = watch(tasksProvider(completedTaskIds));
   final newTask = watch(newTaskProvider);
   return Stack(
     children: [

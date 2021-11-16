@@ -88,6 +88,9 @@
   "uploadCitizenshipProof": "नागरिकता प्रमाण अपलोड गर्नुहोस् ।",
   "mailingAddress": "पत्राचार ठेगाना",
   "uploadOtherPhotos": "अन्य फोटोहरु अपलोड गर्नुहोस् ।",
-  "edit": "Edit"
+  "edit": "Edit",
+  "language": "Nepali",
+  "uploadPhoto": "Upload Photo",
+  "call": "Call"
 
 }
