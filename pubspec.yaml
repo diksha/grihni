@@ -48,6 +48,7 @@ dependencies:
   youtube_player_iframe: ^2.2.2
   path_provider: ^2.0.5
   image_picker: ^0.8.4
+  url_launcher: ^6.0.13
 
 
 dev_dependencies:

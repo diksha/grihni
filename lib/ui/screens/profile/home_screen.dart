@@ -91,7 +91,7 @@ Widget trainingPending(
               SizedBox(
                 height: h * 0.16,
                 child:
-                    SvgPicture.asset('assets/images/svg/training_pending.svg'),
+                    Image.asset('assets/images/training_pending.png'),
               ),
               Padding(
                 padding: EdgeInsets.all(w * 0.08),
