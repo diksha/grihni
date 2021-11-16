@@ -28,23 +28,17 @@ class TaskNotifier extends ChangeNotifier {
   void setTaskId(String taskId) {
     FirestoreService _firestoreService = FirestoreService();
     _firestoreService.getTask(taskId).then((value) {
-      print(task);
-      print('dikshag setting tasks' + task.toString());
-
       _task = value;
       notifyListeners();
     });
   }
 
   void incrementSteps(Task task) {
-    print('dikshag incrementing');
 
     FirestoreService _firestoreService = FirestoreService();
     _firestoreService.completedTheStep(task).then((value) =>
         _firestoreService.getTask(task.docId).then((value) {
-          print(task);
           _task = value;
-          print('dikshag notifying listeners' + task.currentStep.toString());
           notifyListeners();
         }
         ));
