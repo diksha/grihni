@@ -5,6 +5,7 @@ import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/screens/profile/home_screen.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
+import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -44,7 +45,14 @@ class AuthService {
 
   Future<void> signOut({required BuildContext context}) async {
     try {
-      await _auth.signOut();
+      await _auth.signOut().whenComplete(() => {
+      SharedPreferences.getInstance().then((value) {
+      value.setBool('isFirstTime', true);
+      value.setString('currentUid', "");
+      }),
+        Navigator.popUntil(context, (route) => false),
+        Navigator.pushNamed(context, loginScreenRoute)
+      });
     } catch (e) {
       final snackBar = SnackBar(content: Text(e.toString()));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

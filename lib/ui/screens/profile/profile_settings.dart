@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/services/auth_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
@@ -18,6 +19,7 @@ class ProfileSettings extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -143,6 +145,7 @@ class ProfileSettings extends ConsumerWidget {
                     "assets/images/icons/location.png",context,grihini),
                 _button(AppLocalizations.of(context)!.uploadOtherPhotos,
                     "assets/images/icons/photo.png",context,grihini),
+                _signoutButton(context),
               ],
             ),
           ),
@@ -188,10 +191,26 @@ Widget _button(btnLabel, String imgUrl,context,grihini) {
   );
 }
 
-void uploadProfilePhoto() {}
-
-void uploadCitizenshipProof() {}
-
-void mailingAddress() {}
-
-void uploadOtherPhotos() {}
+Widget _signoutButton(context) {
+  AuthService authService = AuthService();
+  return MaterialButton(
+    onPressed: (){
+      authService.signOut(context: context);
+    },
+    child: Ink(
+      width: w * 0.7,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          gradient: LinearGradient(
+              colors: [AppColors.lightYellow, AppColors.darkYellow])),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.03),
+        child: Text(
+          AppLocalizations.of(context)!.signOut,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+        ),
+      ),
+    ),
+  );
+}

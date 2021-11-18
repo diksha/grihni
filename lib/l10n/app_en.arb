@@ -81,5 +81,6 @@
     "edit": "Edit",
     "language": "English",
     "uploadPhoto": "Upload Photo",
-    "call": "Call"
+    "call": "Call",
+    "signOut": "Sign Out"
 }
