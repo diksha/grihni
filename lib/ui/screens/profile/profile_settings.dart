@@ -136,15 +136,12 @@ class ProfileSettings extends ConsumerWidget {
                   ),
                 ),
                 _button(AppLocalizations.of(context)!.uploadProfilePhoto,
-                    "assets/images/icons/photo.png",context,grihini),
+                    "assets/images/icons/photo.png", context, grihini),
                 _button(AppLocalizations.of(context)!.uploadCitizenshipProof,
-                    "assets/images/icons/photo.png",context,grihini),
-                _button(AppLocalizations.of(context)!.phoneNumber,
-                    "assets/images/icons/phonenumicon.png",context,grihini),
-                _button(AppLocalizations.of(context)!.mailingAddress,
-                    "assets/images/icons/location.png",context,grihini),
+                    "assets/images/icons/photo.png", context, grihini),
+                _buttonMailingAddress(context, grihini),
                 _button(AppLocalizations.of(context)!.uploadOtherPhotos,
-                    "assets/images/icons/photo.png",context,grihini),
+                    "assets/images/icons/photo.png", context, grihini),
                 _signoutButton(context),
               ],
             ),
@@ -157,10 +154,12 @@ class ProfileSettings extends ConsumerWidget {
   }
 }
 
-Widget _button(btnLabel, String imgUrl,context,grihini) {
+Widget _button(btnLabel, String imgUrl, context, grihini) {
   return MaterialButton(
-    onPressed: (){
-      Navigator.pushNamed(context,photoUploadScreenRoute,arguments: "users/${grihini.uid}");
+    onPressed: () {
+      const snackBar =
+      SnackBar(content: Text('This function will be available soon...!',textAlign: TextAlign.center,));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     child: Ink(
       width: w * 0.7,
@@ -194,7 +193,7 @@ Widget _button(btnLabel, String imgUrl,context,grihini) {
 Widget _signoutButton(context) {
   AuthService authService = AuthService();
   return MaterialButton(
-    onPressed: (){
+    onPressed: () {
       authService.signOut(context: context);
     },
     child: Ink(
@@ -209,6 +208,42 @@ Widget _signoutButton(context) {
           AppLocalizations.of(context)!.signOut,
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buttonMailingAddress(context, grihini) {
+  return MaterialButton(
+    onPressed: () {
+      const snackBar =
+          SnackBar(content: Text('You can\'t change the phone Number'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    },
+    child: Ink(
+      width: w * 0.7,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          gradient: LinearGradient(
+              colors: [AppColors.lightYellow, AppColors.darkYellow])),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.03),
+        child: Row(
+          children: [
+            SizedBox(
+              child: Image.asset("assets/images/icons/location.png"),
+              width: w * 0.05,
+            ),
+            SizedBox(
+              width: w * 0.015,
+            ),
+            Text(
+              AppLocalizations.of(context)!.mailingAddress,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+            ),
+          ],
         ),
       ),
     ),

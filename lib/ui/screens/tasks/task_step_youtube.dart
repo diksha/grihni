@@ -117,7 +117,9 @@ class TaskStepYoutube extends ConsumerWidget {
                         achaar.steps[taskLocal.currentStep]!.shouldUpload
                             ? MaterialButton(
                                 onPressed: () async {
-                                  Navigator.pushNamed(context,photoUploadScreenRoute,arguments: "tasks/${taskLocal.docId}");
+                                  const snackBar =
+                                  SnackBar(content: Text('This function will be available soon...!',textAlign: TextAlign.center,));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                 },
                                 child: Ink(
                                   width: w * 0.7,
