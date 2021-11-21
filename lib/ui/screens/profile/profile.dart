@@ -169,7 +169,7 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.pushNamed(context, taskDetailsScreenRoute,arguments: "ASSIGNMENTS_DONE");
                         },
                         child: Column(
                           children: [
@@ -202,7 +202,7 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.pushNamed(context, taskDetailsScreenRoute,arguments: "PENDING_TASKS");
                         },
                         child: Column(
                           children: [
@@ -234,7 +234,7 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.pushNamed(context, taskDetailsScreenRoute,arguments: "NEW_TASK");
                         },
                         child: Column(
                           children: [

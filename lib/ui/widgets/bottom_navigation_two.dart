@@ -20,7 +20,7 @@ Widget bottomNavigationTwo(BuildContext context){
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context,homeScreenRoute);
+                Navigator.popAndPushNamed(context,homeScreenRoute);
               },
               child: Text(
                 AppLocalizations.of(context)!.home,
@@ -38,7 +38,8 @@ Widget bottomNavigationTwo(BuildContext context){
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context,taskDetailsScreenRoute);
+                Navigator.popUntil(context, (route) => false);
+                Navigator.popAndPushNamed(context,taskDetailsScreenRoute,arguments: "PENDING_TASKS");
               },
               child: Text(
                 AppLocalizations.of(context)!.task,

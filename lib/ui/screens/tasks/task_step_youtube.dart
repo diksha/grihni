@@ -229,7 +229,8 @@ class TaskStepYoutube extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.popUntil(context, (route) => false);
+                          Navigator.popAndPushNamed(context, taskDetailsScreenRoute,arguments: "PENDING_TASKS");
                         },
                         child: Text(
                           AppLocalizations.of(context)!.task,

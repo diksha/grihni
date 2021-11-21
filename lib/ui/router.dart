@@ -80,7 +80,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
                 task: task,
               ));
     case taskDetailsScreenRoute:
-      return MaterialPageRoute(builder: (context) => const TaskDetails());
+      var selectedButton = settings.arguments as String;
+      return MaterialPageRoute(builder: (context) => TaskDetails(selectedButton: selectedButton,));
 
     case photoUploadScreenRoute:
       var uploadLink = settings.arguments as String;

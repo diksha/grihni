@@ -87,8 +87,9 @@ class TaskCompleted extends ConsumerWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, taskDetailsScreenRoute);
+                                  Navigator.popUntil(context, (route) => false);
+                                  Navigator.pushNamed(
+                                      context, taskDetailsScreenRoute,arguments: "PENDING_TASKS");
                                 },
                                 child: Container(
                                   child: Column(
@@ -108,8 +109,9 @@ class TaskCompleted extends ConsumerWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, taskDetailsScreenRoute);
+                                  Navigator.popUntil(context, (route) => false);
+                                  Navigator.pushNamed(
+                                      context, taskDetailsScreenRoute,arguments: "NEW_TASKS");
                                 },
                                 child: Container(
                                   child: Column(

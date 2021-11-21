@@ -14,7 +14,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 class TaskDetails extends ConsumerWidget {
-  const TaskDetails({Key? key}) : super(key: key);
+  final String selectedButton;
+  const TaskDetails({Key? key, required this.selectedButton}) : super(key: key);
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final grihini = watch(grihiniProvider);
@@ -22,7 +23,7 @@ class TaskDetails extends ConsumerWidget {
     h = MediaQuery.of(context).size.height;
     return Scaffold(
       body: grihini.when(
-        data: (grihini) => _buildBody(context, grihini, watch),
+        data: (grihini) => _buildBody(context, grihini, watch, selectedButton),
         error: (err, stack) => Center(child: Text(err.toString())),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
@@ -30,7 +31,8 @@ class TaskDetails extends ConsumerWidget {
   }
 }
 
-Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
+Widget _buildBody(
+    context, Grihini grihini, ScopedReader watch, selectedButton) {
   List<String> pendingTaskIds = grihini.pendingTasks;
   List<String> completedTaskIds = grihini.completedTasks;
   final pendingTask = watch(tasksProvider(pendingTaskIds));
@@ -71,109 +73,33 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
             width: w,
             height: h * 0.31,
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: w * 0.1,
-                        child: Image.asset(
-                            'assets/images/icons/assignments_done.png'),
-                      ),
-                      SizedBox(
-                        width: w * 0.02,
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.assignmentsDone,
-                        style: TextStyle(
-                            fontSize: w * 0.05,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: w,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: completedTask.when(
-                        data: (taskList) =>
-                            taskListGenerator(taskList, grihini, context),
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
-                        error: (err, stack) =>
-                            Center(child: Text(err.toString())),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: w * 0.1,
-                        child: Image.asset(
-                            'assets/images/icons/pending_tasks.png'),
-                      ),
-                      SizedBox(
-                        width: w * 0.02,
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.myPendingTasks,
-                        style: TextStyle(
-                            fontSize: w * 0.05,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: w,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: pendingTask.when(
-                        data: (taskList) =>
-                            taskListGenerator(taskList, grihini, context),
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
-                        error: (err, stack) =>
-                            Center(child: Text(err.toString())),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: w * 0.1,
-                        child: Image.asset('assets/images/icons/new_tasks.png'),
-                      ),
-                      SizedBox(
-                        width: w * 0.02,
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.newTasks,
-                        style: TextStyle(
-                            fontSize: w * 0.05,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: w,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: newTask.when(
-                        data: (taskList) =>
-                            taskListGenerator(taskList, grihini, context),
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
-                        error: (err, stack) =>
-                            Center(child: Text(err.toString())),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: selectedButton == "ASSIGNMENTS_DONE"
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _assignmentsDone(context, completedTask, grihini),
+                        _pendingTasks(context, pendingTask, grihini),
+                        _newTasks(context, newTask, grihini),
+                      ],
+                    )
+                  : selectedButton == "PENDING_TASKS"
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _pendingTasks(context, pendingTask, grihini),
+                            _assignmentsDone(context, completedTask, grihini),
+                            _newTasks(context, newTask, grihini),
+                          ],
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _newTasks(context, newTask, grihini),
+                            _pendingTasks(context, pendingTask, grihini),
+                            _assignmentsDone(context, completedTask, grihini),
+
+                          ],
+                        ),
             ),
           ),
         ),
@@ -267,5 +193,113 @@ Widget taskCard(Task task, Grihini grihini, BuildContext context) {
         ),
       ),
     ),
+  );
+}
+
+Widget _newTasks(context, newTask, grihini) {
+  return Column(
+    children: [
+      Row(
+        children: [
+          SizedBox(
+            width: w * 0.1,
+            child: Image.asset('assets/images/icons/new_tasks.png'),
+          ),
+          SizedBox(
+            width: w * 0.02,
+          ),
+          Text(
+            AppLocalizations.of(context)!.newTasks,
+            style: TextStyle(
+                fontSize: w * 0.05,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+      Container(
+        width: w,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: newTask.when(
+            data: (taskList) => taskListGenerator(taskList, grihini, context),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (err, stack) => Center(child: Text(err.toString())),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _pendingTasks(context, pendingTask, grihini) {
+  return Column(
+    children: [
+      Row(
+        children: [
+          SizedBox(
+            width: w * 0.1,
+            child: Image.asset('assets/images/icons/pending_tasks.png'),
+          ),
+          SizedBox(
+            width: w * 0.02,
+          ),
+          Text(
+            AppLocalizations.of(context)!.myPendingTasks,
+            style: TextStyle(
+                fontSize: w * 0.05,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+      Container(
+        width: w,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: pendingTask.when(
+            data: (taskList) => taskListGenerator(taskList, grihini, context),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (err, stack) => Center(child: Text(err.toString())),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _assignmentsDone(context, completedTask, grihini) {
+  return Column(
+    children: [
+      Row(
+        children: [
+          SizedBox(
+            width: w * 0.1,
+            child: Image.asset('assets/images/icons/assignments_done.png'),
+          ),
+          SizedBox(
+            width: w * 0.02,
+          ),
+          Text(
+            AppLocalizations.of(context)!.assignmentsDone,
+            style: TextStyle(
+                fontSize: w * 0.05,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+      Container(
+        width: w,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: completedTask.when(
+            data: (taskList) => taskListGenerator(taskList, grihini, context),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (err, stack) => Center(child: Text(err.toString())),
+          ),
+        ),
+      ),
+    ],
   );
 }
