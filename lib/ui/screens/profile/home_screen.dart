@@ -70,6 +70,16 @@ Widget trainingPending(
               SizedBox(
                 height: h * 0.03,
               ),
+              Text(
+                "uid: ${grihini.uid}",
+                style: TextStyle(
+                  fontSize: w * 0.04,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: h * 0.03,
+              ),
               CircleAvatar(
                 radius: w * 0.15,
                 child: ClipRRect(
@@ -77,6 +87,7 @@ Widget trainingPending(
                   borderRadius: BorderRadius.circular(w * 0.5),
                 ),
               ),
+
             ],
           ),
         ),

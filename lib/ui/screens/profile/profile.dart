@@ -77,7 +77,7 @@ class Profile extends ConsumerWidget {
                       height: h * 0.01,
                     ),
                     Text(
-                      "${AppLocalizations.of(context)!.junkiriCode}: J00001",
+                      "uid:${grihini.uid}",
                       style: TextStyle(
                           fontSize: w * 0.025, color: Color(0xFF58595B)),
                     ),
