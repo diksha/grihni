@@ -100,7 +100,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           status: 'training_pending',
                           uid: '',
                           pendingTasks: [],
-                          completedTasks: []));
+                          completedTasks: [],
+                          profilePicture: "",
+                        email: ""
+                      ));
                 },
                 child: Ink(
                   decoration: yellowGradient(),

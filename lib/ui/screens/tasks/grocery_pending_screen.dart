@@ -42,6 +42,10 @@ class GroceryPending extends ConsumerWidget {
                   AppLocalizations.of(context)!.letsBegin(task.jobId),
                   style: TextStyle(fontSize: w * 0.06),
                 ),
+                Text(
+                  "Doc id: ${task.docId}",
+                  style: TextStyle(fontSize: w * 0.04),
+                ),
                 SizedBox(
                   child: Image.asset("assets/images/grocery_pending.png"),
                   height: h * 0.2,

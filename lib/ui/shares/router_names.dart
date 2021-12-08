@@ -15,3 +15,4 @@ const String achaarPreparedScreenRoute = 'achaarPrepared';
 const taskStepYoutubeScreenRoute = 'stepYoutube';
 const taskCompletedScreenRoute = 'taskCompleted';
 const photoUploadScreenRoute = 'photoUpload';
+const taskPhotoUploadScreenRoute = 'taskPhotoUpload';

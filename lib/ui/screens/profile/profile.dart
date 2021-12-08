@@ -57,8 +57,8 @@ class Profile extends ConsumerWidget {
                     CircleAvatar(
                       radius: w * 0.12,
                       child: ClipRRect(
-                        child: SvgPicture.asset('assets/images/svg/person.svg'),
-                        borderRadius: BorderRadius.circular(w * 0.5),
+                        child: grihini.profilePicture==""?SvgPicture.asset('assets/images/svg/person.svg'):Image.network(grihini.profilePicture),
+                        borderRadius: BorderRadius.circular(h * 0.8),
                       ),
                     ),
                     SizedBox(
@@ -77,7 +77,7 @@ class Profile extends ConsumerWidget {
                       height: h * 0.01,
                     ),
                     Text(
-                      "${AppLocalizations.of(context)!.junkiriCode}: J00001",
+                      "uid:${grihini.uid}",
                       style: TextStyle(
                           fontSize: w * 0.025, color: Color(0xFF58595B)),
                     ),
@@ -169,7 +169,7 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.pushNamed(context, taskDetailsScreenRoute,arguments: "ASSIGNMENTS_DONE");
                         },
                         child: Column(
                           children: [
@@ -202,7 +202,7 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.pushNamed(context, taskDetailsScreenRoute,arguments: "PENDING_TASKS");
                         },
                         child: Column(
                           children: [
@@ -234,7 +234,7 @@ class Profile extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
+                          Navigator.pushNamed(context, taskDetailsScreenRoute,arguments: "NEW_TASK");
                         },
                         child: Column(
                           children: [
