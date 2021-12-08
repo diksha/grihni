@@ -46,13 +46,13 @@ class AuthService {
   Future<void> signOut({required BuildContext context}) async {
     try {
       await _auth.signOut().whenComplete(() => {
-      SharedPreferences.getInstance().then((value) {
-      value.setBool('isFirstTime', true);
-      value.setString('currentUid', "");
-      }),
-        Navigator.popUntil(context, (route) => false),
-        Navigator.pushNamed(context, loginScreenRoute)
-      });
+            SharedPreferences.getInstance().then((value) {
+              value.setBool('isFirstTime', true);
+              value.setString('currentUid', "");
+            }),
+            Navigator.popUntil(context, (route) => false),
+            Navigator.pushNamed(context, loginScreenRoute)
+          });
     } catch (e) {
       final snackBar = SnackBar(content: Text(e.toString()));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -74,7 +74,9 @@ class AuthService {
             grihini.status,
             result.user!.uid,
             grihini.completedTasks,
-            grihini.pendingTasks);
+            grihini.pendingTasks,
+            grihini.profilePicture,
+            grihini.email);
         SharedPreferences.getInstance().then((value) {
           value.setBool('isFirstTime', false);
           value.setString('currentUid', result.user!.uid);

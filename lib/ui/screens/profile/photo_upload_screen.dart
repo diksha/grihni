@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:path/path.dart';
 
@@ -12,35 +14,49 @@ final Color orange = AppColors.darkYellow;
 
 class UploadPhoto extends StatefulWidget {
   final String uploadLink;
-  const  UploadPhoto({ Key? key, required this.uploadLink }): super(key: key);
+  final bool isProfilePicture;
+  final Grihini grihini;
+  const UploadPhoto(
+      {Key? key,
+      required this.uploadLink,
+      required this.isProfilePicture,
+      required this.grihini})
+      : super(key: key);
   @override
-  _UploadPhotoState createState() =>
-      _UploadPhotoState();
+  _UploadPhotoState createState() => _UploadPhotoState();
 }
 
-class _UploadPhotoState
-    extends State<UploadPhoto> {
-
-
+class _UploadPhotoState extends State<UploadPhoto> {
+  FirestoreService fireService = FirestoreService();
   final picker = ImagePicker();
+  bool loading = false;
   File? _imageFile;
   Future pickImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
-
     setState(() {
       _imageFile = File(pickedFile!.path);
     });
   }
 
   Future uploadImageToFirebase(BuildContext context) async {
-    String fileName = basename(_imageFile!.path);
+    //String fileName = basename(_imageFile!.path);
     Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child('${widget.uploadLink}/$fileName');
+        FirebaseStorage.instance.ref().child(widget.uploadLink);
     UploadTask uploadTask = firebaseStorageRef.putFile(_imageFile!);
-    TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+    TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {
+
+    });
     taskSnapshot.ref.getDownloadURL().then(
-          (value) => print("Done: $value"),
+          (value) {
+        widget.isProfilePicture
+            ? fireService.grihiniRef
+            .doc(widget.grihini.uid)
+            .update({"profilePicture": value})
+            : null;
+      },
     );
+    Navigator.pop(context);
+
   }
 
   @override
@@ -88,18 +104,23 @@ class _UploadPhotoState
                           child: _imageFile != null
                               ? Image.file(_imageFile!)
                               : FlatButton(
-                            child: Icon(
-                              Icons.add_a_photo,
-                              size: 50,
-                            ),
-                            onPressed: pickImage,
-                          ),
+                                  child: Icon(
+                                    Icons.add_a_photo,
+                                    size: 50,
+                                  ),
+                                  onPressed: pickImage,
+                                ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                uploadImageButton(context),
+                loading
+                    ? const Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: CircularProgressIndicator(),
+                      )
+                    : uploadImageButton(context),
               ],
             ),
           ),
@@ -114,7 +135,7 @@ class _UploadPhotoState
         children: <Widget>[
           Container(
             padding:
-            const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
             margin: const EdgeInsets.only(
                 top: 30, left: 20.0, right: 20.0, bottom: 20.0),
             decoration: BoxDecoration(
@@ -123,7 +144,12 @@ class _UploadPhotoState
                 ),
                 borderRadius: BorderRadius.circular(30.0)),
             child: FlatButton(
-              onPressed: () => uploadImageToFirebase(context),
+              onPressed: () {
+                setState(() {
+                  loading = true;
+                });
+                uploadImageToFirebase(context);
+              },
               child: Text(
                 "Upload Image",
                 style: TextStyle(fontSize: 20),
