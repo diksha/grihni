@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
@@ -8,6 +9,7 @@ import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share/share.dart';
 
 class Profile extends ConsumerWidget {
   const Profile({Key? key, required this.grihini}) : super(key: key);
@@ -29,7 +31,7 @@ class Profile extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              appBarWithoutBackButton(context, watch),
+              appBarWithoutBackButton(context, watch,grihini),
               Padding(
                 padding: EdgeInsets.only(left: w * 0.08),
                 child: Text(
@@ -76,11 +78,13 @@ class Profile extends ConsumerWidget {
                     SizedBox(
                       height: h * 0.01,
                     ),
-                    Text(
-                      "uid:${grihini.uid}",
-                      style: TextStyle(
-                          fontSize: w * 0.025, color: Color(0xFF58595B)),
-                    ),
+                    MaterialButton(onPressed: (){
+                      Clipboard.setData(ClipboardData(text: grihini.uid));
+                      Share.share(grihini.uid, subject: 'This is my uid.').whenComplete(() {
+                        Scaffold.of(context).showSnackBar(
+                            const SnackBar(content:Text("Uid copied to clipboard",textAlign: TextAlign.center,)));
+                      });
+                    },child: const Text("Share Uid"),),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Container(

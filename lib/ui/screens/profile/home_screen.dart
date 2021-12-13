@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/models/grihini.dart';
@@ -8,6 +9,7 @@ import 'package:junkiri/ui/screens/profile/profile.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
+import 'package:share/share.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ Widget trainingPending(
         Positioned(
           width: w,
           top: h * 0.02,
-          child: appBarWithoutBackButton(context, watch),
+          child: appBarWithoutBackButton(context, watch,grihini),
         ),
         Positioned(
           top: h * 0.15,
@@ -70,13 +72,13 @@ Widget trainingPending(
               SizedBox(
                 height: h * 0.03,
               ),
-              Text(
-                "uid: ${grihini.uid}",
-                style: TextStyle(
-                  fontSize: w * 0.04,
-                  color: Colors.white,
-                ),
-              ),
+              MaterialButton(onPressed: (){
+                Clipboard.setData(ClipboardData(text: grihini.uid));
+                Share.share(grihini.uid, subject: 'This is my uid.').whenComplete(() {
+                  Scaffold.of(context).showSnackBar(
+                      const SnackBar(content:Text("Uid copied to clipboard",textAlign: TextAlign.center,)));
+                });
+              },child: const Text("Share Uid"),),
               SizedBox(
                 height: h * 0.03,
               ),

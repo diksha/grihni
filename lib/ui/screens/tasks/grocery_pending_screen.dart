@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
@@ -6,6 +7,7 @@ import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share/share.dart';
 
 class GroceryPending extends ConsumerWidget {
   final Task task;
@@ -42,10 +44,13 @@ class GroceryPending extends ConsumerWidget {
                   AppLocalizations.of(context)!.letsBegin(task.jobId),
                   style: TextStyle(fontSize: w * 0.06),
                 ),
-                Text(
-                  "Doc id: ${task.docId}",
-                  style: TextStyle(fontSize: w * 0.04),
-                ),
+                MaterialButton(onPressed: (){
+                  Clipboard.setData(ClipboardData(text: task.docId));
+                  Share.share(task.docId, subject: 'This is my taskid.').whenComplete(() {
+                    Scaffold.of(context).showSnackBar(
+                        const SnackBar(content:Text("Task ID copied to clipboard",textAlign: TextAlign.center,)));
+                  });
+                },child: const Text("Share Taskid"),),
                 SizedBox(
                   child: Image.asset("assets/images/grocery_pending.png"),
                   height: h * 0.2,

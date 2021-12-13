@@ -50,6 +50,7 @@ class FirestoreService {
     for (String docId in listOfTaskIds) {
       Task task = await taskRef.doc(docId).get().then((value) => value.data()!);
       taskList.add(task);
+      print(task);
     }
     return taskList;
   }
