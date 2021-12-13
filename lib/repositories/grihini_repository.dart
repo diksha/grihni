@@ -8,3 +8,9 @@ final grihiniProvider = FutureProvider<Grihini>((ref) async {
   Grihini grihini = await _firestoreService.getGrihini(currentUser);
   return grihini;
 });
+
+final trainingGrihiniProvider = FutureProvider<List<Grihini>>((ref) async {
+  FirestoreService _firestoreService = FirestoreService();
+  List<Grihini> trainingGrihinies = await _firestoreService.getTrainingGrihinies();
+  return trainingGrihinies;
+});

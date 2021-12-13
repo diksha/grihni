@@ -16,3 +16,5 @@ const taskStepYoutubeScreenRoute = 'stepYoutube';
 const taskCompletedScreenRoute = 'taskCompleted';
 const photoUploadScreenRoute = 'photoUpload';
 const taskPhotoUploadScreenRoute = 'taskPhotoUpload';
+const adminScreenRoute = 'admin';
+const grihiniTrainingScreenRoute = 'grihiniTraining';

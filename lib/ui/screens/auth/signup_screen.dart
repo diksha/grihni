@@ -39,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -54,73 +54,81 @@ class _SignupScreenState extends State<SignupScreen> {
               width: w,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Consumer(
-                builder: (BuildContext context, ScopedReader watch, child) {
-                  return Container(
-                    color: Colors.transparent,
-                    width: w,
-                    child: appBar(context, watch),
-                  );
-                },
-              ),
-              Container(
-                color: Colors.transparent,
-                width: w,
-                child: _header(context),
-              ),
-              Container(
-                color: Colors.transparent,
-                width: w,
-                child: signupForm(
-                  context,
-                  nameController,
-                  phoneNumberController,
-                  addressController,
-                  otpController,
-                  authService,
-                  setData,
-                  smsCode,
-                  verificationIdFinal,
-                ),
-              ),
-              MaterialButton(
-                onPressed: () {
-                  smsCode = otpController.text;
-                  authService.signupWithPhoneNumber(
-                      verificationIdFinal,
-                      smsCode,
-                      context,
-                      Grihini(
-                          name: nameController.text,
-                          phoneNumber: phoneNumberController.text,
-                          address: addressController.text,
-                          status: 'training_pending',
-                          uid: '',
-                          pendingTasks: [],
-                          completedTasks: [],
-                          profilePicture: "",
-                        email: ""
-                      ));
-                },
-                child: Ink(
-                  decoration: yellowGradient(),
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        w * 0.08, h * 0.01, w * 0.08, h * 0.01),
-                    child: Text(
-                      AppLocalizations.of(context)!.signup,
-                      style:
-                          TextStyle(color: Colors.white, fontSize: w * 0.055),
+          Positioned(
+            bottom: 0,
+            child: SingleChildScrollView(
+              child: Container(
+                height: h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Consumer(
+                      builder: (BuildContext context, ScopedReader watch, child) {
+                        return Container(
+                          color: Colors.transparent,
+                          width: w,
+                          child: appBar(context, watch),
+                        );
+                      },
                     ),
-                  ),
+                    Container(
+                      color: Colors.transparent,
+                      width: w,
+                      child: _header(context),
+                    ),
+                    Container(
+                      color: Colors.transparent,
+                      width: w,
+                      child: signupForm(
+                        context,
+                        nameController,
+                        phoneNumberController,
+                        addressController,
+                        otpController,
+                        authService,
+                        setData,
+                        smsCode,
+                        verificationIdFinal,
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        smsCode = otpController.text;
+                        authService.signupWithPhoneNumber(
+                            verificationIdFinal,
+                            smsCode,
+                            context,
+                            Grihini(
+                                name: nameController.text,
+                                phoneNumber: phoneNumberController.text,
+                                address: addressController.text,
+                                status: 'training_pending',
+                                uid: '',
+                                pendingTasks: [],
+                                completedTasks: [],
+                                profilePicture: "",
+                              email: ""
+                            ));
+                      },
+                      child: Ink(
+                        decoration: yellowGradient(),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              w * 0.08, h * 0.01, w * 0.08, h * 0.01),
+                          child: Text(
+                            AppLocalizations.of(context)!.signup,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: w * 0.055),
+                          ),
+                        ),
+                      ),
+                      elevation: 0,
+                    ),
+                    _footer(context),
+                  ],
                 ),
-                elevation: 0,
               ),
-              _footer(context),
-            ],
+            ),
           ),
         ],
       ),

@@ -14,7 +14,9 @@ Widget appBarWithoutBackButton(BuildContext context, ScopedReader watch,Grihini 
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         grihini.email=="Admin"?MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, adminScreenRoute);
+          },
           child: const Text(
             "Admin",
             style: TextStyle(color: Colors.white),
