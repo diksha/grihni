@@ -17,4 +17,5 @@ const taskCompletedScreenRoute = 'taskCompleted';
 const photoUploadScreenRoute = 'photoUpload';
 const taskPhotoUploadScreenRoute = 'taskPhotoUpload';
 const adminScreenRoute = 'admin';
-const grihiniTrainingScreenRoute = 'grihiniTraining';
+const grihiniTrainingAdminScreenRoute = 'grihiniTraining';
+const groceryPendingAdminScreenRoute = 'groceryPendingAdmin';

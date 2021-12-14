@@ -50,6 +50,7 @@ dependencies:
   image_picker: ^0.8.4
   url_launcher: ^6.0.13
   share: ^2.0.4
+  phone_form_field: ^4.3.1
 
 
 dev_dependencies:

@@ -28,6 +28,7 @@ class UploadPhoto extends StatefulWidget {
 
 class _UploadPhotoState extends State<UploadPhoto> {
   FirestoreService fireService = FirestoreService();
+  bool isPhotoTaken=false;
   final picker = ImagePicker();
   bool loading = false;
   File? _imageFile;
@@ -79,8 +80,8 @@ class _UploadPhotoState extends State<UploadPhoto> {
             margin: const EdgeInsets.only(top: 80),
             child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
                       "Select the image",
@@ -91,7 +92,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Expanded(
                   child: Stack(
                     children: <Widget>[
@@ -104,11 +105,16 @@ class _UploadPhotoState extends State<UploadPhoto> {
                           child: _imageFile != null
                               ? Image.file(_imageFile!)
                               : FlatButton(
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.add_a_photo,
                                     size: 50,
                                   ),
-                                  onPressed: pickImage,
+                                  onPressed: (){
+                                    pickImage();
+                                    setState(() {
+                                      isPhotoTaken = true;
+                                    });
+                                  },
                                 ),
                         ),
                       ),
@@ -120,7 +126,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                         padding: EdgeInsets.all(15.0),
                         child: CircularProgressIndicator(),
                       )
-                    : uploadImageButton(context),
+                    : isPhotoTaken?uploadImageButton(context):Container(),
               ],
             ),
           ),

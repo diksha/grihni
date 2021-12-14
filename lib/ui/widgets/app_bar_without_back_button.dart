@@ -13,15 +13,17 @@ Widget appBarWithoutBackButton(BuildContext context, ScopedReader watch,Grihini 
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        grihini.email=="Admin"?MaterialButton(
+        grihini.email=="Admin"?TextButton(
           onPressed: () {
             Navigator.pushNamed(context, adminScreenRoute);
           },
-          child: const Text(
-            "Admin",
-            style: TextStyle(color: Colors.white),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Admin",
+              style: TextStyle(color: Colors.white,fontSize:15 ),
+            ),
           ),
-          color: Colors.amberAccent,
         ):Container(), //Buttons Should be replaced here
         Row(
           children: [

@@ -23,6 +23,7 @@ class _TaskPhotoUploadState
     extends State<TaskPhotoUpload> {
   final picker = ImagePicker();
   bool loading = false;
+  bool isPhotoTaken = false;
   File? _imageFile;
   Future pickImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -93,7 +94,14 @@ class _TaskPhotoUploadState
                               Icons.add_a_photo,
                               size: 50,
                             ),
-                            onPressed: pickImage,
+                            onPressed:(){
+                              pickImage();
+                              setState(() {
+                                isPhotoTaken = true;
+                              });
+
+
+                            } ,
                           ),
                         ),
                       ),
@@ -103,7 +111,7 @@ class _TaskPhotoUploadState
                 loading?const Padding(
                   padding: EdgeInsets.all(15.0),
                   child: CircularProgressIndicator(),
-                ):uploadImageButton(context),
+                ):isPhotoTaken?uploadImageButton(context):Container(),
               ],
             ),
           ),

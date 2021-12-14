@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:junkiri/ui/screens/admin/admin_home.dart';
 import 'package:junkiri/ui/screens/admin/grihini_training.dart';
+import 'package:junkiri/ui/screens/admin/grocery_pending.dart';
 import 'package:junkiri/ui/screens/profile/photo_upload_screen.dart';
 import 'package:junkiri/ui/screens/tasks/taskphoto_upload_screen.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
@@ -26,8 +27,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const StartupScreen());
     case adminScreenRoute:
       return MaterialPageRoute(builder: (context) => const AdminHome());
-    case grihiniTrainingScreenRoute:
-      return MaterialPageRoute(builder: (context) => const GrihiniTraining());
+    case grihiniTrainingAdminScreenRoute:
+      return MaterialPageRoute(builder: (context) => const GrihiniTrainingAdmin());
+    case groceryPendingAdminScreenRoute:
+      return MaterialPageRoute(builder: (context) => const GroceryPendingAdmin());
     case languageSelectScreenRoute:
       return MaterialPageRoute(
           builder: (context) => const LanguageSelectScreen());

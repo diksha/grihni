@@ -199,6 +199,7 @@ Widget signupForm(
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.all(w * 0.01),
+                  border: const OutlineInputBorder() //
               ),
             ),
             SizedBox(
@@ -215,6 +216,7 @@ Widget signupForm(
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.all(w * 0.01),
+                  border: const OutlineInputBorder()
               ),
               controller: addressController,
             ),
@@ -233,6 +235,7 @@ Widget signupForm(
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.all(w * 0.01),
+                  border: const OutlineInputBorder()
               ),
             ),
             SizedBox(
@@ -262,6 +265,7 @@ Widget signupForm(
                       fillColor: Colors.grey,
                       isDense: true,
                       contentPadding: EdgeInsets.all(w * 0.01),
+                        border: const OutlineInputBorder()
                     ),
                     controller: otpController,
                     inputFormatters: [

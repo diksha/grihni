@@ -5,15 +5,14 @@ import 'package:junkiri/repositories/grihini_repository.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 
-class GrihiniTrainingAdmin extends ConsumerWidget {
-  const GrihiniTrainingAdmin({Key? key}) : super(key: key);
+class GroceryPendingAdmin extends ConsumerWidget {
+  const GroceryPendingAdmin({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-
     final trainingGrihinies = watch(trainingGrihiniProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Grihini Training"),
+        title: const Text("Grocery Pending Admin"),
       ),
       body: Container(
         child: trainingGrihinies.when(

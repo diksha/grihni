@@ -14,31 +14,25 @@ class AdminHome extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MaterialButton(
+            ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, grihiniTrainingScreenRoute);
+                Navigator.pushNamed(context, grihiniTrainingAdminScreenRoute);
               },
-              child: const Text("Grihini Training"),
+              child: const Text("Grihini Training",style: TextStyle(fontSize: 20),),
             ),
-            MaterialButton(
-              onPressed: () {},
-              child: const Text("Grocery Pending"),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, groceryPendingAdminScreenRoute);
+              },
+              child: const Text("Grocery Pending",style: TextStyle(fontSize: 20),),
             ),
-            MaterialButton(
+            ElevatedButton(
               onPressed: () {},
-              child: const Text("Add Task"),
+              child: const Text("Add Task",style: TextStyle(fontSize: 20),),
             ),
-            MaterialButton(
+            ElevatedButton(
               onPressed: () {},
-              child: const Text("Add Achaar"),
-            ),
-            MaterialButton(
-              onPressed: () {},
-              child: const Text("Update Task"),
-            ),
-            MaterialButton(
-              onPressed: () {},
-              child: const Text("Update Achaar"),
+              child: const Text("Add Achaar",style: TextStyle(fontSize: 20),),
             ),
           ],
         ),

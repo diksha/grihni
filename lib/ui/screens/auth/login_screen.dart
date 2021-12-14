@@ -8,6 +8,7 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
+import 'package:phone_form_field/phone_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final PhoneController phoneController = PhoneController(const PhoneNumber(isoCode: "en", nsn: "0768792639"));
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
   AuthService authService = AuthService();
@@ -60,7 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Consumer(
-                      builder: (BuildContext context, ScopedReader watch, child) {
+                      builder:
+                          (BuildContext context, ScopedReader watch, child) {
                         return Container(
                           color: Colors.transparent,
                           width: w,
@@ -84,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         CircleAvatar(
                           radius: w * 0.15,
                           child: ClipRRect(
-                            child: SvgPicture.asset('assets/images/svg/person.svg'),
+                            child: SvgPicture.asset(
+                                'assets/images/svg/person.svg'),
                             borderRadius: BorderRadius.circular(w * 0.5),
                           ),
                         ),
@@ -93,12 +97,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
+                          padding:
+                              EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(w * 0.01))),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(w * 0.01))),
                             child: TextField(
                               controller: phoneNumberController,
                               decoration: InputDecoration(
@@ -107,35 +112,32 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
-                          child: TextButton(
-                            onPressed: () async {
-                              await authService.verifyPhoneNumber(
-                                  phoneNumberController.text, context, setData);
-                            },
-                            child: Text(
-                              otpBtnLabel,
-                              style: TextStyle(
-                                fontSize: w * 0.05,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                        SizedBox(
+                          height: h * 0.02,
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
+                          padding:
+                              EdgeInsets.fromLTRB(w * 0.15, 0, w * 0.15, 0),
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(w * 0.01))),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(w * 0.01))),
                             child: TextField(
                               controller: otpController,
                               decoration: InputDecoration(
-                                  hintText: "   OTP", prefixText: "  ",suffix: TextButton(onPressed: (){},child: Text("Send otp"),)
-                              ),
+                                  border: const OutlineInputBorder(),
+                                  hintText: "OTP",
+                                  prefixText: "  ",
+                                  suffix: TextButton(
+                                    onPressed: () async {
+                                      await authService.verifyPhoneNumber(
+                                          phoneNumberController.text,
+                                          context,
+                                          setData);
+                                    },
+                                    child: Text("Send otp"),
+                                  )),
                             ),
                           ),
                         ),
@@ -172,7 +174,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {},
                         child: Text(
                           AppLocalizations.of(context)!.needHelp,
-                          style: TextStyle(color: Colors.black, fontSize: w * 0.04),
+                          style: TextStyle(
+                              color: Colors.black, fontSize: w * 0.04),
                         ))
                   ],
                 ),
@@ -181,8 +184,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-
     );
-
   }
 }

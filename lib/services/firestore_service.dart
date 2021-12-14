@@ -76,7 +76,9 @@ class FirestoreService {
     }
     return newTaskList;
   }
-
+  Future<void> grihiniTrained(Grihini grihini) async {
+    grihiniRef.doc(grihini.uid).update({"status": "trained"});
+  }
   Future<void> acceptTask(Grihini grihini, Task task) async {
     List<String> pendingTasks = grihini.pendingTasks;
     pendingTasks.add(task.docId);
