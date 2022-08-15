@@ -94,7 +94,6 @@ Widget _header() {
         ),
       )
     ],
-    overflow: Overflow.visible,
   );
 }
 

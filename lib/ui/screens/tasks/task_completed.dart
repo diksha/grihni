@@ -154,7 +154,6 @@ class TaskCompleted extends ConsumerWidget {
                           ),
                         )
                       ],
-                      overflow: Overflow.visible,
                     ),
                   ],
                 ),

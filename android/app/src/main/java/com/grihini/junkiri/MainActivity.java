@@ -1,4 +1,4 @@
-package com.grihini.junkiri;
+package com.grihni.junkiri;
 
 import io.flutter.embedding.android.FlutterActivity;
 

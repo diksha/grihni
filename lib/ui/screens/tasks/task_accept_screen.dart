@@ -142,7 +142,6 @@ class TaskAccept extends ConsumerWidget {
                   Positioned(
                       bottom: h * 0.03, child: bottomNavigationTwo(context)),
                 ],
-                overflow: Overflow.visible,
               ),
             ),
           ),

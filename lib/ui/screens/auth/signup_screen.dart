@@ -182,9 +182,6 @@ Widget signupForm(
             ),
             TextField(
               controller: nameController,
-              inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp(r"[a-zA-Z]+|\s"))
-              ],
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding: EdgeInsets.all(w * 0.01),
@@ -253,9 +250,6 @@ Widget signupForm(
                       contentPadding: EdgeInsets.all(w * 0.01),
                     ),
                     controller: otpController,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp(r"\d"))
-                    ],
                   ),
                 ),
               ],
