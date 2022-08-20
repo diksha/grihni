@@ -9,16 +9,93 @@
       "client_info": {
         "mobilesdk_app_id": "1:505482283450:android:9ec72a0f57d347f3cf3583",
         "android_client_info": {
+          "package_name": "com.grihini.junkiri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505482283450-7cv44lbojltr3ja2cbtbmqs1ggvejrq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihini.junkiri",
+            "certificate_hash": "fe1c6447ac8572159506a62838d2e3a7d43b7622"
+          }
+        },
+        {
+          "client_id": "505482283450-9ajdi2jdktap1785sel0d8a4bocp2jc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihini.junkiri",
+            "certificate_hash": "02ffaea1598a5c2b9380b4a0b3947d656a24abe4"
+          }
+        },
+        {
+          "client_id": "505482283450-ah5s21a3jdnpvf0d22iai76a46nusrvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihini.junkiri",
+            "certificate_hash": "841e13290b84a82692f59cf84a1913fd1bf47a2d"
+          }
+        },
+        {
+          "client_id": "505482283450-jjfhqe5sajqjm3c3590tjk8q1k58vmq4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihini.junkiri",
+            "certificate_hash": "13039f2b0de5cfd92d9ff97c1258fa6324c43559"
+          }
+        },
+        {
+          "client_id": "505482283450-ll2ic4jf9891lljejvg734geudcjgu9h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihini.junkiri",
+            "certificate_hash": "1455f3801b11e153248c0c775baee2e679bb3237"
+          }
+        },
+        {
+          "client_id": "505482283450-69srs2eg1lu6mm1dgfr889c2lns6pqn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvR0r1fKeyjUgCXn9OmW-2gwEiugNc2TI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505482283450-69srs2eg1lu6mm1dgfr889c2lns6pqn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505482283450:android:be4c2a4d28e17227cf3583",
+        "android_client_info": {
           "package_name": "com.grihni.junkiri"
         }
       },
       "oauth_client": [
         {
-          "client_id": "505482283450-ah5s21a3jdnpvf0d22iai76a46nusrvn.apps.googleusercontent.com",
+          "client_id": "505482283450-0flq2pve9i6jumodg314mv3upfgqk6ei.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.grihni.junkiri",
-            "certificate_hash": "841e13290b84a82692f59cf84a1913fd1bf47a2d"
+            "certificate_hash": "1455f3801b11e153248c0c775baee2e679bb3237"
+          }
+        },
+        {
+          "client_id": "505482283450-mac6avk68573ou7ep28gunrsliisoaf2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihni.junkiri",
+            "certificate_hash": "fe1c6447ac8572159506a62838d2e3a7d43b7622"
           }
         },
         {
