@@ -64,22 +64,19 @@ class Profile extends ConsumerWidget {
                     SizedBox(
                       height: h * 0.03,
                     ),
-                    grihini.name.length>9? Text(
-                      grihini.name.substring(0,8)+"...",
-                      style: TextStyle(
-                          fontSize: w * 0.06, color: Color(0xFF58595B)),
-                    ):Text(
-                      grihini.name,
-                      style: TextStyle(
-                          fontSize: w * 0.06, color: Color(0xFF58595B)),
-                    ),
+                    grihini.name.length > 9
+                        ? Text(
+                            grihini.name.substring(0, 8) + "...",
+                            style: TextStyle(
+                                fontSize: w * 0.06, color: Color(0xFF58595B)),
+                          )
+                        : Text(
+                            grihini.name,
+                            style: TextStyle(
+                                fontSize: w * 0.06, color: Color(0xFF58595B)),
+                          ),
                     SizedBox(
                       height: h * 0.01,
-                    ),
-                    Text(
-                      "${AppLocalizations.of(context)!.junkiriCode}: J00001",
-                      style: TextStyle(
-                          fontSize: w * 0.025, color: Color(0xFF58595B)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
@@ -98,18 +95,6 @@ class Profile extends ConsumerWidget {
                   SizedBox(
                     height: h * 0.1,
                     child: Image.asset('assets/images/job.png'),
-                  ),
-                  Text(
-                    "400 Kg",
-                    style: TextStyle(
-                      fontSize: w * 0.1,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.ofAchaarPrepared,
-                    style: TextStyle(
-                      fontSize: w * 0.04,
-                    ),
                   ),
                 ],
               ),
@@ -139,6 +124,7 @@ class Profile extends ConsumerWidget {
                               arguments: grihini);
                         },
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppLocalizations.of(context)!.profileSettings,
@@ -172,6 +158,7 @@ class Profile extends ConsumerWidget {
                           Navigator.pushNamed(context, taskDetailsScreenRoute);
                         },
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppLocalizations.of(context)!.assignmentsDone,
@@ -205,6 +192,7 @@ class Profile extends ConsumerWidget {
                           Navigator.pushNamed(context, taskDetailsScreenRoute);
                         },
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppLocalizations.of(context)!.myPendingTasks,
@@ -237,6 +225,7 @@ class Profile extends ConsumerWidget {
                           Navigator.pushNamed(context, taskDetailsScreenRoute);
                         },
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppLocalizations.of(context)!.newTasks,
@@ -263,59 +252,6 @@ class Profile extends ConsumerWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: h * 0.02,
-          child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                stops: [0.2, 0.7],
-                colors: [
-                  Colors.white,
-                  Colors.white10,
-                ],
-              ),
-            ),
-            width: w,
-            child: Padding(
-              padding: EdgeInsets.all(w * 0.04),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(AppLocalizations.of(context)!.paymentPending,
-                            style: TextStyle(
-                              fontSize: w * 0.03,
-                              color: Colors.grey,
-                            )),
-                        Text("Rs.5000",
-                            style: TextStyle(
-                              fontSize: w * 0.05,
-                            )),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Text(AppLocalizations.of(context)!.paymentReceived,
-                          style: TextStyle(
-                            fontSize: w * 0.03,
-                            color: Colors.grey,
-                          )),
-                      Text("Rs.8000",
-                          style: TextStyle(
-                            fontSize: w * 0.05,
-                          )),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

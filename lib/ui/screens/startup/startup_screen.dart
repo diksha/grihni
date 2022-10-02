@@ -43,7 +43,7 @@ class StartupScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.namasteJunkiri,
+                        AppLocalizations.of(context)!.namasteDesna,
                         style: TextStyle(
                           fontSize: w * 0.045,
                         ),
