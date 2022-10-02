@@ -54,7 +54,8 @@ class FirestoreService {
 
   Future<List<Task>> getListofNewTasks() async {
     List<Task> newTaskList = [];
-    QuerySnapshot value = await taskRef.where('pickedBy', isEqualTo: "").get();
+    QuerySnapshot value =
+        await taskRef.where('orderStatus', isEqualTo: "CREATED").get();
     for (var result in value.docs) {
       Task task =
           await taskRef.doc(result.id).get().then((value) => value.data()!);
@@ -99,9 +100,10 @@ class FirestoreService {
         await achaarRef.doc(achaarType).get().then((value) => value.data()!);
     return achaar;
   }
+
   Future<Task> getTask(String docId) async {
     Task currentTask =
-    await taskRef.doc(docId).get().then((snapshot) => snapshot.data()!);
+        await taskRef.doc(docId).get().then((snapshot) => snapshot.data()!);
     return currentTask;
   }
 }

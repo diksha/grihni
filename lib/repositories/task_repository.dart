@@ -24,7 +24,6 @@ class TaskNotifier extends ChangeNotifier {
 
   Task? get task => _task;
 
-
   void setTaskId(String taskId) {
     FirestoreService _firestoreService = FirestoreService();
     _firestoreService.getTask(taskId).then((value) {
@@ -34,18 +33,15 @@ class TaskNotifier extends ChangeNotifier {
   }
 
   void incrementSteps(Task task) {
-
     FirestoreService _firestoreService = FirestoreService();
-    _firestoreService.completedTheStep(task).then((value) =>
-        _firestoreService.getTask(task.docId).then((value) {
-          _task = value;
-          notifyListeners();
-        }
-        ));
+    _firestoreService
+        .completedTheStep(task)
+        .then((value) => _firestoreService.getTask(task.docId).then((value) {
+              _task = value;
+              notifyListeners();
+            }));
   }
 }
 
-
 final currentTaskProvider =
-ChangeNotifierProvider<TaskNotifier>((ref) => TaskNotifier(ref));
-
+    ChangeNotifierProvider<TaskNotifier>((ref) => TaskNotifier(ref));

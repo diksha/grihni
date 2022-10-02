@@ -79,61 +79,9 @@ class TaskCompleted extends ConsumerWidget {
                     Stack(
                       children: [
                         Container(
-                          height: h * 0.2,
+                          height: h * 0.1,
                           width: w * 0.78,
                           color: Colors.white,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, taskDetailsScreenRoute);
-                                },
-                                child: Container(
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        child: Image.asset(
-                                            "assets/images/icons/pending_tasks.png"),
-                                        height: w * 0.18,
-                                      ),
-                                      Text(AppLocalizations.of(context)!
-                                          .myPendingTasks),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, taskDetailsScreenRoute);
-                                },
-                                child: Container(
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        child: Image.asset(
-                                            "assets/images/icons/new_tasks.png"),
-                                        height: w * 0.18,
-                                      ),
-                                      Text(AppLocalizations.of(context)!
-                                          .newTasks),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          right: 0,
-                          left: 0,
-                          bottom: -25,
                           child: MaterialButton(
                             onPressed: () {
                               Navigator.pushReplacementNamed(
@@ -152,7 +100,7 @@ class TaskCompleted extends ConsumerWidget {
                             ),
                             elevation: 0,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
