@@ -21,10 +21,19 @@ class HomeScreen extends ConsumerWidget {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: grihini.when(
-        data: (grihini) => buildBody(context, grihini, watch),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text(err.toString())),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context.refresh(grihiniProvider);
+          // Handle refresh.
+        },
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: grihini.when(
+            data: (grihini) => buildBody(context, grihini, watch),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (err, stack) => Center(child: Text(err.toString())),
+          ),
+        ),
       ),
     );
   }
