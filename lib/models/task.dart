@@ -6,7 +6,8 @@ enum OrderStatus {
   GROCERY_DROP_OFF,
   PREPARING,
   READY_FOR_PICKUP,
-  ORDER_COMPLETED
+  ORDER_COMPLETED,
+  ORDER_PICKED,
 }
 
 OrderStatus getOrderStatusEnum(String orderStatus) {
@@ -23,11 +24,13 @@ OrderStatus getOrderStatusEnum(String orderStatus) {
       return OrderStatus.READY_FOR_PICKUP;
     case "ORDER_COMPLETED":
       return OrderStatus.ORDER_COMPLETED;
+    case "ORDER_PICKED":
+      return OrderStatus.ORDER_PICKED;
   }
   return OrderStatus.CREATED;
 }
 
-class Task{
+class Task {
   final String jobId;
   final OrderStatus orderStatus;
   final int amount;

@@ -67,6 +67,7 @@
         }
     },
     "collectAchaarSoon": "Your pickup sathi will collect the achaar soon !",
+    "achaarCollected": "Achaar has been picked up !",
 
     "profileSettings": "Profile Settings",
     "paymentPending": "Payment Pending",

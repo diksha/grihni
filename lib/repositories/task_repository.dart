@@ -3,10 +3,16 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/services/firestore_service.dart';
 
-final tasksProvider = FutureProvider.autoDispose
+final pendingTasksProvider = FutureProvider.autoDispose
     .family<List<Task>, List<String>>((ref, listOfTaskIds) async {
   FirestoreService _firestoreService = FirestoreService();
-  List<Task> taskList = await _firestoreService.getTaskList(listOfTaskIds);
+  List<Task> taskList = await _firestoreService.getListofPendingTasks();
+  return taskList;
+});
+final completedTasksProvider = FutureProvider.autoDispose
+    .family<List<Task>, List<String>>((ref, listOfTaskIds) async {
+  FirestoreService _firestoreService = FirestoreService();
+  List<Task> taskList = await _firestoreService.getListofCompletedTasks();
   return taskList;
 });
 

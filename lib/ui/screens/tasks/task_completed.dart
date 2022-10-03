@@ -67,7 +67,9 @@ class TaskCompleted extends ConsumerWidget {
                     Padding(
                       padding: EdgeInsets.all(w * 0.02),
                       child: Text(
-                        AppLocalizations.of(context)!.collectAchaarSoon,
+                        task.orderStatus == OrderStatus.ORDER_COMPLETED
+                            ? AppLocalizations.of(context)!.collectAchaarSoon
+                            : AppLocalizations.of(context)!.achaarCollected,
                         style: TextStyle(
                             fontSize: w * 0.06, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,

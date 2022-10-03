@@ -33,8 +33,8 @@ class TaskDetails extends ConsumerWidget {
 Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
   List<String> pendingTaskIds = grihini.pendingTasks;
   List<String> completedTaskIds = grihini.completedTasks;
-  final pendingTask = watch(tasksProvider(pendingTaskIds));
-  final completedTask = watch(tasksProvider(completedTaskIds));
+  final pendingTask = watch(pendingTasksProvider(pendingTaskIds));
+  final completedTask = watch(completedTasksProvider(completedTaskIds));
   final newTask = watch(newTaskProvider);
   return Stack(
     children: [
@@ -217,6 +217,7 @@ Widget taskCard(Task task, Grihini grihini, BuildContext context) {
           oderStatusRoute = achaarPreparedScreenRoute;
           break;
         case OrderStatus.ORDER_COMPLETED:
+        case OrderStatus.ORDER_PICKED:
           oderStatusRoute = taskCompletedScreenRoute;
           break;
       }

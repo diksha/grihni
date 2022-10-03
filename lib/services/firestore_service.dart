@@ -3,6 +3,7 @@ import 'package:junkiri/models/Achaar.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/step.dart';
 import 'package:junkiri/models/task.dart';
+import 'package:junkiri/ui/shares/app_constants.dart';
 
 class FirestoreService {
   final grihiniRef =
@@ -62,6 +63,34 @@ class FirestoreService {
       newTaskList.add(task);
     }
     return newTaskList;
+  }
+
+  Future<List<Task>> getListofPendingTasks() async {
+    List<Task> pendingTaskList = [];
+    var taskIds = await grihiniRef
+        .doc(currentUser)
+        .get()
+        .then((snapshot) => snapshot.data()!.pendingTasks);
+    for (var taskId in taskIds) {
+      Task task =
+          await taskRef.doc(taskId).get().then((value) => value.data()!);
+      pendingTaskList.add(task);
+    }
+    return pendingTaskList;
+  }
+
+  Future<List<Task>> getListofCompletedTasks() async {
+    List<Task> completedTaskList = [];
+    var taskIds = await grihiniRef
+        .doc(currentUser)
+        .get()
+        .then((snapshot) => snapshot.data()!.completedTasks);
+    for (var taskId in taskIds) {
+      Task task =
+          await taskRef.doc(taskId).get().then((value) => value.data()!);
+      completedTaskList.add(task);
+    }
+    return completedTaskList;
   }
 
   Future<void> acceptTask(Grihini grihini, Task task) async {

@@ -77,6 +77,7 @@
     }
   },
   "collectAchaarSoon": "तपाइँको पिकअप साथीले चाँडै  अचार संकलन गर्नुहुनेछ ।",
+  "achaarCollected": "तपाइँक अचार संकलन भएको छ!",
 
   "profileSettings": "प्रोफाइल सेटिंग्स",
   "paymentPending": "भुक्तानी बाँकी छ",
