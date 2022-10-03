@@ -5,6 +5,7 @@ import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/services/firestore_service.dart';
+import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
@@ -35,7 +36,7 @@ class TaskAccept extends ConsumerWidget {
             width: w,
             child: Container(
               height: h * 0.18,
-              child: appBarYellow(context, watch),
+              child: appBarWithoutBackButton(context, watch),
             ),
           ),
           Positioned(

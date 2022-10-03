@@ -196,33 +196,37 @@ taskListGenerator(taskList, grihini, context) {
   );
 }
 
+task_details(context, task, grihini) {
+  String oderStatusRoute = taskAcceptScreenRoute;
+  switch (task.orderStatus) {
+    case OrderStatus.CREATED:
+      oderStatusRoute = taskAcceptScreenRoute;
+      break;
+    case OrderStatus.GROCERY_PENDING:
+      oderStatusRoute = groceryPendingScreenRoute;
+      break;
+    case OrderStatus.GROCERY_DROP_OFF:
+      oderStatusRoute = groceryReceivedScreenRoute;
+      break;
+    case OrderStatus.PREPARING:
+      oderStatusRoute = taskStepYoutubeScreenRoute;
+      break;
+    case OrderStatus.READY_FOR_PICKUP:
+      oderStatusRoute = achaarPreparedScreenRoute;
+      break;
+    case OrderStatus.ORDER_COMPLETED:
+    case OrderStatus.ORDER_PICKED:
+      oderStatusRoute = taskCompletedScreenRoute;
+      break;
+  }
+  Navigator.pop(context);
+  Navigator.pushNamed(context, oderStatusRoute, arguments: [task, grihini]);
+}
+
 Widget taskCard(Task task, Grihini grihini, BuildContext context) {
   return GestureDetector(
     onTap: () {
-      String oderStatusRoute = taskAcceptScreenRoute;
-      switch (task.orderStatus) {
-        case OrderStatus.CREATED:
-          oderStatusRoute = taskAcceptScreenRoute;
-          break;
-        case OrderStatus.GROCERY_PENDING:
-          oderStatusRoute = groceryPendingScreenRoute;
-          break;
-        case OrderStatus.GROCERY_DROP_OFF:
-          oderStatusRoute = groceryReceivedScreenRoute;
-          break;
-        case OrderStatus.PREPARING:
-          oderStatusRoute = taskStepYoutubeScreenRoute;
-          break;
-        case OrderStatus.READY_FOR_PICKUP:
-          oderStatusRoute = achaarPreparedScreenRoute;
-          break;
-        case OrderStatus.ORDER_COMPLETED:
-        case OrderStatus.ORDER_PICKED:
-          oderStatusRoute = taskCompletedScreenRoute;
-          break;
-      }
-      Navigator.pop(context);
-      Navigator.pushNamed(context, oderStatusRoute, arguments: [task, grihini]);
+      task_details(context, task, grihini);
     },
     child: Padding(
       padding: EdgeInsets.all(w * 0.01),

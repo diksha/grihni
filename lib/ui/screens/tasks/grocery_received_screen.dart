@@ -6,6 +6,7 @@ import 'package:junkiri/models/task.dart';
 import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
+import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 import 'package:junkiri/ui/widgets/app_bar_yellow.dart';
 import 'package:junkiri/ui/widgets/bottom_navigation_two.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
@@ -31,7 +32,7 @@ class GroceryReceived extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBarYellow(context, watch),
+            child: appBarWithoutBackButton(context, watch),
           ),
           Positioned(
             width: w,

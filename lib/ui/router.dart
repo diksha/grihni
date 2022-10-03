@@ -84,7 +84,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case photoUploadScreenRoute:
       var uploadLink = settings.arguments as String;
-      return MaterialPageRoute(builder: (context) => UploadPhoto(uploadLink: uploadLink,));
+      return MaterialPageRoute(
+          builder: (context) => UploadPhoto(
+                uploadLink: uploadLink,
+              ));
     case taskStepYoutubeScreenRoute:
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;

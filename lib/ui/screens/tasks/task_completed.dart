@@ -6,6 +6,7 @@ import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar.dart';
+import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 import 'package:junkiri/ui/widgets/white_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
@@ -35,7 +36,7 @@ class TaskCompleted extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBar(context, watch),
+            child: appBarWithoutBackButton(context, watch),
           ),
           Positioned(
             width: w,

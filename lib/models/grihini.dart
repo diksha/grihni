@@ -1,3 +1,5 @@
+import 'package:junkiri/models/task.dart';
+
 class Grihini {
   final String name;
   final String phoneNumber;
@@ -6,6 +8,7 @@ class Grihini {
   final String uid;
   final List<String> completedTasks;
   final List<String> pendingTasks;
+  late Task currentTask;
 
   Grihini({
     required this.name,

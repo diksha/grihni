@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/models/task.dart';
 import 'package:junkiri/repositories/grihini_repository.dart';
 import 'package:junkiri/ui/screens/profile/profile.dart';
+import 'package:junkiri/ui/screens/profile/task_details.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
@@ -28,6 +31,9 @@ class HomeScreen extends ConsumerWidget {
 }
 
 Widget buildBody(BuildContext context, Grihini grihini, ScopedReader watch) {
+  if (grihini.pendingTasks.length != 0) {
+    task_details(context, grihini.currentTask, grihini);
+  }
   switch (grihini.status) {
     case "training_pending":
       return trainingPending(context, grihini, watch);
@@ -90,8 +96,7 @@ Widget trainingPending(
             children: [
               SizedBox(
                 height: h * 0.16,
-                child:
-                    Image.asset('assets/images/training_pending.png'),
+                child: Image.asset('assets/images/training_pending.png'),
               ),
               Padding(
                 padding: EdgeInsets.all(w * 0.08),

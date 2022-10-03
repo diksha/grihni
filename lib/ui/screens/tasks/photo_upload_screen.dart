@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
+import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
 import 'package:path/path.dart';
 
 import '../../widgets/app_bar.dart';
@@ -79,7 +80,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                           return Container(
                             color: Colors.transparent,
                             width: w,
-                            child: appBar(context, watch),
+                            child: appBarWithoutBackButton(context, watch),
                           );
                         },
                       ),
