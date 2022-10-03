@@ -80,7 +80,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                           return Container(
                             color: Colors.transparent,
                             width: w,
-                            child: appBarWithoutBackButton(context, watch),
+                            child: appBar(context, watch),
                           );
                         },
                       ),

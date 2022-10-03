@@ -74,7 +74,8 @@ class TaskStepYoutube extends ConsumerWidget {
                       fontSize: w * 0.08, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  AppLocalizations.of(context)!.achaarAndAmount(task.achaarType, task.amount),
+                  AppLocalizations.of(context)!
+                      .achaarAndAmount(task.achaarType, task.amount),
                   style: TextStyle(fontSize: w * 0.08),
                 ),
                 Padding(
@@ -89,8 +90,9 @@ class TaskStepYoutube extends ConsumerWidget {
           ),
           Positioned(
             width: w,
+            top: h * 0.5,
             height: h * 0.35,
-            bottom: h * 0.11,
+            // bottom: h * 0.11,
             child: achaar.when(
                 data: (achaar) => Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -117,7 +119,9 @@ class TaskStepYoutube extends ConsumerWidget {
                         achaar.steps[taskLocal.currentStep]!.shouldUpload
                             ? MaterialButton(
                                 onPressed: () async {
-                                  Navigator.pushNamed(context,photoUploadScreenRoute,arguments: "tasks/${taskLocal.docId}");
+                                  Navigator.pushNamed(
+                                      context, photoUploadScreenRoute,
+                                      arguments: "tasks/${taskLocal.docId}");
                                 },
                                 child: Ink(
                                   width: w * 0.7,
@@ -133,19 +137,21 @@ class TaskStepYoutube extends ConsumerWidget {
                                     child: Row(
                                       children: [
                                         SizedBox(
-                                          child: Image.asset(
-                                              "assets/images/icons/photo.png"),
-                                          width: w * 0.05,
+                                          child: Icon(
+                                            Icons.add_a_photo,
+                                            size: 30,
+                                          ),
                                         ),
                                         SizedBox(
                                           width: w * 0.015,
                                         ),
                                         Text(
-                                          AppLocalizations.of(context)!.uploadPhoto,
+                                          AppLocalizations.of(context)!
+                                              .uploadPhoto,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: w * 0.04,
-                                              color: Colors.white),
+                                              color: Colors.black54),
                                         ),
                                       ],
                                     ),
@@ -156,11 +162,13 @@ class TaskStepYoutube extends ConsumerWidget {
                         GestureDetector(
                           onTap: achaar.steps[taskLocal.currentStep + 1] == null
                               ? () async {
-                            await fireService
-                                .achaarPrepared(task)
-                                .whenComplete(() => Navigator.pushReplacementNamed(
-                                context, achaarPreparedScreenRoute,
-                                arguments: [task, grihini]));
+                                  await fireService
+                                      .achaarPrepared(task)
+                                      .whenComplete(() =>
+                                          Navigator.pushReplacementNamed(
+                                              context,
+                                              achaarPreparedScreenRoute,
+                                              arguments: [task, grihini]));
                                 }
                               : () {
                                   currentTask.incrementSteps(taskLocal);
@@ -177,71 +185,6 @@ class TaskStepYoutube extends ConsumerWidget {
                     ),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 error: (err, stack) => Center(child: Text(err.toString()))),
-          ),
-          Positioned(
-            bottom: 0,
-            height: h * 0.11,
-            child: Container(
-              width: w,
-              decoration: yellowGradient(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/home.png'),
-                        width: w * 0.06,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, homeScreenRoute);
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.home,
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.05),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/call.png'),
-                        width: w * 0.06,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.call,
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.05),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        child: Image.asset('assets/images/icons/task.png'),
-                        width: w * 0.04,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, taskDetailsScreenRoute);
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.task,
-                          style: TextStyle(
-                              color: Colors.black54, fontSize: w * 0.05),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
           ),
         ],
       ),

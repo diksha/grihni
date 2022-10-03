@@ -95,7 +95,9 @@ class FirestoreService {
 
   Future<void> acceptTask(Grihini grihini, Task task) async {
     List<String> pendingTasks = grihini.pendingTasks;
-    pendingTasks.add(task.docId);
+    if (!pendingTasks.contains(task.docId)) {
+      pendingTasks.add(task.docId);
+    }
     grihiniRef.doc(grihini.uid).update({"pendingTasks": pendingTasks});
     taskRef.doc(task.docId).update({"pickedBy": grihini.uid});
     taskRef.doc(task.docId).update({"orderStatus": "GROCERY_PENDING"});
@@ -120,7 +122,9 @@ class FirestoreService {
     pendingTasks.remove(task.docId);
     grihiniRef.doc(grihini.uid).update({"pendingTasks": pendingTasks});
     List<String> completedTasks = grihini.completedTasks;
-    completedTasks.add(task.docId);
+    if (!completedTasks.contains(task.docId)) {
+      completedTasks.add(task.docId);
+    }
     grihiniRef.doc(grihini.uid).update({"completedTasks": completedTasks});
   }
 

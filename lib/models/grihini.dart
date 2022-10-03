@@ -8,7 +8,7 @@ class Grihini {
   final String uid;
   final List<String> completedTasks;
   final List<String> pendingTasks;
-  late Task currentTask;
+  late Task? currentTask;
 
   Grihini({
     required this.name,

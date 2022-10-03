@@ -31,8 +31,35 @@ class HomeScreen extends ConsumerWidget {
 }
 
 Widget buildBody(BuildContext context, Grihini grihini, ScopedReader watch) {
-  if (grihini.pendingTasks.length != 0) {
-    task_details(context, grihini.currentTask, grihini);
+  if (grihini.currentTask != null) {
+    return Scaffold(
+        body: Stack(alignment: Alignment.center, children: [
+      Positioned(
+        top: -h * 0.08,
+        left: -w * 0.05,
+        right: -w * 0.05,
+        child: Image.asset('assets/images/background001.png'),
+      ),
+      Positioned(
+        width: w,
+        top: h * 0.02,
+        child: appBarWithoutBackButton(context, watch),
+      ),
+      Positioned(
+          bottom: h * 0.05,
+          right: 0,
+          left: 0,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: h * 0.16,
+                  child: Text('Click on the Pending Task'),
+                ),
+                taskCard(grihini.currentTask!, grihini, context),
+              ]))
+    ]));
   }
   switch (grihini.status) {
     case "training_pending":
