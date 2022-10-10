@@ -5,7 +5,7 @@ import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
-Widget bottomNavigationTwo(BuildContext context){
+Widget bottomNavigationHome(BuildContext context) {
   return Container(
     width: w,
     decoration: yellowGradient(),
@@ -20,30 +20,11 @@ Widget bottomNavigationTwo(BuildContext context){
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context,homeScreenRoute);
+                Navigator.pushReplacementNamed(context, homeScreenRoute);
               },
               child: Text(
                 AppLocalizations.of(context)!.home,
-                style: TextStyle(
-                    color: Colors.black54, fontSize: w * 0.06),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            SizedBox(
-              child: Image.asset('assets/images/icons/task.png'),
-              width: w * 0.05,
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context,taskDetailsScreenRoute);
-              },
-              child: Text(
-                AppLocalizations.of(context)!.task,
-                style: TextStyle(
-                    color: Colors.black54, fontSize: w * 0.06),
+                style: TextStyle(color: Colors.black54, fontSize: w * 0.06),
               ),
             ),
           ],

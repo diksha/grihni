@@ -11,6 +11,8 @@ import 'package:junkiri/ui/screens/profile/task_details.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
+import 'package:junkiri/ui/widgets/white_gradient.dart';
+import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,13 +28,10 @@ class HomeScreen extends ConsumerWidget {
           context.refresh(grihiniProvider);
           // Handle refresh.
         },
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: grihini.when(
-            data: (grihini) => buildBody(context, grihini, watch),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (err, stack) => Center(child: Text(err.toString())),
-          ),
+        child: grihini.when(
+          data: (grihini) => buildBody(context, grihini, watch),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (err, stack) => Center(child: Text(err.toString())),
         ),
       ),
     );
@@ -40,9 +39,10 @@ class HomeScreen extends ConsumerWidget {
 }
 
 Widget buildBody(BuildContext context, Grihini grihini, ScopedReader watch) {
+  w = MediaQuery.of(context).size.width;
+  h = MediaQuery.of(context).size.height;
   if (grihini.currentTask != null) {
-    return Scaffold(
-        body: Stack(alignment: Alignment.center, children: [
+    return Stack(children: [
       Positioned(
         top: -h * 0.08,
         left: -w * 0.05,
@@ -52,7 +52,7 @@ Widget buildBody(BuildContext context, Grihini grihini, ScopedReader watch) {
       Positioned(
         width: w,
         top: h * 0.02,
-        child: appBarWithoutBackButton(context, watch),
+        child: appBarWithoutBackButton(context, watch, grihini),
       ),
       Positioned(
           bottom: h * 0.05,
@@ -68,13 +68,12 @@ Widget buildBody(BuildContext context, Grihini grihini, ScopedReader watch) {
                 ),
                 taskCard(grihini.currentTask!, grihini, context),
               ]))
-    ]));
+    ]);
   }
   switch (grihini.status) {
     case "training_pending":
       return trainingPending(context, grihini, watch);
     case "trained":
-      print(grihini.completedTasks);
       return Profile(grihini: grihini);
   }
   return const Text("Something Went Wrong...");
@@ -95,7 +94,7 @@ Widget trainingPending(
         Positioned(
           width: w,
           top: h * 0.02,
-          child: appBarWithoutBackButton(context, watch),
+          child: appBarWithoutBackButton(context, watch, grihini),
         ),
         Positioned(
           top: h * 0.15,

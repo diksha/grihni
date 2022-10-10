@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junkiri/ui/screens/admin/admin_home.dart';
 import 'package:junkiri/ui/screens/tasks/photo_upload_screen.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/grihini.dart';
@@ -30,6 +31,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LoginScreen());
     case homeScreenRoute:
       return MaterialPageRoute(builder: (context) => const HomeScreen());
+    case adminScreenRoute:
+      return MaterialPageRoute(builder: (context) => const AdminHome());
     case profileSettingsScreenRoute:
       var grihini = settings.arguments as Grihini;
       return MaterialPageRoute(
@@ -50,9 +53,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       var task = arguments[0] as Task;
       var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(
-          builder: (context) => GroceryPending(
-                task: task,
-              ));
+          builder: (context) => GroceryPending(task: task, grihini: grihini));
     case groceryReceivedScreenRoute:
       var arguments = settings.arguments as List;
       var task = arguments[0] as Task;
@@ -76,9 +77,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       var task = arguments[0] as Task;
       var grihini = arguments[1] as Grihini;
       return MaterialPageRoute(
-          builder: (context) => TaskCompleted(
-                task: task,
-              ));
+          builder: (context) => TaskCompleted(task: task, grihini: grihini));
     case taskDetailsScreenRoute:
       return MaterialPageRoute(builder: (context) => const TaskDetails());
 

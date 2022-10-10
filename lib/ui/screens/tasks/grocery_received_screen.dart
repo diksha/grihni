@@ -32,7 +32,7 @@ class GroceryReceived extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBarWithoutBackButton(context, watch),
+            child: appBarWithoutBackButton(context, watch, grihini),
           ),
           Positioned(
             width: w,
@@ -118,7 +118,9 @@ class GroceryReceived extends ConsumerWidget {
             ),
           ),
           Positioned(
-              bottom: 0, height: h * 0.11, child: bottomNavigationTwo(context)),
+              bottom: 0,
+              height: h * 0.11,
+              child: bottomNavigationHome(context)),
         ],
       ),
     );

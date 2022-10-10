@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/ui/shares/router_names.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
@@ -13,7 +14,9 @@ import 'package:junkiri/ui/widgets/yellow_gradient.dart';
 
 class TaskCompleted extends ConsumerWidget {
   final Task task;
-  const TaskCompleted({Key? key, required this.task}) : super(key: key);
+  final Grihini grihini;
+  const TaskCompleted({Key? key, required this.task, required this.grihini})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -36,7 +39,7 @@ class TaskCompleted extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBarWithoutBackButton(context, watch),
+            child: appBarWithoutBackButton(context, watch, grihini),
           ),
           Positioned(
             width: w,

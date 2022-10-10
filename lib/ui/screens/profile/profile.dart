@@ -29,7 +29,7 @@ class Profile extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              appBarWithoutBackButton(context, watch),
+              appBarWithoutBackButton(context, watch, grihini),
               Padding(
                 padding: EdgeInsets.only(left: w * 0.08),
                 child: Text(

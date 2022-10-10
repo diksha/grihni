@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkiri/models/grihini.dart';
 import 'package:junkiri/models/task.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
 import 'package:junkiri/ui/widgets/app_bar_without_back_button.dart';
@@ -10,7 +11,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GroceryPending extends ConsumerWidget {
   final Task task;
-  const GroceryPending({Key? key, required this.task}) : super(key: key);
+  final Grihini grihini;
+  const GroceryPending({Key? key, required this.task, required this.grihini})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -25,7 +28,7 @@ class GroceryPending extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBarWithoutBackButton(context, watch),
+            child: appBarWithoutBackButton(context, watch, grihini),
           ),
           Positioned(
             width: w,
@@ -61,7 +64,9 @@ class GroceryPending extends ConsumerWidget {
             ),
           ),
           Positioned(
-              bottom: 0, height: h * 0.11, child: bottomNavigationTwo(context)),
+              bottom: 0,
+              height: h * 0.11,
+              child: bottomNavigationHome(context)),
         ],
       ),
     );

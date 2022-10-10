@@ -179,7 +179,7 @@ Widget _buildBody(context, Grihini grihini, ScopedReader watch) {
         ),
       ),
       Positioned(
-          bottom: 0, height: h * 0.11, child: bottomNavigationTwo(context)),
+          bottom: 0, height: h * 0.11, child: bottomNavigationHome(context)),
     ],
   );
 }

@@ -38,7 +38,7 @@ class AchaarPrepared extends ConsumerWidget {
           ),
           Container(
             height: h * 0.18,
-            child: appBarWithoutBackButton(context, watch),
+            child: appBarWithoutBackButton(context, watch, grihini),
           ),
           Positioned(
             width: w,

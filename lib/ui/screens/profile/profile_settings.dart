@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:junkiri/models/grihini.dart';
+import 'package:junkiri/services/auth_service.dart';
+import 'package:junkiri/services/firestore_service.dart';
 import 'package:junkiri/ui/shares/app_colors.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:junkiri/ui/shares/app_constants.dart';
@@ -18,6 +20,7 @@ class ProfileSettings extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -59,7 +62,9 @@ class ProfileSettings extends ConsumerWidget {
                       Padding(
                         padding: EdgeInsets.all(w * 0.05),
                         child: SizedBox(
-                          child: Image.asset('assets/images/person.png'),
+                          child: grihini.profilePicture == ""
+                              ? SvgPicture.asset('assets/images/svg/person.svg')
+                              : Image.network(grihini.profilePicture),
                           width: w * 0.25,
                         ),
                       ),
@@ -133,31 +138,29 @@ class ProfileSettings extends ConsumerWidget {
                     ],
                   ),
                 ),
-                _button(AppLocalizations.of(context)!.uploadProfilePhoto,
-                    "assets/images/icons/photo.png",context,grihini),
-                _button(AppLocalizations.of(context)!.uploadCitizenshipProof,
-                    "assets/images/icons/photo.png",context,grihini),
-                _button(AppLocalizations.of(context)!.phoneNumber,
-                    "assets/images/icons/phonenumicon.png",context,grihini),
-                _button(AppLocalizations.of(context)!.mailingAddress,
-                    "assets/images/icons/location.png",context,grihini),
-                _button(AppLocalizations.of(context)!.uploadOtherPhotos,
-                    "assets/images/icons/photo.png",context,grihini),
+                _buttonProfilePicture(context, grihini),
+                _buttonCitizenshipProof(context, grihini),
+                _buttonMailingAddress(context, grihini),
+                _buttonOtherPhotoes(context, grihini),
+                _signoutButton(context),
               ],
             ),
           ),
           Positioned(
-              bottom: 0, height: h * 0.11, child: bottomNavigationTwo(context)),
+              bottom: 0,
+              height: h * 0.11,
+              child: bottomNavigationHome(context)),
         ],
       ),
     );
   }
 }
 
-Widget _button(btnLabel, String imgUrl,context,grihini) {
+Widget _buttonProfilePicture(context, Grihini grihini) {
   return MaterialButton(
-    onPressed: (){
-      Navigator.pushNamed(context,photoUploadScreenRoute,arguments: "users/${grihini.uid}");
+    onPressed: () {
+      Navigator.pushNamed(context, photoUploadScreenRoute,
+          arguments: ["users/${grihini.uid}/profilePicture", true, grihini]);
     },
     child: Ink(
       width: w * 0.7,
@@ -170,14 +173,14 @@ Widget _button(btnLabel, String imgUrl,context,grihini) {
         child: Row(
           children: [
             SizedBox(
-              child: Image.asset(imgUrl),
+              child: Image.asset("assets/images/icons/photo.png"),
               width: w * 0.05,
             ),
             SizedBox(
               width: w * 0.015,
             ),
             Text(
-              btnLabel,
+              AppLocalizations.of(context)!.uploadProfilePhoto,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: w * 0.04, color: Colors.white),
             ),
@@ -188,10 +191,160 @@ Widget _button(btnLabel, String imgUrl,context,grihini) {
   );
 }
 
-void uploadProfilePhoto() {}
+Widget _buttonCitizenshipProof(context, Grihini grihini) {
+  return MaterialButton(
+    onPressed: () {
+      Navigator.pushNamed(context, photoUploadScreenRoute,
+          arguments: ["users/${grihini.uid}/citizenshipProof", false, grihini]);
+    },
+    child: Ink(
+      width: w * 0.7,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          gradient: LinearGradient(
+              colors: [AppColors.lightYellow, AppColors.darkYellow])),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.03),
+        child: Row(
+          children: [
+            SizedBox(
+              child: Image.asset("assets/images/icons/photo.png"),
+              width: w * 0.05,
+            ),
+            SizedBox(
+              width: w * 0.015,
+            ),
+            Text(
+              AppLocalizations.of(context)!.uploadCitizenshipProof,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
-void uploadCitizenshipProof() {}
+Widget _buttonOtherPhotoes(context, Grihini grihini) {
+  return MaterialButton(
+    onPressed: () {
+      Navigator.pushNamed(context, photoUploadScreenRoute,
+          arguments: ["users/${grihini.uid}/otherPhoto", false, grihini]);
+    },
+    child: Ink(
+      width: w * 0.7,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          gradient: LinearGradient(
+              colors: [AppColors.lightYellow, AppColors.darkYellow])),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.03),
+        child: Row(
+          children: [
+            SizedBox(
+              child: Image.asset("assets/images/icons/photo.png"),
+              width: w * 0.05,
+            ),
+            SizedBox(
+              width: w * 0.015,
+            ),
+            Text(
+              AppLocalizations.of(context)!.uploadOtherPhotos,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
-void mailingAddress() {}
+Widget _signoutButton(context) {
+  AuthService authService = AuthService();
+  return MaterialButton(
+    onPressed: () {
+      authService.signOut(context: context);
+    },
+    child: Ink(
+      width: w * 0.7,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          gradient: LinearGradient(
+              colors: [AppColors.lightYellow, AppColors.darkYellow])),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.03),
+        child: Text(
+          AppLocalizations.of(context)!.signOut,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+        ),
+      ),
+    ),
+  );
+}
 
-void uploadOtherPhotos() {}
+Widget _buttonMailingAddress(context, grihini) {
+  return MaterialButton(
+    onPressed: () {
+      _displayTextInputDialog(context, grihini);
+    },
+    child: Ink(
+      width: w * 0.7,
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          gradient: LinearGradient(
+              colors: [AppColors.lightYellow, AppColors.darkYellow])),
+      child: Padding(
+        padding: EdgeInsets.all(w * 0.03),
+        child: Row(
+          children: [
+            SizedBox(
+              child: Image.asset("assets/images/icons/location.png"),
+              width: w * 0.05,
+            ),
+            SizedBox(
+              width: w * 0.015,
+            ),
+            Text(
+              AppLocalizations.of(context)!.mailingAddress,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: w * 0.04, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Future<void> _displayTextInputDialog(
+    BuildContext context, Grihini grihini) async {
+  FirestoreService fireService = FirestoreService();
+  final TextEditingController _textFieldController = TextEditingController();
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Enter Your Email Address'),
+          content: TextField(
+            controller: _textFieldController,
+            decoration: InputDecoration(hintText: ""),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              color: AppColors.darkYellow,
+              textColor: Colors.white,
+              onPressed: () {
+                fireService.grihiniRef
+                    .doc(grihini.uid)
+                    .update({"email": _textFieldController.text});
+                Navigator.pop(context);
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      });
+}

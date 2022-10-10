@@ -36,7 +36,7 @@ class TaskAccept extends ConsumerWidget {
             width: w,
             child: Container(
               height: h * 0.18,
-              child: appBarWithoutBackButton(context, watch),
+              child: appBarWithoutBackButton(context, watch, grihini),
             ),
           ),
           Positioned(
@@ -141,7 +141,7 @@ class TaskAccept extends ConsumerWidget {
                     ),
                   ),
                   Positioned(
-                      bottom: h * 0.03, child: bottomNavigationTwo(context)),
+                      bottom: h * 0.03, child: bottomNavigationHome(context)),
                 ],
               ),
             ),
