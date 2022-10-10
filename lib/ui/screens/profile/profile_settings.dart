@@ -22,135 +22,138 @@ class ProfileSettings extends ConsumerWidget {
     h = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: h,
-            decoration: whiteGradient(),
-          ),
-          Container(
-            height: h * 0.2,
-            decoration: yellowGradient(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                appBar(context, watch),
-                Padding(
-                  padding: EdgeInsets.only(left: w * 0.08),
-                  child: Text(
-                    AppLocalizations.of(context)!.profileSettings,
-                    style: TextStyle(
-                        fontSize: w * 0.07,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              height: h,
+              decoration: whiteGradient(),
             ),
-          ),
-          Positioned(
-            top: h * 0.2,
-            width: w,
-            bottom: h * 0.11,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(w * 0.05),
-                        child: SizedBox(
-                          child: grihini.profilePicture == ""
-                              ? SvgPicture.asset('assets/images/svg/person.svg')
-                              : Image.network(grihini.profilePicture),
-                          width: w * 0.25,
+            Container(
+              height: h * 0.2,
+              decoration: yellowGradient(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  appBar(context, watch),
+                  Padding(
+                    padding: EdgeInsets.only(left: w * 0.08),
+                    child: Text(
+                      AppLocalizations.of(context)!.profileSettings,
+                      style: TextStyle(
+                          fontSize: w * 0.07,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              top: h * 0.2,
+              width: w,
+              bottom: h * 0.11,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(w * 0.05),
+                          child: SizedBox(
+                            child: grihini.profilePicture == ""
+                                ? SvgPicture.asset(
+                                    'assets/images/svg/person.svg')
+                                : Image.network(grihini.profilePicture),
+                            width: w * 0.25,
+                          ),
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: w * 0.03,
-                                child: Image.asset(
-                                    'assets/images/icons/nameIcon.png'),
-                              ),
-                              SizedBox(
-                                width: w * 0.02,
-                              ),
-                              Text(grihini.name),
-                            ],
-                          ),
-                          SizedBox(
-                            height: h * 0.01,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: w * 0.03,
-                                child: Image.asset(
-                                    'assets/images/icons/addressIcon.png'),
-                              ),
-                              SizedBox(
-                                width: w * 0.02,
-                              ),
-                              Text(grihini.address),
-                            ],
-                          ),
-                          SizedBox(
-                            height: h * 0.01,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: w * 0.03,
-                                child: Image.asset(
-                                    'assets/images/icons/callIcon.png'),
-                              ),
-                              SizedBox(
-                                width: w * 0.02,
-                              ),
-                              Text(grihini.phoneNumber),
-                            ],
-                          ),
-                          MaterialButton(
-                            onPressed: () {},
-                            child: Row(
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
                               children: [
                                 SizedBox(
                                   width: w * 0.03,
                                   child: Image.asset(
-                                      'assets/images/icons/edit.png'),
+                                      'assets/images/icons/nameIcon.png'),
                                 ),
                                 SizedBox(
                                   width: w * 0.02,
                                 ),
-                                Text(AppLocalizations.of(context)!.edit),
+                                Text(grihini.name),
                               ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            SizedBox(
+                              height: h * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: w * 0.03,
+                                  child: Image.asset(
+                                      'assets/images/icons/addressIcon.png'),
+                                ),
+                                SizedBox(
+                                  width: w * 0.02,
+                                ),
+                                Text(grihini.address),
+                              ],
+                            ),
+                            SizedBox(
+                              height: h * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: w * 0.03,
+                                  child: Image.asset(
+                                      'assets/images/icons/callIcon.png'),
+                                ),
+                                SizedBox(
+                                  width: w * 0.02,
+                                ),
+                                Text(grihini.phoneNumber),
+                              ],
+                            ),
+                            MaterialButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: w * 0.03,
+                                    child: Image.asset(
+                                        'assets/images/icons/edit.png'),
+                                  ),
+                                  SizedBox(
+                                    width: w * 0.02,
+                                  ),
+                                  Text(AppLocalizations.of(context)!.edit),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                _buttonProfilePicture(context, grihini),
-                _buttonCitizenshipProof(context, grihini),
-                _buttonMailingAddress(context, grihini),
-                _buttonOtherPhotoes(context, grihini),
-                _signoutButton(context),
-              ],
+                  _buttonProfilePicture(context, grihini),
+                  _buttonCitizenshipProof(context, grihini),
+                  _buttonMailingAddress(context, grihini),
+                  _buttonOtherPhotoes(context, grihini),
+                  _signoutButton(context),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-              bottom: 0,
-              height: h * 0.11,
-              child: bottomNavigationHome(context)),
-        ],
+            Positioned(
+                bottom: 0,
+                height: h * 0.11,
+                child: bottomNavigationHome(context)),
+          ],
+        ),
       ),
     );
   }
