@@ -99,6 +99,14 @@
           }
         },
         {
+          "client_id": "505482283450-s4ourqpomggm730gkpu0d0l71c5ek2jg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grihni.junkiri",
+            "certificate_hash": "daf8688005ad549877f76a92df91c567ef19fcfd"
+          }
+        },
+        {
           "client_id": "505482283450-69srs2eg1lu6mm1dgfr889c2lns6pqn1.apps.googleusercontent.com",
           "client_type": 3
         }
